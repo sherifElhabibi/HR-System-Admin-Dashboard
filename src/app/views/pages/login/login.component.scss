@@ -1,0 +1,31 @@
+h1{
+  color: var(--main);
+}
+.login-btn {
+  background-color: var(--main);
+  border: 1px solid var(--main);
+  color: var(--white);
+}
+.login-btn:hover {
+  background-color: var(--sub-main);
+  border: 1px solid var(--sub-main);
+  color: var(--white);
+}
+.signup{
+  background-color: var(--main);
+}
+.forget-link{
+  color: var(--main);
+}
+.forget-link:hover{
+  color: var(--hover);
+}
+.register-btn{
+  background-color: var(--btn-bg);
+  border: 1px solid var(--btn-bg);
+  color: var(--white);
+}
+.register-btn:hover{
+  background-color: var(--lightgreen);
+  color: var(--main);
+}

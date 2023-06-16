@@ -1,0 +1,18 @@
+h1{
+  color: var(--main);
+}
+.register-btn{
+  background-color: var(--btn-bg);
+  border: 1px solid var(--btn-bg);
+  color: var(--white);
+}
+.register-btn:hover{
+  background-color: var(--sub-main);
+  color: var(--white);
+}
+.forget-link{
+  color: var(--main);
+}
+.forget-link:hover{
+  color: var(--sub-main);
+}

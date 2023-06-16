@@ -1,0 +1,75 @@
+<div class="bg-light min-vh-100 d-flex flex-row align-items-center">
+  <c-container>
+    <c-row class="justify-content-center">
+      <c-col lg="7" md="9" xl="6">
+        <c-card class="mx-4">
+          <c-card-body class="p-4">
+            <form cForm>
+              <h1>Register</h1>
+              <p class="text-medium-emphasis">Create your account</p>
+              <c-input-group class="mb-3">
+                <span cInputGroupText>
+                  <svg cIcon name="cilUser"></svg>
+                </span>
+                <input autoComplete="name" cFormControl placeholder="FirstName"/>
+              </c-input-group>
+              <c-input-group class="mb-3">
+                <span cInputGroupText>
+                  <svg cIcon name="cilUser"></svg>
+                </span>
+                <input autoComplete="name" cFormControl placeholder="LastName" />
+              </c-input-group>
+              <c-input-group class="mb-3">
+                <span cInputGroupText>@</span>
+                <input autoComplete="email" cFormControl placeholder="Email" />
+              </c-input-group>
+              <c-input-group class="mb-3">
+                <span cInputGroupText>
+                  <svg cIcon name="cilLockLocked"></svg>
+                </span>
+                <input autoComplete="new-password" cFormControl placeholder="Password" type="password" />
+              </c-input-group>
+              <c-input-group class="mb-3">
+                <span cInputGroupText>
+                  <svg cIcon name="cilLockLocked"></svg>
+                </span>
+                <input autoComplete="new-password" cFormControl placeholder="Repeat password" type="password" />
+              </c-input-group>
+              <c-input-group class="mb-3">
+                <span cInputGroupText>$</span>
+                <select  autoComplete="Position" class="me-2 form-select" cFormSelect>
+                  <option>choose position</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                </select>
+              </c-input-group>
+              <c-input-group class="mb-3">
+                <span cInputGroupText>+2</span>
+                <input autoComplete="phone" cFormControl placeholder="Phone" />
+              </c-input-group>
+              <c-input-group class="mb-3">
+                <input autoComplete="pictureURL" type="file" cFormControl placeholder="Upload Image" />
+              </c-input-group>
+              <c-input-group class="mb-3">
+                <span cInputGroupText>c</span>
+                <input autoComplete="salary" cFormControl placeholder="Salary" type="number" />
+              </c-input-group>
+              <c-input-group class="mb-3">
+                <span cInputGroupText>c</span>
+                <input autoComplete="hiringDate" type="date" cFormControl placeholder="Hiring date" />
+              </c-input-group>
+              <div class="mt-1 d-flex justify-content-between">
+                <button cButton class="btn register-btn">Create Account</button>
+                <button cButton class="px-0 text-decoration-none forget-link" color="link">
+                  Login
+                </button>
+              </div>
+            </form>
+          </c-card-body>
+        </c-card>
+      </c-col>
+    </c-row>
+  </c-container>
+</div>

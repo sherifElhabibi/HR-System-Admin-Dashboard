@@ -1,0 +1,76 @@
+<table mat-table class="mat-elevation-z8" [dataSource]="employees">
+
+  <!-- First Name Column -->
+  <ng-container matColumnDef="employeeFirstName">
+    <th mat-header-cell *matHeaderCellDef>First Name</th>
+    <td mat-cell *matCellDef="let employee">{{ employee.employeeFirstName }}</td>
+  </ng-container>
+
+  <!-- Last Name Column -->
+  <ng-container matColumnDef="employeeLastName">
+    <th mat-header-cell *matHeaderCellDef>Last Name</th>
+    <td mat-cell *matCellDef="let employee">{{ employee.employeeLastName }}</td>
+  </ng-container>
+
+  <!-- Salary Column -->
+  <ng-container matColumnDef="employeeSalary">
+    <th mat-header-cell *matHeaderCellDef>Salary</th>
+    <td mat-cell *matCellDef="let employee">{{ employee.employeeSalary }}</td>
+  </ng-container>
+
+  <!-- Profile URL Column -->
+  <ng-container matColumnDef="employeeProfileUrl">
+    <th mat-header-cell *matHeaderCellDef>Profile URL</th>
+    <td mat-cell *matCellDef="let employee">{{ employee.employeeProfileUrl }}</td>
+  </ng-container>
+
+  <!-- Phone Column -->
+  <ng-container matColumnDef="employeePhone">
+    <th mat-header-cell *matHeaderCellDef>Phone</th>
+    <td mat-cell *matCellDef="let employee">{{ employee.employeePhone }}</td>
+  </ng-container>
+
+  <!-- Email Column -->
+  <ng-container matColumnDef="employeeEmail">
+    <th mat-header-cell *matHeaderCellDef>Email</th>
+    <td mat-cell *matCellDef="let employee">{{ employee.employeeEmail }}</td>
+  </ng-container>
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="employeePosition">
+    <th mat-header-cell *matHeaderCellDef>Position</th>
+    <td mat-cell *matCellDef="let employee">{{ employee.employeePosition }}</td>
+  </ng-container>
+
+  <!-- Hiring Date Column -->
+  <ng-container matColumnDef="employeeHiringDate">
+    <th mat-header-cell *matHeaderCellDef>Hiring Date</th>
+    <td mat-cell *matCellDef="let employee">{{ employee.employeeHiringDate }}</td>
+  </ng-container>
+
+  <!-- Department ID Column -->
+  <ng-container matColumnDef="departmentId">
+    <th mat-header-cell *matHeaderCellDef>Department ID</th>
+    <td mat-cell *matCellDef="let employee">{{ employee.departmentId }}</td>
+  </ng-container>
+
+  <!-- Actions Column -->
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <td mat-cell *matCellDef="let employee">
+      <a mat-button>Delete</a>
+      <a mat-button [routerLink]="['/employees/edit',employee.emplyeeId]">Update</a>
+    </td>
+  </ng-container>
+
+  <!-- Table Header -->
+  <thead>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  </thead>
+
+  <!-- Table Rows -->
+  <tbody>
+    <tr mat-row *matRowDef="let employee; columns: displayedColumns;"></tr>
+  </tbody>
+
+</table>

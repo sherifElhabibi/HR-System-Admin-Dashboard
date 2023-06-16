@@ -1,0 +1,106 @@
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <h2 class="heading-section">All Projects</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table">
+                      <thead class="bg table-success">
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th>project id</th>
+                            <th>projectName</th>
+                            <th>projectHours</th>
+                            <th>totalBudget</th>
+                            <th>projectStartDate</th>
+                            <th>projectEndDate</th>
+                            <th>projectLocation</th>
+                            <th>projectDescription</th>
+                            <th>projectStatus</th>
+                            <th>phases</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let proj of projects" class="alert" role="alert">
+                            <td>
+                                <label class="checkbox-wrap checkbox-primary">
+                                      <input type="checkbox" checked>
+                                      <span class="checkmark"></span>
+                                    </label>
+                            </td>
+                            <td>{{proj.projectId}}</td>
+
+                          <td class="d-flex align-items-center">
+                              <div class="pl-3 email">
+                                  <span>{{proj.projectName}}</span>
+                              </div>
+                          </td>
+                          <td>{{proj.projectHours}}</td>
+                          <td>{{proj.projectTotalBudget}}</td>
+                          <td>{{proj.projectStartDate}}</td>
+                          <td>{{proj.projectEndDate}}</td>
+                          <td>{{proj.projectLocation}}</td>
+                          <td>{{proj.projectDescription}}</td>
+                          <td><span class="active">{{proj.projectStatus}}</span></td>
+                          <td *ngFor="let phase of proj.projectPhases">
+                            <div>Name: {{ phase.phaseName }}</div>
+                            <div>StartDate: {{ phase.phaseStartDate }}</div>
+                            <div>EndDate{{ phase.phaseEndDate }}</div>
+                            <div>HrBudget{{ phase.phaseHrBudget }}</div>
+                        </td>
+                       
+                        </tr>
+                      </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div *ngIf="falg" class="bg bg-dark text-light">
+        <div *ngFor="let phase of projectPhaseName">
+          <li>phaseName => {{ phase.phaseName }}</li>
+          <li>phaseEndDate => {{ phase.phaseEndDate }}</li>
+          <li>phaseEndDate => {{ phase.phaseEndDate }}</li>
+          <li>phaseHrBudget => {{ phase.phaseHrBudget }}</li>
+        </div>
+        <span>flag = true</span>
+      </div> -->
+      
+
+         <!-- <div *ngIf="falg" class="bg bg-dark text-light" >
+            <div >
+                <li>phaseName =>   {{projectPhaseName.phaseName}}</li>
+                <li>phaseEndDate =>{{projectPhaseName.phaseEndDate}}</li>
+                <li>phaseEndDate =>{{projectPhaseName.phaseEndDate}}</li>
+                <li>phaseHrBudget =>{{projectPhaseName.phaseHrBudget}}<li>
+            </div>
+            <span>flag = true</span>
+            
+            </div>  -->
+</section>
+
+
+    <!-- <div *ngIf="falg"  class="bg bg-dark text-light" class="alert alert-warning alert-dismissible fade show" role="alert" >
+        <strong>Project phase Info</strong> 
+        <li>phaseName =>{{projectPhaseName.phaseName}}</li>
+        <li>phaseEndDate =>{{projectPhaseName.phaseEndDate}}</li>
+        <li>phaseEndDate =>{{projectPhaseName.phaseEndDate}}</li>
+        <li>phaseHrBudget =>{{projectPhaseName.phaseHrBudget}}<li>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+    <div *ngIf="falg" class="bg bg-dark text-light">
+        <span>flag = true</span>
+        <li>phaseName =>{{projectPhaseName.phaseName}}</li>
+        <li>phaseEndDate =>{{projectPhaseName.phaseEndDate}}</li>
+        <li>phaseEndDate =>{{projectPhaseName.phaseEndDate}}</li>
+        <li>phaseHrBudget =>{{projectPhaseName.phaseHrBudget}}<li>
+        </div> -->
