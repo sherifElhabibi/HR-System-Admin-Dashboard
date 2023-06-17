@@ -11,29 +11,35 @@ export class DepartmentService {
 
   private baseUrl=environment.baseApi;
   constructor(public http:HttpClient) { }
-  getAllDepartments(){
+  createDepartment(department: Department,check:any): Observable<any> {
+    const url = `${this.baseUrl}/departments/${check}`;
+    return this.http.post(url, department,check);
+  }
+
+  getAll(){
     return this.http.get<Department[]>(this.baseUrl+ '/departments');
   }
 
 
-
-  // create(dept: any): Observable<any> {
-  //   //this.depart.employessIds = this.depart.employessIds.split(',').map(Number);
-  //   const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-  //   return this.http.post<any>(this.baseUrl + '/departments', dept, httpOptions);
-  // }
-
-  // getManagers(){
-  //   return this.http.get(this.baseUrl + '/departments');
-  // }
-
-  createDepartment(department: Department): Observable<any> {
-    const url = `${this.baseUrl}/departments`;
-    return this.http.post(url, department);
+  deleteById(id: number, targetDepartmentId: number, selectedEmployeeIds?:any) {
+    let url = this.baseUrl + '/departments/delete/' + id + '/target/' + targetDepartmentId;
+    let options : any;
+    if (selectedEmployeeIds) {
+      options = { body: { selectedEmployeeIds } };
+    }
+    return this.http.delete(url, options);
   }
 
+  getById(id:number){ return this.http.get<Department>(this.baseUrl+ '/departments/'+id);}
+
+
+  edit(dept:Department){
+    return this.http.patch(this.baseUrl+ '/departments/'+dept.departmentId,dept);
+   }
+
+
   getManagers(): Observable<any[]> {
-    const url = `${this.baseUrl}/employees`;
+    const url = this.baseUrl+ '/employees';
     return this.http.get<any[]>(url);
   }
 

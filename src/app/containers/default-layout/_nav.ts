@@ -147,6 +147,10 @@ export const navItems: INavData[] = [
         name: 'Create',
         url: '/department/create'
       },
+      {
+        name: 'Edit',
+        url: '/department/edit/id'
+      },
     ]
   },
   {

@@ -40,7 +40,10 @@
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/scss/styles.scss"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/datatables.net/js/jquery.dataTables.js"
+            ],
             "allowedCommonJsDependencies": [
               "chart.js"
             ]

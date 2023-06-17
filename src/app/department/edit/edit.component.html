@@ -1,0 +1,25 @@
+
+
+    <form  #form="ngForm" id="form">
+
+        <div > 
+          <label for="departmentName" class="text-info">Department Name:</label>
+          <input type="text" placeholder="{{currentDept.departmentName}}" [(ngModel)]="currentDept.departmentName" />
+        </div>
+      <div>
+        <label class="text-info">Manager Name:</label>
+          <select id="mangerName" [(ngModel)]="currentDept.managerId" name="managerId" required >
+            <option value="" disabled>{{currentDept.mangerName}}</option>
+            <option *ngFor="let manager of emps" [value]="manager.employeeId">{{ manager.employeeFirstName+" "+manager.employeeLastName }}</option>
+          </select>
+      </div>
+  
+      <div>
+          <label for="eachobject" class="text-info">selectedEmployeeIds</label>
+          <input type="text" id="eachobject" name="eachobject" [(ngModel)]="eachobject">
+        </div>
+    
+        <button class="btn btn-outline-info my-4 px-5 text-light" [routerLink]="['list',currentDept.departmentId]" (click)="update()">Save</button>
+  </form>
+    
+    

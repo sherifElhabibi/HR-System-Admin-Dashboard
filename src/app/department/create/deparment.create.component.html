@@ -1,130 +1,43 @@
-<!-- <span class="input-group-text">Department Name</span>
-        <input type="text" class="form-control" [(ngModel)]="depart.departmentName">
-  
-        <span class="input-group-text">manager name</span>
-        <input type="text" class="form-control" [(ngModel)]="depart.mangerName">
-        <span class="input-group-text">manager name</span>
-        <input type="text" class="form-control" [(ngModel)]="depart.mangerName">
-
-
-        <button (click)="createDept()" class="btn btn-primary">
-            Add
-          </button> -->
-          <!-- department-form.component.html -->
-
-
-
-<!--       worked ^_^     -->
-<!-- <form (ngSubmit)="createDepartment()" #departmentForm="ngForm">
-  <div class="form-group">
-    <span class="input-group-text">Department Name</span>
-    <input type="text" id="name" name="name"  class="form-control" [(ngModel)]="depart.name">
+<form (ngSubmit)="createDepartment()" #form="ngForm" id="form">
+  <div>
+    <label for="departmentName" class="text-info">Department Name:</label>
+    <input type="text" id="departmentName" name="departmentName" [(ngModel)]="departmentName" required>
   </div>
-  <div class="form-group">
-    <label for="managerName">managerId</label>
-    <input type="text" id="managerId" name="managerId" class="form-control" [(ngModel)]="depart.managerId" required>
+
+  <div>
+    <label for="managerId" class="text-info">Manager ID:</label>
+    <input type="number" id="managerId" name="managerId" [(ngModel)]="managerId">
   </div>
-  <div class="form-group">
-    <label for="employeeIds">Employee IDs</label>
-    <input type="text" id="employeeIds" name="employeeIds" class="form-control" [(ngModel)]="depart.employessIds" required>
+
+  <div>
+    <label for="employessIds" class="text-info">Employee IDs:</label>
+    <input type="text" id="employessIds" name="employessIds" [(ngModel)]="employessIds">
   </div>
-  <button type="submit" class="btn btn-primary">Create Department</button>
-</form> -->
+  <div>
+    <h4>Before create we check if this manager in another Dept </h4>
+      <label for="stopornot" class="text-info" style="font-size: 12px;">1-> Continue  <br/>0-> Stop</label>
+    <input type="number"  min="0" max="1" id="stopornot" name="stopornot" [(ngModel)]="stopornot">
+  </div>
 
-<!-- 
-<div>
-  <h2>Create Department</h2>
-  <form (ngSubmit)="createDepartment()">
-    <div>
-      <label for="departmentName">Department Name:</label>
-      <input type="text" id="departmentName" [(ngModel)]="depart.name" name="departmentName" required>
-    </div> -->
-    <!-- <div>
-      <label for="managerName">Manager Name:</label>
-      <input type="text" id="managerName" [(ngModel)]="managerName" name="managerName" required>
-    </div> -->
-
-    <!-- <div>
-      <label for="managerId">Manager Name:</label>
-      <select id="managerId" [(ngModel)]="depart.managerId" name="managerId" required>
-        <option value="" disabled>Select Manager</option>
-        <option *ngFor="let manager of employees" [value]="manager.id" name="managerId">{{ manager.firstName }}</option>
-      </select>
-    </div> -->
-
-    <!-- <div>
-      <label for="mangerName">Manager Name:</label>
-      <select id="mangerName" [(ngModel)]="depart.mangerName" name="mangerName" required>
-        <option value="" disabled>Select Manager</option>
-        <option *ngFor="let manager of employees" [value]="manager.id">{{ manager.firstName }}</option>
-      </select>
-    </div> -->
-
-    <!-- <div>
-      <label for="managerName">Manager Name:</label>
-      <select id="managerName" [(ngModel)]="selectedManagerId" name="managerName" required (select)="selectedManagerId">
-        <option value="" disabled>Select Manager</option>
-        <option *ngFor="let manager of employees" [value]="manager.id">{{ manager.firstName }}</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label for="employeeIds">Employee IDs</label>
-      <input type="text" id="employeeIds" name="employeeIds" class="form-control" [(ngModel)]="depart.employessIds" required>
-    </div>
-    <button type="submit">Create</button>
-  </form>
-</div> -->
+  <button type="submit" [disabled]="!form.valid" class="btn btn-outline-info rounded mt-5">Create Department</button>
+</form>
 
 
+<!-- <br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
+<h4>departmentName</h4>
+<input type="text" [(ngModel)]="departmentName"><br><br>
+<h4>departmentName</h4>
+<input type="text" [(ngModel)]="managerId"><br><br>
+<h4>departmentName</h4>
+<input type="number" [(ngModel)]="employessIds"><br><br>
+<h4>Before create we check if this manager in another Dept </h4>
+<h5>so if you want to move it select (1)  or (0) to stop create</h5>
+<input type="text" [(ngModel)]="stopornot"><br><br> -->
 
-<!-- <div>
-  <h2>Create Department</h2>
-  <form (ngSubmit)="createDepartment()">
-    <div>
-      <label for="departmentName">Department Name:</label>
-      <input type="text" id="departmentName" [(ngModel)]="depart.name" name="departmentName" required>
-    </div>
-    <div>
-      <label for="managerName">Manager Name:</label>
-      <select id="managerName" [(ngModel)]="selectedManager" name="managerName" [value]="depart.managerId" required>
-        <option value="" disabled>Select Manager</option>
-        <option *ngFor="let manager of managers" [value]="manager.id">{{ manager.mangerName }}</option>
-      </select>
-    </div>
-    <div>
-      <label for="employeeIds">Employee IDs (comma-separated):</label>
-      <input type="text" id="employeeIds" [(ngModel)]="depart.employessIds" name="employeeIds" required>
-    </div>
-    <button type="submit">Create</button>
-  </form>
-</div> -->
-
-
-
-
-
-
-<div>
-  <h2>Create Department</h2>
-  <form (ngSubmit)="createDepartment()">
-    <div>
-      <label for="departmentName">Department Name:</label>
-      <input type="text" id="departmentName" [(ngModel)]="department.name" name="departmentName" required>
-    </div>
-    <div>
-      <label for="managerName">Manager Name:</label>
-      <input type="text" id="managerName" [(ngModel)]="managerName" name="managerName" required>
-    </div>
-    <!-- <div>
-      <label for="employeeIds">Employee IDs (comma-separated):</label>
-      <input type="text" id="employeeIds" [(ngModel)]="department.employessIds" name="employeeIds" required>
-    </div> -->
-    <div>
-      <label for="employeeIds">Employee IDs (comma-separated):</label>
-      <input type="text" id="employeeIds" [(ngModel)]="department.employessIds" name="employeeIds" required>
-    </div>
-    <button type="submit">Create</button>
-  </form>
-</div>

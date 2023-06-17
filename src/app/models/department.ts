@@ -1,11 +1,11 @@
 export class Department{
-    constructor(
-     public name:string,
-     public managerId:number |undefined,
-     public employessIds:number[],
-     public noEmployees?:number,
-     public managerName?:string,
-     public departmentName?:string,
-     public id?:number,
-    ){}
+  constructor(
+    public departmentName:string,
+    public managerId:number |undefined,
+    public employessIds:any,
+    public mangerName?:string,
+    public employees?:any ,
+    public noEmployees?:number,
+    public departmentId?:number,
+   ){}
   }

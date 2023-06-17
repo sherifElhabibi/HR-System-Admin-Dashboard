@@ -6,12 +6,14 @@ import { ListComponent } from './list/deparment.list.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { EditComponent } from './edit/edit.component';
 
 
 @NgModule({
   declarations: [
     CreateComponent,
-    ListComponent
+    ListComponent,
+    EditComponent
   ],
   imports: [
     CommonModule,
@@ -19,10 +21,11 @@ import { FormsModule } from '@angular/forms';
     RouterModule,
     HttpClientModule,
     FormsModule,
-  ],
+    ],
   exports:[
     ListComponent,
-    CreateComponent
+    CreateComponent,
+    EditComponent
   ]
 })
 export class DepartmentModule { }

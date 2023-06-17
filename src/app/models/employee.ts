@@ -1,6 +1,6 @@
 export class Employee {
   constructor(
-    public emplyeeId: number,
+    public emplyeeId:  number,//*   remove 
     public employeeFirstName: string,
     public employeeLastName: string,
     public employeeSalaryPerHour: number,
@@ -15,7 +15,9 @@ export class Employee {
     public employeePosition: string,
     public employeeHiringDate: string,
     public employeeStatus: number,
-    public departmentId?: number
+    public departmentId?: number,
+    public employeeId?: number,//*  edit new
+
   ) {}
   }
   

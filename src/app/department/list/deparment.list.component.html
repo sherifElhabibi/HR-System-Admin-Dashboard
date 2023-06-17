@@ -1,26 +1,91 @@
-<div *ngIf="dept?.length !=0">
-    <h2>Departments:</h2>
-    <table class="table table-striped table-hover">
-        <thead>
-            <tr>
-              <!-- <th scope="col">ID</th> -->
-              <th scope="col">Department Name</th>
-              <th scope="col">manager name</th>
-              <th scope="col"># Employees</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let department of dept">
-              <!-- <td>{{department.id}}</td> -->
-              <td>{{department.departmentName}}</td>
-              <td>{{department.managerName}}</td>
-              <td>{{department.noEmployees}}</td>
-            </tr>
-          </tbody>
-      </table>
-    
-  </div>
+<div *ngIf="depts?.length !=0">
+  <h2>Departments:</h2>
+  <table class="table table-hover table-borderless shadow rounded">
+      <thead  class="bg table-success text-center">
+          <tr>
+            <!-- <th scope="col">ID</th> -->
+            <th scope="col">Department Name</th>
+            <th scope="col">manager name</th>
+            <th scope="col"># Employees</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let department of depts" class="text-center">
+            <!-- <td>{{department.id}}</td> -->
+            <td>{{department.departmentName}}</td>
+            <td>{{department?.mangerName}}</td>
+            <td>{{department.noEmployees}}</td>
+            <td>
+             <a [routerLink]="['edit',department.departmentId]"  (click)="editDept(department)" > <i class="bi bi-pen text-success"></i></a>
+             <a href=""> <i class="bi bi-box-arrow-in-right text-info mx-3"></i></a>
+             <a (click)="show(department.departmentId)"> <i class="bi bi-x-circle-fill text-danger"></i></a>
+
+            </td>
+          </tr>
+        </tbody>
+    </table>
   
-  <div *ngIf="dept?.length == 0">
-    <p>No departments available.</p>
+</div>
+
+
+
+
+
+
+<div *ngIf="depts?.length == 0">
+  <p>No departments available.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--For delete -->
+<div *ngIf="flag">
+    <p>flag =true</p>
+   enter your dept id <input [(ngModel)]="idd"/><br/>
+   enter another dept id to move fore  
+   <select  [(ngModel)]="targetDepartmentId" name="dropdownDeptsIds">
+    <option value="">Select an option</option>
+    <option *ngFor="let option of depts" [ngValue]="option.departmentId">{{ option.departmentName}}</option>
+  </select><br/>
+
+ 
+  <!-- <select [(ngModel)]="eachobject" multiple>
+    <option *ngFor="let emp of eachobject" >
+      {{emp}}
+    </option>
+  </select> -->
+  <div>
+    selectedEmployeeIds
+    <input type="text" id="eachobject" name="eachobject" [(ngModel)]="eachobject">
   </div>
+  <a (click)="deleteDept(idd,targetDepartmentId,eachobject)"> <i class="bi bi-x-circle-fill text-danger"></i></a>
+
+</div> 
+
