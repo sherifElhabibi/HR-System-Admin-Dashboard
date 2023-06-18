@@ -17,7 +17,8 @@ export class Employee {
     public employeeStatus: number,
     public departmentId?: number,
     public employeeId?: number,//*  edit new
-
+    public totalHoursSpent?: number,
+    public totalCost?: number,
   ) {}
   }
   
