@@ -1,8 +1,8 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Department } from '../../models/department';
+import { Department } from '../../models/Department/department';
 import { DepartmentService } from '../../services/department.service';
-import { Employee } from 'src/app/models/employee';
+import { Employee } from 'src/app/models/Employee/employee';
 import DataTables from 'datatables.net';
 
 

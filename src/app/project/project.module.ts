@@ -6,13 +6,22 @@ import { ListComponent } from './list/list.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { MatCardModule } from '@angular/material/card';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MaterialModule } from '../shared/material.module'
+import { AddProjectComponent } from './add-project/add-project.component';
+import { EditProjectComponent } from './edit-project/edit-project.component';
+import { ProjectDetailsComponent } from './project-details/project-details.component';
 
 
 
 @NgModule({
   declarations: [
-    ListComponent
+    ListComponent,
+    AddProjectComponent,
+    EditProjectComponent,
+    ProjectDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +29,9 @@ import { MatCardModule } from '@angular/material/card';
     RouterModule,
     HttpClientModule,
     FormsModule,
-    MatCardModule
+    MaterialModule,
+    MatSnackBarModule,
+    ReactiveFormsModule
   ],
   exports:[
     ListComponent,

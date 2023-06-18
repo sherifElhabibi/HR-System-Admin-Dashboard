@@ -2,7 +2,7 @@ import { Component ,OnInit} from '@angular/core';
 import { FormBuilder, FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Department } from 'src/app/models/department';
+import { Department } from 'src/app/models/Department/department';
 import { DepartmentService } from 'src/app/services/department.service';
 import { EmployeeService } from 'src/app/services/employee.service';
 

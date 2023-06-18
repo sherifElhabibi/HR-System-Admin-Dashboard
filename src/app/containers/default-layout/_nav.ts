@@ -160,7 +160,15 @@ export const navItems: INavData[] = [
     children: [
       {
         name: 'List',
-        url: '/project/list'
+        url: '/project/'
+      },
+      {
+        name: 'Create',
+        url: '/project/add'
+      },
+      {
+        name: 'Edit',
+        url: '/project/edit/:id'
       },
       // {
       //   name: 'Create',

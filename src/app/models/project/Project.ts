@@ -1,4 +1,4 @@
-import { Projectphases } from "./projectphases";
+import { Projectphases } from "../projectPhase/Projectphases ";
 export class Project {
     constructor(
     public projectName:string,

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Department } from 'src/app/models/department';
-import { Employee } from 'src/app/models/employee';
+import { Department } from 'src/app/models/Department/department';
+import { Employee } from 'src/app/models/Employee/employee';
 import { DepartmentService } from 'src/app/services/department.service';
 
 @Component({

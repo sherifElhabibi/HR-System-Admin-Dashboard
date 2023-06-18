@@ -1,129 +1,58 @@
-
-<section class="ftco-section">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6 text-center mb-5">
-                <h2 class="heading-section">All Projects</h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="table-responsive">
-                    <table class="table">
-                      <thead class="bg table-success">
-                        <tr>
-                            <th>&nbsp;</th>
-                            <th>project id</th>
-                            <th>projectName</th>
-                            <th>projectHours</th>
-                            <th>totalBudget</th>
-                            <th>projectStartDate</th>
-                            <th>projectEndDate</th>
-                            <th>projectLocation</th>
-                            <th>projectDescription</th>
-                            <th>projectStatus</th>
-                            <!-- <th>phases</th> -->
-                            <th>&nbsp;</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr *ngFor="let proj of projects" class="alert" role="alert">
-                            <td>
-                                <label class="checkbox-wrap checkbox-primary">
-                                      <input type="checkbox" checked>
-                                      <span class="checkmark"></span>
-                                    </label>
-                            </td>
-                            <td>{{proj.projectId}}</td>
-
-                          <td class="d-flex align-items-center">
-                              <div class="pl-3 email">
-                                  <span>{{proj.projectName}}</span>
-                              </div>
-                          </td>
-                          <td>{{proj.projectHours}}</td>
-                          <td>{{proj.projectTotalBudget}}</td>
-                          <td>{{proj.projectStartDate}}</td>
-                          <td>{{proj.projectEndDate}}</td>
-                          <td>{{proj.projectLocation}}</td>
-                          <td>{{proj.projectDescription}}</td>
-                          <td><span class="active">{{proj.projectStatus}}</span></td>
-                          <!-- <td *ngFor="let phase of proj.projectPhases">
-                            <div>Name: {{ phase.phaseName }}</div>
-                            <div>StartDate: {{ phase.phaseStartDate }}</div>
-                            <div>EndDate{{ phase.phaseEndDate }}</div>
-                            <div>HrBudget{{ phase.phaseHrBudget }}</div>
-                        </td> -->
-                       
-                        </tr>
-                      </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- <div *ngIf="falg" class="bg bg-dark text-light">
-        <div *ngFor="let phase of projectPhaseName">
-          <li>phaseName => {{ phase.phaseName }}</li>
-          <li>phaseEndDate => {{ phase.phaseEndDate }}</li>
-          <li>phaseEndDate => {{ phase.phaseEndDate }}</li>
-          <li>phaseHrBudget => {{ phase.phaseHrBudget }}</li>
-        </div>
-        <span>flag = true</span>
-      </div> -->
-      
-
-         <!-- <div *ngIf="falg" class="bg bg-dark text-light" >
-            <div >
-                <li>phaseName =>   {{projectPhaseName.phaseName}}</li>
-                <li>phaseEndDate =>{{projectPhaseName.phaseEndDate}}</li>
-                <li>phaseEndDate =>{{projectPhaseName.phaseEndDate}}</li>
-                <li>phaseHrBudget =>{{projectPhaseName.phaseHrBudget}}<li>
-            </div>
-            <span>flag = true</span>
-            
-            </div>  -->
-</section>
-<!-- <div *ngFor="let proj of projects"> -->
-
-
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>
-     proj.projectName
-    </mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-   <div>
-    <div class="row display-flex">
-      <div>proj.projectLocation</div>
-      <div>proj.mmmmmm</div>
-    </div>
-
-   </div>
-  </mat-card-content>
-  <!-- <mat-card-actions>
-    <button mat-button>Button 1</button>
-    <button mat-button>Button 2</button>
-  </mat-card-actions> -->
-</mat-card>
-<!-- </div> -->
-
-    <!-- <div *ngIf="falg"  class="bg bg-dark text-light" class="alert alert-warning alert-dismissible fade show" role="alert" >
-        <strong>Project phase Info</strong> 
-        <li>phaseName =>{{projectPhaseName.phaseName}}</li>
-        <li>phaseEndDate =>{{projectPhaseName.phaseEndDate}}</li>
-        <li>phaseEndDate =>{{projectPhaseName.phaseEndDate}}</li>
-        <li>phaseHrBudget =>{{projectPhaseName.phaseHrBudget}}<li>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+ <div class="container">
+    <div class="row">
+      <div class="text-end">
+        <a [routerLink]="['/project/add']">
+          <button type="button" class="btn btn-sm btn-primary me-2 col-2" id="addButton">
+            Add New Project
+            <i class="fa fa-plus"></i>
+          </button>
+        </a>
       </div>
-
-    <div *ngIf="falg" class="bg bg-dark text-light">
-        <span>flag = true</span>
-        <li>phaseName =>{{projectPhaseName.phaseName}}</li>
-        <li>phaseEndDate =>{{projectPhaseName.phaseEndDate}}</li>
-        <li>phaseEndDate =>{{projectPhaseName.phaseEndDate}}</li>
-        <li>phaseHrBudget =>{{projectPhaseName.phaseHrBudget}}<li>
-        </div> -->
+    </div>
+    <br>
+    <!-- Rest of the code -->
+  </div>
+  <br>
+  <table class="table table-striped table-bordered styled-table">
+    <thead>
+      <tr style="text-align: center;">
+        <th>#</th>
+        <th>Name</th>
+        <th>TotalHours</th>
+        <th>TotalBudget</th>
+        <th>Location</th>
+        <th>Status</th>
+        <th>Operations</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let project of projects;let i = index" style="text-align: center;">
+        <td>{{i+1}}</td>
+        <td>{{project.projectName}}</td>
+        <td>{{project.projectHours}}</td>
+        <td>{{project.projectTotalBudget}}</td>
+        <td>{{project.projectLocation}}</td>
+        <td>{{project.projectStatus}}</td>
+        <td style="display: flex;justify-content: space-around;">
+          <div class="buttons d-flex flex-column d-md-flex flex-md-row gap-2">
+            <a [routerLink]="['/project/edit/', project.projectId]">
+              <button type="button" class="btn btn-sm btn-primary me-2">
+                <i class="fa fa-edit"></i>
+              </button>
+            </a>
+            <a [routerLink]="['/project/details/', project.projectId]">
+              <button class="btn btn-sm btn-dark me-2">
+                <i class="fa fa-eye"></i>
+              </button>
+            </a>
+            <a>
+              <button class="btn btn-sm btn-danger" (click)="delete(project.projectId)">
+                <i class="fa fa-trash"></i>
+              </button>
+            </a>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <router-outlet></router-outlet>
