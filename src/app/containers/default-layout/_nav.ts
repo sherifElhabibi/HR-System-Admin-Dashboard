@@ -128,10 +128,6 @@ export const navItems: INavData[] = [
         name: 'List',
         url: '/employees/list'
       },
-      {
-        name: 'Update',
-        url: '/employees/update'
-      },
     ]
   },
   {

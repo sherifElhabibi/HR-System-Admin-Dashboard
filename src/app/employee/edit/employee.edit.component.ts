@@ -28,12 +28,7 @@ export class EmployeeEditComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder
-  ) {
-
-    // this.deptService.getAllDepartments().subscribe(depts => {
-    //   this.depts = depts;
-    // });
-  }
+  ) {}
   ngOnInit():void {
     this.route.params.subscribe((params: any) => {
        this.id =+params['emplyeeId']});

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { Router } from '@angular/router';
 import { EmployeeService } from 'src/app/services/employee.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -16,7 +17,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 
 export class EmployeeCreateComponent {
-  constructor(public empService: EmployeeService, private fb: FormBuilder) {}
+  constructor(public empService: EmployeeService, private fb: FormBuilder, public router:Router) {}
   matcher = new MyErrorStateMatcher();
   createEmpForm = this.fb.group({
     employeeFirstName: [
@@ -107,7 +108,7 @@ export class EmployeeCreateComponent {
 
   createNewEmp(): void {
     this.empService.createEmployee(this.createEmpForm.value).subscribe(
-      (response) => console.log(response),
+      (response) => {this.router.navigateByUrl('/employees/list'); console.log(response)},
       (error) => console.log(error)
     );
   }

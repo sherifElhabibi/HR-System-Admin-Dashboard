@@ -21,7 +21,11 @@
   }
 mat-form-field{
     width: 100%;
+    border-radius: 150px;
 }
 input{
     padding-top: 20px;
+}
+mat-label{
+  color: var(--sub-main);
 }

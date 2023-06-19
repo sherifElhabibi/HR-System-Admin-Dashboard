@@ -35,6 +35,7 @@ export class ListComponent implements OnInit {
     });
     this.departmentService.getAll().subscribe(data=>{
       this.depts=data;
+
     //  data.forEach((element:any) => {
     //   if(element.departmentId!=this.idd){}
     //    this.selectedEmployeeIds.add(element.departmentId)
@@ -47,7 +48,7 @@ export class ListComponent implements OnInit {
        console.log("selectedEmployeeIds")
      console.log(this.selectedEmployeeIds);
       console.log("all depts")
-       console.log(data);
+      console.log(this.depts);
     });
 
   }
