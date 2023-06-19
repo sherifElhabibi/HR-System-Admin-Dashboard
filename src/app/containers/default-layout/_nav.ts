@@ -166,10 +166,25 @@ export const navItems: INavData[] = [
         name: 'Edit',
         url: '/project/edit/:id'
       },
-      // {
-      //   name: 'Create',
-      //   url: '/department/create'
-      // },
+    ]
+  },
+    {
+    name: 'Project Phases',
+    url: '/phases',
+    iconComponent: { name: 'cil-puzzle' },
+    children: [
+      {
+        name: 'List',
+        url: '/phases/'
+      },
+      {
+        name: 'Create',
+        url: '/phases/add'
+      },
+      {
+        name: 'Edit',
+        url: '/phases/edit/:id'
+      },
     ]
   },
   // {

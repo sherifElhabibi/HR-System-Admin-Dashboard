@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row">
+      <div class="text-end">
+        <button mat-button class="button back-button" (click)="back()">
+          <mat-icon>arrow_back</mat-icon>
+          Back
+        </button>
+      </div>
+    </div>
+    <mat-card class="my-2 patient-card">
+      <mat-card-header class="patient-card-header">
+        <mat-card-title>Project Details</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <table class="table table-striped table-bordered styled-table">
+          <thead>
+            <tr style="text-align: center;">
+              <th>Phase Name</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Milestonr</th>
+              <th>Budger per Hour</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="text-align: center;">
+              <td>{{ phase.phaseName }}</td>
+              <td>{{ phase.phaseStartDate }}</td>
+              <td>{{ phase.phaseEndDate }}</td>
+              <td>{{ phase.phaseMilestone }}</td>
+              <td>{{ phase.phaseHrBudget }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  
