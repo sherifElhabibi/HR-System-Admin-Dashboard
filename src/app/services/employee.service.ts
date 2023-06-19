@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environment/environment';
 import { Employee } from '../models/Employee/employee';
 import {GetEmployeeById} from '../models/Employee/EmployeeGetId';
+import {GetAllEmployees} from '../models/Employee/GetAllEmployees'
+
 @Injectable({
   providedIn: 'root'
 })
@@ -10,7 +12,7 @@ export class EmployeeService {
   private baseUrl = environment.baseApi;
   constructor(public HttpClient:HttpClient) { }
   getAllEmployees(){
-    return this.HttpClient.get<Employee>(this.baseUrl + '/employees');
+    return this.HttpClient.get<GetAllEmployees[]>(this.baseUrl + '/employees');
    }
    createEmployee(employee: any){
     return this.HttpClient.post<Employee>(this.baseUrl + '/employees',employee);
@@ -26,5 +28,8 @@ export class EmployeeService {
   }
   GetEmployeesHoursAndTotoalCostInAllProjects(){
    return this.HttpClient.get(this.baseUrl + '/employees'+'/'+'GetEmployeesHoursAndTotoalCostInAllProjects')
+  }
+  getEmployeesCostsInProject(projectId:number){
+    return this.HttpClient.get<any>(this.baseUrl+'/employees'+'/'+'GetEmployeesCostsInProject'+'/'+projectId);
   }
 }

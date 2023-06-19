@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import {  HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { DatePipe } from '@angular/common';
 
 
 // Import routing module
@@ -90,7 +90,7 @@ const APP_CONTAINERS = [
       useClass: HashLocationStrategy
     },
     IconSetService,
-    Title
+    Title,DatePipe
   ],
   bootstrap: [AppComponent]
 })

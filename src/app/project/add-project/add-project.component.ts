@@ -3,11 +3,13 @@ import { Router } from '@angular/router';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { GetAllProjects } from '../../models/project/GetAllProjects'
 import { ProjectService } from '../../services/project.service'
 import { EmployeeService } from '../../services/employee.service'
-import { Project } from '../../models/project/Project'
-import { Employee } from 'src/app/models/Employee/employee';
+import { GetAllEmployees } from '../../models/Employee/GetAllEmployees'
+import { DatePipe } from '@angular/common';
+
+
+
 
 @Component({
   selector: 'app-add-project',
@@ -15,10 +17,8 @@ import { Employee } from 'src/app/models/Employee/employee';
   styleUrls: ['./add-project.component.scss']
 })
 export class AddProjectComponent {
-  projects: GetAllProjects[] = [];
   projectID: number = 0;
-  projectDetails!:Project;
-  employees:Employee[] =[];
+  employees:GetAllEmployees[] =[];
 
   validationMessages = {
     projectName: {
@@ -72,10 +72,12 @@ export class AddProjectComponent {
     public employeeService:EmployeeService,
     private builder: FormBuilder,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private datePipe: DatePipe
   ) {
-    this.projectService.getAllProjects().subscribe((projectsArray) => {
-      this.projects = projectsArray;
+    this.employeeService.getAllEmployees().subscribe((employeeList)=>{
+      this.employees= employeeList;
+      console.log(employeeList);
     });
   }
 
@@ -112,8 +114,6 @@ export class AddProjectComponent {
       '',
       Validators.compose([Validators.required])
     ),
-
-    /* ---------------------------------------------------------   */
     projectPhases: this.builder.array([this.projectPhasesForm()]),
     employeesInProjectIds: this.builder.array([]),
   });
@@ -154,6 +154,9 @@ export class AddProjectComponent {
   }
 
   save() {
+    this.projectform.value.projectStartDate =this.datePipe.transform(this.projectform.value.projectStartDate, 'yyyy-MM-dd');
+    this.projectform.value.projectEndDate =this.datePipe.transform(this.projectform.value.projectEndDate, 'yyyy-MM-dd');
+    console.log(this.projectform.value);
     if (this.projectform.valid) {
       this.projectService
         .createProject(this.projectform.value)
@@ -176,20 +179,8 @@ export class AddProjectComponent {
       });
     }
   }
+
   goBack(): void {
     this.router.navigate(['project']);
   }
-  getProject(id: string) {
-    this.projectService
-      .getProjectById(parseInt(id))
-      .subscribe((currentProject) => {
-        this.projectDetails = currentProject;
-        console.log(currentProject);
-      });
-  }
-  // getAllEmployees(){
-  //   this.employeeService.getAllEmployees().subscribe((employeesList)=>{
-  //     this.employees = employeesList;
-  //   })
-  // }
 }

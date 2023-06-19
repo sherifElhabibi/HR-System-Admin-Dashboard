@@ -16,6 +16,7 @@ import { ProjectDetailsComponent } from './project-details/project-details.compo
 
 
 
+
 @NgModule({
   declarations: [
     ListComponent,

@@ -39,28 +39,35 @@
                 </tbody>
             </table>
             <h3><b>Project Phases</b></h3>
-            <table class="table table-striped table-bordered styled-table">
-                <thead>
-                    <tr style="text-align: center;">
-                        <th>#NO</th>
-                        <th>Name</th>
-                        <th>StartDate</th>
-                        <th>EndDate</th>
-                        <th>Milestone</th>
-                        <th>HrBudget</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let phase of project?.projectPhases;let i = index" style="text-align: center;">
-                        <td>{{i+1}}</td>
-                        <td>{{phase.phaseName}}</td>
-                        <td>{{phase.phaseStartDate}}</td>
-                        <td>{{phase.phaseEndDate}}</td>
-                        <td>{{phase.phaseMilestone}}</td>
-                        <td>{{phase.phaseHrBudget}}</td>
-                    </tr>
-                </tbody>
-            </table>
+            <mat-card class="my-2 patient-card">
+                <mat-card-content>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered styled-table">
+                            <thead style="background-color: #3a3d6a;">
+                                <tr style="text-align: center;" class="text-light">
+                                    <th>#NO</th>
+                                    <th>Name</th>
+                                    <th>StartDate</th>
+                                    <th>EndDate</th>
+                                    <th>Milestone</th>
+                                    <th>HrBudget</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let phase of project?.projectPhases;let i = index"
+                                    style="text-align: center;">
+                                    <td>{{i+1}}</td>
+                                    <td>{{phase.phaseName}}</td>
+                                    <td>{{phase.phaseStartDate | date:'yyyy-MM-dd'}}</td>
+                                    <td>{{phase.phaseEndDate | date:'yyyy-MM-dd'}}</td>
+                                    <td>{{phase.phaseMilestone}}</td>
+                                    <td>{{phase.phaseHrBudget}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </mat-card-content>
+            </mat-card>
             <!------------------Project Tasks Table----------------------->
            
                
@@ -119,6 +126,7 @@
                     </tr>
                 </tbody>
             </table>
+            <!--Project Tasks Table end-->
 
 
             <h3><b>Employees in Project</b></h3>
@@ -138,6 +146,7 @@
                     </tr>
                 </tbody>
             </table>
+
             <h3><b>Project Attendances</b></h3>
             <table class="table table-striped table-bordered styled-table">
                 <thead>
