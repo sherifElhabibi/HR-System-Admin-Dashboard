@@ -40,6 +40,10 @@ const routes: Routes = [
         loadChildren: () =>
           import('./project-phase/project.phase.module').then((m) => m.ProjectPhaseModule)
       },
+      {path: 'projecttask',
+        loadChildren: () =>
+          import('./project-task/project-task.module').then((m) => m.ProjectTaskModule)
+      },
       {
         path: 'dashboard',
         loadChildren: () =>

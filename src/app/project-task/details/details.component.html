@@ -1,1 +1,23 @@
-<p>details works!</p>
+
+
+<div *ngIf="idparams!=0" id="details" class="col-12 col-md-8 text-center">
+    <h2 >{{taskWithProjectName.taskName}}</h2>
+      <p>{{ taskWithProjectName.taskDescription }}</p>
+      <div class="row">
+        <div class="col-6">
+        <strong>Total Hours per Task:</strong> 
+        <div>{{ taskWithProjectName.totalHoursPerTask }}</div>
+        </div>
+        <div class="col-6">
+            <strong>Project Name:</strong> 
+            <div>{{ taskWithProjectName.projectName }}</div>
+        </div>
+    </div>
+  
+    
+    <button (click)="delete(idparams)" class="btn btn-outline-danger my-3">Delete</button>
+
+</div>
+<div *ngIf="idparams==0" class="alert alert-danger">not valid id </div>
+
+

@@ -10,24 +10,104 @@ export const navItems: INavData[] = [
       text: 'NEW'
     }
   },
-  {
-    title: true,
-    name: 'Theme'
-  },
-  {
-    name: 'Colors',
-    url: '/theme/colors',
-    iconComponent: { name: 'cil-drop' }
-  },
-  {
-    name: 'Typography',
-    url: '/theme/typography',
-    linkProps: { fragment: 'someAnchor' },
-    iconComponent: { name: 'cil-pencil' }
-  },
+  // {
+  //   title: true,
+  //   name: 'Theme'
+  // },
+  // {
+  //   name: 'Colors',
+  //   url: '/theme/colors',
+  //   iconComponent: { name: 'cil-drop' }
+  // },
+  // {
+  //   name: 'Typography',
+  //   url: '/theme/typography',
+  //   linkProps: { fragment: 'someAnchor' },
+  //   iconComponent: { name: 'cil-pencil' }
+  // },
   {
     name: 'Components',
     title: true
+  },
+  {
+    name: 'Employees',
+    url: '/employees',
+    iconComponent: { name: 'cil-cursor' },
+    children: [
+      {
+        name: 'Create',
+        url: '/employees/create'
+      },
+      {
+        name: 'List',
+        url: '/employees/list'
+      },
+    ]
+  },
+  {
+    name: 'Department',
+    url: '/department',
+    iconComponent: { name: 'cil-puzzle' },
+    children: [
+      {
+        name: 'List',
+        url: '/department/list'
+      },
+      {
+        name: 'Create',
+        url: '/department/create'
+      },
+      {
+        name: 'Edit',
+        url: '/department/edit/id'
+      },
+      {
+        name: 'Delete',
+        url: '/department/delete/id'
+      },
+    ]
+  },
+  {
+    name: 'Projecttask',
+    url: '/projecttask',
+    iconComponent: { name: 'cil-puzzle' },
+    children: [
+      {
+        name: 'Create',
+        url: '/projecttask/create'
+      },
+      {
+        name: 'Edit',
+        url: '/projecttask/edit/id'
+      },
+      {
+        name: 'Details',
+        url: '/projecttask/details/id'
+      },
+    ]
+  },
+  {
+    name: 'Project',
+    url: '/project',
+    iconComponent: { name: 'cil-puzzle' },
+    children: [
+      {
+        name: 'List',
+        url: '/project/'
+      },
+      {
+        name: 'Create',
+        url: '/project/add'
+      },
+      {
+        name: 'Edit',
+        url: '/project/edit/:id'
+      },
+      // {
+      //   name: 'Create',
+      //   url: '/department/create'
+      // },
+    ]
   },
   // {
   //   name: 'Base',
@@ -166,25 +246,10 @@ export const navItems: INavData[] = [
         name: 'Edit',
         url: '/project/edit/:id'
       },
-    ]
-  },
-    {
-    name: 'Project Phases',
-    url: '/phases',
-    iconComponent: { name: 'cil-puzzle' },
-    children: [
-      {
-        name: 'List',
-        url: '/phases/'
-      },
-      {
-        name: 'Create',
-        url: '/phases/add'
-      },
-      {
-        name: 'Edit',
-        url: '/phases/edit/:id'
-      },
+      // {
+      //   name: 'Create',
+      //   url: '/department/create'
+      // },
     ]
   },
   // {

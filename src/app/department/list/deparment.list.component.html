@@ -19,8 +19,7 @@
             <td>
              <a [routerLink]="['edit',department.departmentId]"  (click)="editDept(department)" > <i class="bi bi-pen text-success"></i></a>
              <a href=""> <i class="bi bi-box-arrow-in-right text-info mx-3"></i></a>
-             <a (click)="show(department.departmentId)"> <i class="bi bi-x-circle-fill text-danger"></i></a>
-
+             <a [routerLink]="['delete',department.departmentId]"> <i class="bi bi-x-circle-fill text-danger"></i></a>
             </td>
           </tr>
         </tbody>
@@ -66,14 +65,14 @@
 
 
 <!--For delete -->
-<div *ngIf="flag">
+<!-- <div *ngIf="flag">
     <p>flag =true</p>
    enter your dept id <input [(ngModel)]="idd"/><br/>
    enter another dept id to move fore  
    <select  [(ngModel)]="targetDepartmentId" name="dropdownDeptsIds">
     <option value="">Select an option</option>
     <option *ngFor="let option of depts" [ngValue]="option.departmentId">{{ option.departmentName}}</option>
-  </select><br/>
+  </select><br/> -->
 
  
   <!-- <select [(ngModel)]="eachobject" multiple>
@@ -81,11 +80,11 @@
       {{emp}}
     </option>
   </select> -->
-  <div>
+  <!-- <div>
     selectedEmployeeIds
     <input type="text" id="eachobject" name="eachobject" [(ngModel)]="eachobject">
   </div>
   <a (click)="deleteDept(idd,targetDepartmentId,eachobject)"> <i class="bi bi-x-circle-fill text-danger"></i></a>
 
-</div> 
+</div>  -->
 

@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
-import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import {  HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
 import { NgScrollbarModule } from 'ngx-scrollbar';
-import { FormsModule } from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 
 // Import routing module
@@ -42,6 +41,7 @@ import {
 import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { DepartmentModule } from './department/department.module';
 import { ProjectModule } from './project/project.module';
+import { ProjectTaskModule } from './project-task/project-task.module';
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -65,10 +65,8 @@ const APP_CONTAINERS = [
     IconModule,
     NavModule,
     ButtonModule,
-    FormModule,
     UtilitiesModule,
     ButtonGroupModule,
-    ReactiveFormsModule,
     SidebarModule,
     SharedModule,
     TabsModule,
@@ -80,7 +78,10 @@ const APP_CONTAINERS = [
     NgScrollbarModule,
     DepartmentModule,
     ProjectModule,
-    FormsModule
+    ProjectTaskModule,
+    FormsModule,
+    FormModule,
+    ReactiveFormsModule,
     
   ],
   providers: [
@@ -89,7 +90,7 @@ const APP_CONTAINERS = [
       useClass: HashLocationStrategy
     },
     IconSetService,
-    Title
+    Title,DatePipe
   ],
   bootstrap: [AppComponent]
 })

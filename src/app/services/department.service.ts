@@ -23,11 +23,11 @@ export class DepartmentService {
 
   deleteById(id: number, targetDepartmentId: number, selectedEmployeeIds?:any) {
     let url = this.baseUrl + '/departments/delete/' + id + '/target/' + targetDepartmentId;
-    let options : any;
-    if (selectedEmployeeIds) {
-      options = { body: { selectedEmployeeIds } };
-    }
-    return this.http.delete(url, options);
+    //let options : any;
+    // if (selectedEmployeeIds) {
+    //   options = { body: { selectedEmployeeIds } };
+    // }
+    return this.http.delete(url,selectedEmployeeIds);
   }
 
   getById(id:number){ return this.http.get<Department>(this.baseUrl+ '/departments/'+id);}

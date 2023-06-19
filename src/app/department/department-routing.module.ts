@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CreateComponent } from './create/deparment.create.component';
 import { ListComponent } from './list/deparment.list.component';
 import { EditComponent } from './edit/edit.component';
+import { DeleteComponent } from './delete/delete.component';
 
 
 const routes: Routes = [
@@ -31,6 +32,13 @@ const routes: Routes = [
         component: EditComponent,
         data: {
           title: 'Edit',
+        },
+      },
+      {
+        path: 'delete/:id',
+        component: DeleteComponent,
+        data: {
+          title: 'Delete',
         },
       },
     ],

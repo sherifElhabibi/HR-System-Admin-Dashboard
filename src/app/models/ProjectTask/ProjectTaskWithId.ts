@@ -1,6 +1,6 @@
 export class ProjectTaskWithId {
   constructor(
-    public Id: number,
+    public id: number,
     public taskName: string,
     public taskDescription: string,
     public totalHoursPerTask: number,
