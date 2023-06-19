@@ -128,7 +128,7 @@
             <b class="me-2">Phase {{ i + 1 }}</b>
             <button class="btn btn-danger mt-2 mb-2" (click)="removeProjectPhase(i)">&times;</button>
             <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-md-3 gap-0">
-              <mat-form-field class="col-12 col-md-6">
+              <mat-form-field class="col-12 col-md-4">
                 <mat-label>Phase Name</mat-label>
                 <input matInput formControlName="phaseName">
                 <mat-error class="error-message" *ngIf="phase.get('phaseName')?.invalid &&
@@ -138,13 +138,23 @@
                   </span>
                 </mat-error>
               </mat-form-field>
-              <mat-form-field class="col-12 col-md-6">
+              <mat-form-field class="col-12 col-md-4">
                 <mat-label>Phase Budget</mat-label>
                 <input matInput formControlName="phaseHrBudget">
                 <mat-error class="error-message" *ngIf="phase.get('phaseHrBudget')?.invalid &&
                   (phase.get('phaseHrBudget')?.dirty || phase.get('phaseHrBudget')?.touched)">
                   <span *ngIf="phase.get('phaseHrBudget')?.errors?.['required']">
                     {{ validationMessages.phaseHrBudget.required }}
+                  </span>
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="col-12 col-md-4">
+                <mat-label>Phase MileStone</mat-label>
+                <input matInput formControlName="phaseMilestone">
+                <mat-error class="error-message" *ngIf="phase.get('phaseMilestone')?.invalid &&
+                  (phase.get('phaseMilestone')?.dirty || phase.get('phaseMilestone')?.touched)">
+                  <span *ngIf="phase.get('phaseMilestone')?.errors?.['required']">
+                    {{ validationMessages.phaseMilestone.required }}
                   </span>
                 </mat-error>
               </mat-form-field>
@@ -177,9 +187,31 @@
             </div>
           </div>
         </div>
+        <!-- <div>
+          <label>Select Employees:</label>
+          <mat-select multiple formControlName="employeesInProjectIds">
+            <mat-option *ngFor="let employee of employees" [value]="employee.emplyeeId">{{ employee.employeeFirstName + ' ' + employee.employeeLastName }}</mat-option>
+          </mat-select>
+        </div> -->
+        <!-- <div [formArrayName]="employeesInProjectIds">
+          <label>Select Employees:</label>
+          <mat-select multiple>
+            <mat-option *ngFor="let employee of employees" [value]="employee.emplyeeId">
+              {{ employee.employeeFirstName + ' ' + employee.employeeLastName }}
+            </mat-option>
+          </mat-select>
+        </div> -->
+        <div formArrayName="employeesInProjectIds">
+          <label>Select Employees:</label>
+          <mat-select multiple>
+            <mat-option *ngFor="let employee of employees;" [value]="employee.emplyeeId">
+              {{ employee.employeeFirstName + ' ' + employee.employeeLastName }}
+            </mat-option>
+          </mat-select>
+        </div>
         <div style="display: flex;justify-content: center;">
           <button class="btn btn-primary mt-2" style="width: 15%;" (click)="save()"
-            [disabled]="!projectform.valid">Save</button>
+            >Save</button>
         </div>
       </form>
     </mat-card-content>

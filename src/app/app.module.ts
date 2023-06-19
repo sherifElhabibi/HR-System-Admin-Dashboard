@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { FormsModule } from '@angular/forms';
-
+import { DatePipe } from '@angular/common';
 
 
 // Import routing module
@@ -89,7 +89,7 @@ const APP_CONTAINERS = [
       useClass: HashLocationStrategy
     },
     IconSetService,
-    Title
+    Title,DatePipe
   ],
   bootstrap: [AppComponent]
 })
