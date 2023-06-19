@@ -13,7 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { MatInputModule } from '@angular/material/input';
 // import { HttpClientModule } from '@angular/common/http';
 // import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import{FormModule} from '@coreui/angular';
+ //import{FormModule} from '@coreui/angular';
 
 @NgModule({
   declarations: [
