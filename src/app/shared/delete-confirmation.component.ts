@@ -4,8 +4,9 @@ import { MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'app-delete-confirmation',
   template: `
-    <div class="wrapper">
-      <h1 mat-dialog-title class="title">Confirm Deletion</h1>
+
+    <div class="wrapper p-5 mb-4">
+      <h1 mat-dialog-title class="title" style="color: var(--sub-main);">Confirm Deletion</h1>
       <p mat-dialog-content class="content">Are you sure you want to delete?</p>
       <div mat-dialog-actions class="buttons-div">
         <button
@@ -25,6 +26,7 @@ import { MatDialogRef } from '@angular/material/dialog';
         </button>
       </div>
     </div>
+
   `,
   styles: [
     `

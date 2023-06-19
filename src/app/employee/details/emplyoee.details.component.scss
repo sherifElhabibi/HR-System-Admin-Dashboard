@@ -25,14 +25,22 @@ body {
 .m-l-0 {
     margin-left: 0px;
 }
-
+.user-card-full{
+    box-shadow: 1px 3px 10px var(--shadow);
+}
 .user-card-full .user-profile {
     border-radius: 5px 0 0 5px;
 }
-
+h5{
+    color: var(--sub-main2);
+    font-size: 1.2rem;
+}
+h6{
+    color: var(--sub-main);
+}
 .bg-c-lite-green {
     background: -webkit-gradient(linear, left top, right top, from(#f29263), to(#ee5a6f));
-    background: linear-gradient(to right, #3a3d6a, #484c7f);
+    background: linear-gradient(to right, #3a3d6a, #6c71b5);
 }
 
 .user-profile {
