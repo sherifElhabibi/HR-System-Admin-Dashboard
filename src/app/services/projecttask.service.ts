@@ -11,13 +11,16 @@ import { CreateProjectTask  } from '../../app/models/ProjectTask/CreateProjectTa
 export class ProjecttaskService {
   private baseUrl = environment.baseApi;
   constructor(public HttpClient:HttpClient) { }
-  createEmployee(projectTask: any){
-    return this.HttpClient.post<ProjectTask>(this.baseUrl + '/ProjectTask',projectTask);
+  createProjectTask(projectTask: any){
+    return this.HttpClient.post<CreateProjectTask>(this.baseUrl + '/ProjectTask',projectTask);
    }
-   editEmployee(id:number,projectTask: any){
-    return this.HttpClient.put<ProjectTask>(this.baseUrl + '/ProjectTask'+'/'+id,projectTask);
+   deleteProjectTaskById(id:number){
+    return this.HttpClient.delete<CreateProjectTask>(this.baseUrl+'/ProjectTask'+'/'+id);
+  }
+   editProjectTask(id:number,projectTask: any){
+    return this.HttpClient.put<ProjectTask>(this.baseUrl +'/ProjectTask'+'/'+id,projectTask);
    }
-   getEmployeeById(id:number){
+   getProjectTaskById(id:number){
     return this.HttpClient.get<ProjectTask>(this.baseUrl+'/ProjectTask'+'/'+id);
   }
 }
