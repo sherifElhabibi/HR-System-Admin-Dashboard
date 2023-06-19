@@ -195,63 +195,6 @@ export const navItems: INavData[] = [
   //     },
   //   ]
   // },
-  {
-    name: 'Employees',
-    url: '/employees',
-    iconComponent: { name: 'cil-cursor' },
-    children: [
-      {
-        name: 'Create',
-        url: '/employees/create'
-      },
-      {
-        name: 'List',
-        url: '/employees/list'
-      },
-    ]
-  },
-  {
-    name: 'Department',
-    url: '/department',
-    iconComponent: { name: 'cil-puzzle' },
-    children: [
-      {
-        name: 'List',
-        url: '/department/list'
-      },
-      {
-        name: 'Create',
-        url: '/department/create'
-      },
-      {
-        name: 'Edit',
-        url: '/department/edit/id'
-      },
-    ]
-  },
-  {
-    name: 'Project',
-    url: '/project',
-    iconComponent: { name: 'cil-puzzle' },
-    children: [
-      {
-        name: 'List',
-        url: '/project/'
-      },
-      {
-        name: 'Create',
-        url: '/project/add'
-      },
-      {
-        name: 'Edit',
-        url: '/project/edit/:id'
-      },
-      // {
-      //   name: 'Create',
-      //   url: '/department/create'
-      // },
-    ]
-  },
   // {
   //   name: 'Forms',
   //   url: '/forms',
