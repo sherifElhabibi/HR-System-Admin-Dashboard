@@ -46,7 +46,20 @@
                     </div>
                 </mat-card-content>
             </mat-card> 
-            <h3><i class="fa fa-list-alt" aria-hidden="true"></i><b> Project Phases</b></h3>
+            <div class="row">
+                <div class="col-6">
+                    <h3><i class="fa fa-list-alt" aria-hidden="true"></i><b> Project Phases</b></h3>
+                </div>
+                <div class="col-6 text-end" >
+                    <a [routerLink]="['/phases/add/{{project.projectId}}']">
+                        <button type="button" class="btn btn-sm btn-primary  col-4" style="background-color: #484c7f !important;" id="addButton">
+                          Add New phase
+                          <i class="fa fa-plus"></i>
+                        </button>
+                      </a>
+                </div>
+               
+             </div>
             <mat-card class="my-2 patient-card">
                 <mat-card-content>
                     <div class="table-responsive">
@@ -97,7 +110,7 @@
             <div class="row">
                <div class="col-6"><h3><i class="fa fa-tasks" aria-hidden="true"> </i><b> Project Tasks</b></h3></div>
                <div class="col-6 text-end" >
-                <a [routerLink]="['/projecttask/create']">
+                <a [routerLink]="['/projecttask/createid',project.projectId]">
                     <button type="button" class="btn btn-sm btn-primary  col-4" style="background-color: #484c7f !important;" id="addButton">
                       Add New Task
                       <i class="fa fa-plus"></i>

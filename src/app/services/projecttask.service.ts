@@ -15,6 +15,10 @@ export class ProjecttaskService {
   createProjectTask(projectTask: any){
     return this.HttpClient.post<CreateProjectTask>(this.baseUrl + '/ProjectTask',projectTask);
    }
+  createTaskwithprojId(projectTask: any,id:any){
+    projectTask.projectId=id;
+    return this.HttpClient.post<CreateProjectTask>(this.baseUrl + '/ProjectTask',projectTask);
+   }
    deleteProjectTaskById(id:number){
     return this.HttpClient.delete<CreateProjectTask>(this.baseUrl+'/ProjectTask'+'/'+id);
   }

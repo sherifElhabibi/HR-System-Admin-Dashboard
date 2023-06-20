@@ -15,6 +15,9 @@ export class GetProjectById {
     public projectTasks: ProjectTaskWithId[],
     public employeesInProject: EmployeeDeptDetails[],
     public projectPhases: ProjectPhaseById[],
-    public projectAttendances: GetAttendancesInProject[]
+    public projectAttendances: GetAttendancesInProject[],
+    public projectId?: any,
+    
+
   ) {}
 }

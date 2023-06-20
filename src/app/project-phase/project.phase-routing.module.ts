@@ -5,14 +5,33 @@ import { PhaseEditComponent } from './edit/phase.edit.component';
 import { PhaseListComponent } from './list/phase.list.component';
 import { PhaseDetailsComponent } from './details/phase.details.component';
 import { DeleteConfirmationComponent } from '../shared/delete-confirmation.component';
+import { CreateProjectPhase } from '../models/projectPhase/CreateProjectPhase';
 
 
 const routes: Routes = [
+  // {
+  //   path: '',
+  //   data: {
+  //     title: 'Phases',
+  //   },
+  //   children: [
+  //     {
+  //       path: 'add/:id',
+  //       component: PhaseCreateComponent,
+  //       data: {
+  //         title: 'Add',
+  //       },
+  //     },
+
+ 
+  //   ],
+  // },
   {path: 'list', component:PhaseListComponent},
-  {path: 'add', component:PhaseCreateComponent},
+  {path: 'add/:id', component:PhaseCreateComponent},
   {path: 'edit/:id', component:PhaseEditComponent},
   {path: 'details/:id', component:PhaseDetailsComponent},
   {path: 'delete/:id', component:DeleteConfirmationComponent},
+ 
 ];
 
 @NgModule({

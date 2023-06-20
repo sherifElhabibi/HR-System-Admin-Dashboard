@@ -5,6 +5,7 @@ import { Projectphases } from '../models/projectPhase/Projectphases ';
 import { Observable } from 'rxjs';
 import { ProjectPhaseById } from '../models/projectPhase/ProjectPhaseById';
 import { UpdateProjectPhase  } from '../models/projectPhase/UpdateProjectPhase';
+import { CreateProjectPhase  } from '../models/projectPhase/CreateProjectPhase';
 @Injectable({
   providedIn: 'root'
 })
@@ -25,5 +26,8 @@ export class ProjectphasesService {
    return this.HttpClient.delete<Projectphases>(this.baseUrl + '/projectphases' + '/' + id);
   }
 
+  createProjectPhase(idparam:number,projectPhase: any,){
+    return this.HttpClient.post<Projectphases>(this.baseUrl + '/projectphases'+'/'+idparam,projectPhase);
+   }
 
 }

@@ -36,7 +36,9 @@ export class EditComponent {
       this.taskService.getProjectTaskById(a['id'])
       .subscribe((task: any) => {
         this.idparams=a;
-        this.editProjectTaskForm.patchValue(task)});})
+        console.log(this.idparams);
+        this.editProjectTaskForm.patchValue(task)});
+      })
   }
 
     matcher = new MyErrorStateMatcher();

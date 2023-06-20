@@ -9,6 +9,7 @@ import { ProjecttaskService } from '../services/projecttask.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListComponent } from './list/list.component';
+import { CreatewithprojidComponent } from './createwithprojid/createwithprojid.component';
 
 // import { MatFormFieldModule } from '@angular/material/form-field';
 // import { MatInputModule } from '@angular/material/input';
@@ -21,7 +22,8 @@ import { ListComponent } from './list/list.component';
     CreateComponent,
     EditComponent,
     DetailsComponent,
-    ListComponent
+    ListComponent,
+    CreatewithprojidComponent
   ],
   imports: [
     CommonModule,

@@ -81,6 +81,10 @@ export const navItems: INavData[] = [
         url: '/projecttask/create'
       },
       {
+        name: 'Createid',
+        url: '/projecttask/createid'
+      },
+      {
         name: 'Edit',
         url: '/projecttask/edit/id'
       },
@@ -90,6 +94,17 @@ export const navItems: INavData[] = [
       },
     ]
   },
+  // {
+  //   name: 'Phases',
+  //   url: '/phases',
+  //   iconComponent: { name: 'cil-puzzle' },
+  //   children: [
+  //     {
+  //       name: 'Add',
+  //       url: '/phases/add/id'
+  //     },
+  //   ]
+  // },
   {
     name: 'Project',
     url: '/project',
@@ -195,59 +210,59 @@ export const navItems: INavData[] = [
   //     },
   //   ]
   // },
-   {
-    name: 'Employees',
-    url: '/employees',
-    iconComponent: { name: 'cil-cursor' },
-    children: [
-      {
-        name: 'Create',
-        url: '/employees/create'
-      },
-      {
-        name: 'List',
-        url: '/employees/list'
-      },
-    ]
-  },
-  {
-    name: 'Department',
-    url: '/department',
-    iconComponent: { name: 'cil-puzzle' },
-    children: [
-      {
-        name: 'List',
-        url: '/department/list'
-      },
-      {
-        name: 'Create',
-        url: '/department/create'
-      },
-      {
-        name: 'Edit',
-        url: '/department/edit/id'
-      },
-    ]
-  },
-  {
-    name: 'Project',
-    url: '/project',
-    iconComponent: { name: 'cil-puzzle' },
-    children: [
-      {
-        name: 'List',
-        url: '/project/'
-      },
-      {
-        name: 'Create',
-        url: '/project/add'
-      },
-      // {
-      //   name: 'Create',
-      //   url: '/department/create'
-      // },
-    ]
-  },
+  //  {
+  //   name: 'Employees',
+  //   url: '/employees',
+  //   iconComponent: { name: 'cil-cursor' },
+  //   children: [
+  //     {
+  //       name: 'Create',
+  //       url: '/employees/create'
+  //     },
+  //     {
+  //       name: 'List',
+  //       url: '/employees/list'
+  //     },
+  //   ]
+  // },
+  // {
+  //   name: 'Department',
+  //   url: '/department',
+  //   iconComponent: { name: 'cil-puzzle' },
+  //   children: [
+  //     {
+  //       name: 'List',
+  //       url: '/department/list'
+  //     },
+  //     {
+  //       name: 'Create',
+  //       url: '/department/create'
+  //     },
+  //     {
+  //       name: 'Edit',
+  //       url: '/department/edit/id'
+  //     },
+  //   ]
+  // },
+  // {
+  //   name: 'Project',
+  //   url: '/project',
+  //   iconComponent: { name: 'cil-puzzle' },
+  //   children: [
+  //     {
+  //       name: 'List',
+  //       url: '/project/'
+  //     },
+  //     {
+  //       name: 'Create',
+  //       url: '/project/add'
+  //     },
+  //     // {
+  //     //   name: 'Create',
+  //     //   url: '/department/create'
+  //     // },
+  //   ]
+  // },
   // {
   //   name: 'Forms',
   //   url: '/forms',
