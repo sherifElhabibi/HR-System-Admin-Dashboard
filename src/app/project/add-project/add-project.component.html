@@ -187,24 +187,18 @@
             </div>
           </div>
         </div>
-        <!-- <div>
-          <label>Select Employees:</label>
-          <mat-select multiple formControlName="employeesInProjectIds">
-            <mat-option *ngFor="let employee of employees" [value]="employee.emplyeeId">{{ employee.employeeFirstName + ' ' + employee.employeeLastName }}</mat-option>
-          </mat-select>
-        </div> -->
-        <!-- <div [formArrayName]="employeesInProjectIds">
+        <!-- <div formArrayName="employeesInProjectIds">
           <label>Select Employees:</label>
           <mat-select multiple>
-            <mat-option *ngFor="let employee of employees" [value]="employee.emplyeeId">
+            <mat-option *ngFor="let employee of employees; let i = index" [value]="employee.emplyeeId">
               {{ employee.employeeFirstName + ' ' + employee.employeeLastName }}
             </mat-option>
           </mat-select>
         </div> -->
         <div formArrayName="employeesInProjectIds">
           <label>Select Employees:</label>
-          <mat-select multiple>
-            <mat-option *ngFor="let employee of employees;" [value]="employee.emplyeeId">
+          <mat-select multiple (selectionChange)="onEmployeeSelectionChange($event)">
+            <mat-option *ngFor="let employee of employees" [value]="employee.emplyeeId">
               {{ employee.employeeFirstName + ' ' + employee.employeeLastName }}
             </mat-option>
           </mat-select>

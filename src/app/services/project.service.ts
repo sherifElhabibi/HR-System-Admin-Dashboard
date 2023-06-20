@@ -27,7 +27,7 @@ export class ProjectService {
   }
 
   createProject(CreateProject: any): Observable<any> {
-    return this.http.post<CreateProject>(this.baseUrl, CreateProject);
+    return this.http.post<any>(this.baseUrl, CreateProject);
   }
 
   updateProject(id: number, UpdateProject: any): Observable<any> {

@@ -48,4 +48,13 @@ export class ProjectDetailsComponent implements OnInit {
   back() {
     this.router.navigateByUrl('project');
   }
+  getHoursColor(hours: number, hoursSpent?: number): string {
+    if (hours > (hoursSpent || 0)) {
+      return 'green';
+    } else if (hours > (hoursSpent || 0) / 2) {
+      return 'yellow';
+    } else {
+      return 'initial';
+    }
+  }
 }

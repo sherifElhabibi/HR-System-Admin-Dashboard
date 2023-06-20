@@ -162,10 +162,6 @@ export const navItems: INavData[] = [
         name: 'Create',
         url: '/project/add'
       },
-      {
-        name: 'Edit',
-        url: '/project/edit/:id'
-      },
       // {
       //   name: 'Create',
       //   url: '/department/create'
