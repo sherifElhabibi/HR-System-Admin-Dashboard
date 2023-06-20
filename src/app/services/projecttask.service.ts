@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environment/environment';
 import { ProjectTask  } from '../../app/models/ProjectTask/projectTask';
 import { CreateProjectTask  } from '../../app/models/ProjectTask/CreateProjectTask';//dto for create
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -22,5 +23,8 @@ export class ProjecttaskService {
    }
    getProjectTaskById(id:number){
     return this.HttpClient.get<ProjectTask>(this.baseUrl+'/ProjectTask'+'/'+id);
+  }
+  getAll():Observable<any>{
+    return this.HttpClient.get<ProjectTask>(this.baseUrl+'/ProjectTask');
   }
 }

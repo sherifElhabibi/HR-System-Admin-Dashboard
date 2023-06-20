@@ -1,4 +1,4 @@
-<form (ngSubmit)="createDepartment()" #form="ngForm" id="form">
+<!-- <form (ngSubmit)="createDepartment()" #form="ngForm" id="form">
   <div>
     <label for="departmentName" class="text-info">Department Name:</label>
     <input type="text" id="departmentName" name="departmentName" [(ngModel)]="departmentName" required>
@@ -20,7 +20,190 @@
   </div>
 
   <button type="submit" [disabled]="!form.valid" class="btn btn-outline-info rounded mt-5">Create Department</button>
-</form>
+</form> -->
+
+
+
+
+
+
+
+<div class="projecttask-form-container">
+  <div class="projecttask-form d-flex justify-content-center text-center">
+    <form [formGroup]="createDepartmentForm">
+      <div class="form-row">
+        <div class="form-column">
+          <mat-form-field appearance="fill">
+            <mat-label>departmentName</mat-label>
+            <input matInput [formControlName]="'departmentName'">
+            <mat-error *ngIf="getdepartmentName()?.invalid && getdepartmentName()?.touched">
+              <small *ngIf="getdepartmentName()?.errors?.['required']" class="text-danger">
+                departmentName required (No Numbers)
+              </small>
+              <small *ngIf="getdepartmentName()?.errors?.['minlength']" class="text-danger">
+                departmentName must be at least 3 characters long
+              </small>
+              <small *ngIf="getdepartmentName()?.errors?.['pattern']" class="text-danger">
+                departmentName can only contain letters
+              </small>
+            </mat-error>
+          </mat-form-field>
+
+
+          <!-- <select matInput [formControlName]="'managerId'" type="number"  >
+            <option *ngFor="let m of emps">{{m.emplyeeId}}</option>
+          </select> -->
+          <mat-form-field appearance="fill">
+           
+            <mat-label>managerId</mat-label>
+
+            <input matInput [formControlName]="'managerId'" type="number">
+           
+            <mat-error *ngIf="getmanagerId()?.invalid && getmanagerId()?.touched">
+              <small *ngIf="getmanagerId()?.errors?.['required']" class="text-danger">
+                managerId required
+              </small>
+              <small *ngIf="getmanagerId()?.errors?.['minlength']" class="text-danger">
+                managerId must be a number
+              </small>
+              <small *ngIf="getmanagerId()?.errors?.['pattern']" class="text-danger">
+                managerId must be a number
+              </small>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-column">
+          <mat-form-field appearance="fill">
+            <mat-label>employessIds</mat-label>
+            <input matInput [formControlName]="'employessIds'" >
+            <mat-error *ngIf="getemployessIds()?.invalid && getemployessIds()?.touched">
+              <small *ngIf="getemployessIds()?.errors?.['required']" class="text-danger">
+                employessIds is required
+              </small>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="mybutton" mat-raised-button (click)="createDepartment()">Create Department</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+
+<div>
+ 
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--workeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeed-->
+
+<!-- <div class="projecttask-form-container">
+  <div class="projecttask-form d-flex justify-content-center text-center">
+    <form [formGroup]="createDepartmentForm">
+      <div class="form-row">
+        <div class="form-column">
+          <mat-form-field appearance="fill">
+            <mat-label>departmentName</mat-label>
+            <input matInput [formControlName]="'departmentName'" >
+            <mat-error *ngIf="getdepartmentName()?.invalid && getdepartmentName()?.touched">
+              <small *ngIf="getdepartmentName()?.errors?.['required']" class="text-danger">
+                departmentName required (No Numbers)
+              </small>
+              <small *ngIf="getdepartmentName()?.errors?.['minlength']" class="text-danger">
+                departmentName must be at least 3 characters long
+              </small>
+              <small *ngIf="getdepartmentName()?.errors?.['pattern']" class="text-danger">
+                departmentName can only contain letters
+              </small>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>managerId</mat-label>
+            <input matInput [formControlName]="'managerId'">
+            <mat-error *ngIf="getmanagerId()?.invalid && getmanagerId()?.touched">
+              <small *ngIf="getmanagerId()?.errors?.['required']" class="text-danger">
+                managerId required 
+              </small>
+              <small *ngIf="getmanagerId()?.errors?.['minlength']" class="text-danger">
+                managerId must be number
+              </small>
+              <small *ngIf="getmanagerId()?.errors?.['pattern']" class="text-danger">
+                managerId must be number        
+              </small>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-column">
+          <mat-form-field appearance="fill">
+            <mat-label>employessIds</mat-label>
+            <input matInput [formControlName]="'employessIds'" type="number">
+            <mat-error *ngIf="getemployessIds()?.invalid && getemployessIds()?.touched">
+              <small *ngIf="getemployessIds()?.errors?.['required']" class="text-danger">
+                employessIds is required
+              </small>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="mybutton" mat-raised-button (click)="createDepartment()">Create Department</button>
+      </div>
+    </form>
+  </div>
+</div>  -->
+
+
+
+
+
+
+
+  <!-- <mat-form-field appearance="fill"> -->
+    <!-- <mat-label>check</mat-label>
+    <input [(ngModel)]="check" type="number" [ngModelOptions]="{standalone: true}">
+    <mat-error *ngIf="check!=0 || check!=1">
+      <small>
+        check is required
+      </small>
+    </mat-error> -->
+  <!-- </mat-form-field> -->
+
+
+<!--end of workeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeed-->
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <!-- <br/>

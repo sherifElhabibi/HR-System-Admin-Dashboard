@@ -11,10 +11,14 @@ export class DepartmentService {
 
   private baseUrl=environment.baseApi;
   constructor(public http:HttpClient) { }
-  createDepartment(department: Department,check:any): Observable<any> {
+  // createDepartment(department: Department,check:any): Observable<any> {
+  //   const url = `${this.baseUrl}/departments/${check}`;
+  //   return this.http.post(url, department,check);
+  // }
+  createDepartment(department: any,check:any):Observable<any>{
     const url = `${this.baseUrl}/departments/${check}`;
-    return this.http.post(url, department,check);
-  }
+    return this.http.post<Department>(url,department,check);
+   }
 
   getAll(){
     return this.http.get<Department[]>(this.baseUrl+ '/departments');

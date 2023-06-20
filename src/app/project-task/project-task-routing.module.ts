@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 import { DetailsComponent } from './details/details.component';
+import { ListComponent } from './list/list.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,13 @@ const routes: Routes = [
         component: CreateComponent,
         data: {
           title: 'Create',
+        },
+      },
+      {
+        path: 'list',
+        component: ListComponent,
+        data: {
+          title: 'List',
         },
       },
       {

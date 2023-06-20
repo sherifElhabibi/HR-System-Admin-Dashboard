@@ -1,33 +1,7 @@
 
- <!-- <div *ngIf="idparams!=0">
-  <form>
-    <div class="form-group">
-      <label for="taskName">Task Name</label>
-      <input type="text" class="form-control" id="taskName" [(ngModel)]="updateProjectTask.taskName" name="taskName">
-    </div>
-  
-    <div class="form-group">
-      <label for="taskDescription">Task Description</label>
-      <textarea class="form-control" id="taskDescription" [(ngModel)]="updateProjectTask.taskDescription" name="taskDescription"></textarea>
-    </div>
-  
-    <div class="form-group">
-      <label for="totalHoursPerTask">Total Hours per Task</label>
-      <input type="number" class="form-control" id="totalHoursPerTask" [(ngModel)]="updateProjectTask.totalHoursPerTask" name="totalHoursPerTask">
-    </div>
-  
-    <button type="submit" class="btn btn-primary" [routerLink]="['edit',idparams]" (click)="updatetask()">Update Task</button>
-  </form>
-  
- </div> 
- <div *ngIf="idparams==0" class="alert alert-danger">not valid id </div> -->
 
 
-
-
-
-
- <div class="projecttask-form-container">
+ <div class="projecttask-form-container my-5" *ngIf="idparams!=0">
   <div class="projecttask-form d-flex justify-content-center text-center">
     <form [formGroup]="editProjectTaskForm">
       <div class="form-row">
@@ -75,12 +49,13 @@
           </mat-form-field>
         </div>
       </div>
-
- 
-   
       <div class="form-actions">
         <button class="mybutton" mat-raised-button (click)="editEmp()">Save Changes</button>
       </div>
     </form>
   </div>
+</div>
+
+<div class="alert alert-danger" *ngIf="idparams==0">
+  not found
 </div>

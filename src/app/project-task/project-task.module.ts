@@ -8,6 +8,7 @@ import { MaterialModule } from '../shared/material.module';
 import { ProjecttaskService } from '../services/projecttask.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ListComponent } from './list/list.component';
 
 // import { MatFormFieldModule } from '@angular/material/form-field';
 // import { MatInputModule } from '@angular/material/input';
@@ -19,7 +20,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   declarations: [
     CreateComponent,
     EditComponent,
-    DetailsComponent
+    DetailsComponent,
+    ListComponent
   ],
   imports: [
     CommonModule,

@@ -22,8 +22,6 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class EditComponent {
    idparams:any=0;
-  taskWithProjectName:any;
-  updateProjectTask:any;
   constructor(
     public taskService: ProjecttaskService,
     public projectService: ProjectService,
@@ -35,26 +33,11 @@ export class EditComponent {
   ) {}
   ngOnInit():void {
     this.activatedRoute.params.subscribe((a)=>{
-      this.taskService.getProjectTaskById(a['id']).subscribe(data=>
-        {
-          this.idparams=a;
-          console.log(this.idparams);
-         this.updateProjectTask=data;
-   
-         console.log(this.updateProjectTask)
-        })
-    
-       })
+      this.taskService.getProjectTaskById(a['id'])
+      .subscribe((task: any) => {
+        this.idparams=a;
+        this.editProjectTaskForm.patchValue(task)});})
   }
-  // updatetask(){
-  //   this.activatedRoute.params.subscribe((a)=>{
-  //     this.taskService.editProjectTask(a['id'],this.updateProjectTask).subscribe((editnew)=>{
-  //       this.router.navigateByUrl("/department/list")
-  //       console.log("editnew");
-  //       console.log(editnew);
-  //     })
-  //   })
-  //   }
 
     matcher = new MyErrorStateMatcher();
     editProjectTaskForm = this.fb.group({
@@ -100,3 +83,12 @@ export class EditComponent {
   
   } 
    
+  // updatetask(){
+  //   this.activatedRoute.params.subscribe((a)=>{
+  //     this.taskService.editProjectTask(a['id'],this.updateProjectTask).subscribe((editnew)=>{
+  //       this.router.navigateByUrl("/department/list")
+  //       console.log("editnew");
+  //       console.log(editnew);
+  //     })
+  //   })
+  //   }

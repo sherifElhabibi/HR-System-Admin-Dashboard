@@ -29,12 +29,6 @@ export class ListComponent implements OnInit {
   deleteoneDept:Department=new Department("",0,[],"");
   ngOnInit(){
 
-    // this.departmentService.getManagers().subscribe(empdata=>{
-    //   this.emps=empdata;
-    //   console.log("emps data");
-    //   console.log(this.emps);
-  
-    // });
     this.departmentService.getAll().subscribe(data=>{
       this.depts=data;
 
