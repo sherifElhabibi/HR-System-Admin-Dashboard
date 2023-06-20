@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Department } from '../../models/Department/department';
 import { DepartmentService } from '../../services/department.service';
 import { Employee } from 'src/app/models/Employee/employee';
-import DataTables from 'datatables.net';
+import { EmployeeService } from 'src/app/services/employee.service';
 
 
 @Component({
@@ -14,7 +14,9 @@ import DataTables from 'datatables.net';
 export class ListComponent implements OnInit {
 
   public  E2:any;
-  constructor(public departmentService:DepartmentService,activatedRoute:ActivatedRoute,public router:Router){}
+  constructor(public departmentService:DepartmentService,
+  public empService:EmployeeService,
+  activatedRoute:ActivatedRoute,public router:Router){}
   depts:Department[]=[];
   emps:Employee[]=[];
   flag=false;
@@ -26,70 +28,54 @@ export class ListComponent implements OnInit {
   currentDept:Department=new Department("",0,[],"");
   deleteoneDept:Department=new Department("",0,[],"");
   ngOnInit(){
-    this.departmentService.getManagers().subscribe(empdata=>{
-      this.emps=empdata;
-      console.log("emps data");
-      console.log(this.emps);
-   
 
-    });
+    // this.departmentService.getManagers().subscribe(empdata=>{
+    //   this.emps=empdata;
+    //   console.log("emps data");
+    //   console.log(this.emps);
+  
+    // });
     this.departmentService.getAll().subscribe(data=>{
       this.depts=data;
 
-    //  data.forEach((element:any) => {
-    //   if(element.departmentId!=this.idd){}
-    //    this.selectedEmployeeIds.add(element.departmentId)
-    //  });
-    // data.forEach((element: any) => {
-    //   if (element.departmentId != this.idd) {
-    //     this.selectedEmployeeIds.add(element.departmentId);
-    //   }
-    // });
        console.log("selectedEmployeeIds")
-     console.log(this.selectedEmployeeIds);
+       console.log(this.selectedEmployeeIds);
       console.log("all depts")
       console.log(this.depts);
     });
 
   }
 
-  deleteDept(idd:any,targetDepartmentId:number,selectedEmployeeIds:any) {
-    this.selectsplit=this.selectedEmployeeIds.toString().split(',').map(Number);
-       this.departmentService.deleteById(idd, targetDepartmentId, this.selectsplit).subscribe(
-      (response) => {
-        alert('Department deleted successfully');
-      },
-      (error) => {
-        alert('Failed to delete department');
-      }
-    );
+  // deleteDept(idd:any,targetDepartmentId:number,selectedEmployeeIds:any) {
+  //   this.selectsplit=this.selectedEmployeeIds.toString().split(',').map(Number);
+  //      this.departmentService.deleteById(idd, targetDepartmentId, this.selectsplit).subscribe(
+  //     (response) => {
+  //       alert('Department deleted successfully');
+  //     },
+  //     (error) => {
+  //       alert('Failed to delete department');
+  //     }
+  //   );
   
 
    
  
-  }
-  show(depid:any){
-    this.flag=true;
-    this.departmentService.getById(depid).subscribe(data=>{
-      this.deleteoneDept.employessIds=data.employessIds;
-      console.log("data.employees.employeeId************************")
-      console.log(data.employees);
-      this.idd=depid;
-      this.selectedEmployeeIds.push(data.employees);
-       console.log("deleteoneDept++++++++++++++++")
-       this.selectedEmployeeIds.forEach((element:any) => {
-        console.log(element)
-        element.forEach((x:any) => {
-          console.log("eachobject++++++++++++++++")
-          this.eachobject.push(x.employeeId);
-          console.log(this.eachobject);
-        });
-}     );
-
-
- 
-   });
-  }
+  // }
+  // show(depid:any){
+  //   this.flag=true;
+  //   this.departmentService.getById(depid).subscribe(data=>{
+  //     this.empService.getAllEmployees().subscribe((emp:any)=>{
+      
+  //       emp.forEach((element:any) => {
+  //         if(element.departmentId==depid){
+  //           this.emps.push(element);
+  //         }
+  //       });
+  //       console.log("emps in this dept")
+  //       console.log(this.emps)
+  //     })
+  //  });
+  // }
 
 
   editDept(deptedit:Department){
@@ -104,6 +90,21 @@ export class ListComponent implements OnInit {
 }
 
 
+
+//this.deleteoneDept.employessIds=data.employessIds;
+//       console.log("data.employees.employeeId************************")
+//       console.log(data.employees);
+//       // this.idd=depid;
+//       this.selectedEmployeeIds.push(data.employees);
+//        console.log("deleteoneDept++++++++++++++++")
+//        this.selectedEmployeeIds.forEach((element:any) => {
+//         console.log(element)
+//         element.forEach((x:any) => {
+//           console.log("eachobject++++++++++++++++")
+//           this.eachobject.push(x.employeeId);
+//           console.log(this.eachobject);
+//         });
+// }     );
 
 
 

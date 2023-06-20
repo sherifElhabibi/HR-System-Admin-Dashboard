@@ -1,0 +1,70 @@
+<div class="employee-form-container ">
+    <div class="employee-form d-flex justify-content-center text-center">
+      <form [formGroup]="editPhaseForm">
+        <div class="form-row">
+          <div class="form-column">
+            <mat-form-field appearance="fill">
+              <mat-label>Phase Name</mat-label>
+              <input matInput [formControlName]="'phaseName'" type="number">
+              <mat-error *ngIf="getPhaseName()?.invalid && getPhaseName()?.touched">
+                <small *ngIf="getPhaseName()?.errors?.['required']" class="text-danger">
+                  Phase Name is required
+                </small>
+              </mat-error>
+            </mat-form-field>
+  
+            <mat-form-field appearance="fill">
+              <mat-label>Phase Start Date</mat-label>
+              <input matInput [formControlName]="'phaseStartDate'" type="text">
+              <mat-error *ngIf="getPhaseStartDate()?.invalid && getPhaseStartDate()?.touched">
+                <small *ngIf="getPhaseStartDate()?.errors?.['required']" class="text-danger">
+                 Start Date is required
+                </small>
+              </mat-error>
+            </mat-form-field>
+          </div>
+  
+          <div class="form-column">
+            <mat-form-field appearance="fill">
+              <mat-label>Phase End Date</mat-label>
+              <input matInput [formControlName]="'phaseEndDate'" type="text">
+              <mat-error *ngIf="getPhaseEndDate()?.invalid && getPhaseEndDate()?.touched">
+                <small *ngIf="getPhaseEndDate()?.errors?.['required']" class="text-danger">
+                End Date is required
+                </small>
+              </mat-error>
+            </mat-form-field>
+  
+            <mat-form-field appearance="fill">
+              <mat-label>Milestone</mat-label>
+              <input matInput [formControlName]="'phaseMilestone'" type="text">
+              <mat-error *ngIf="getPhaseMilestone()?.invalid && getPhaseMilestone()?.touched">
+                <small *ngIf="getPhaseMilestone()?.errors?.['required']" class="text-danger">
+                  Milestone is required
+                </small>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+  
+        <div class="form-row">
+          <div class="form-column">
+            <mat-form-field appearance="fill">
+              <mat-label>Phase Hour Budget</mat-label>
+              <input matInput [formControlName]="'phaseHrBudget'" type="number">
+              <mat-error *ngIf="getPhaseHrBudgety()?.invalid && getPhaseHrBudgety()?.touched">
+                <small *ngIf="getPhaseHrBudgety()?.errors?.['required']" class="text-danger">
+                  Phase Hour Budget
+                </small>
+              </mat-error>
+            </mat-form-field>
+  
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="mybutton" mat-raised-button (click)="editPhase()">Edit Phase</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

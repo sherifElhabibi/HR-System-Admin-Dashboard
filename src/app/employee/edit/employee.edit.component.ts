@@ -124,18 +124,14 @@ export class EmployeeEditComponent implements OnInit {
     return console.log(this.editEmpForm);
   }
 
-  // loadEmployee(id: number) {
-  //   this.empService.getEmployeeById(id).subscribe((employee: any) => {
-  //     this.editEmpForm.patchValue(employee);
-  //   }, (error:any) => {
-  //     console.log("Error: " + error);
-  //   });
-  // }
 
   editEmp() {
       this.empService.editEmployee(this.id,this.editEmpForm.value).subscribe(() => {
         this.router.navigateByUrl("employees/list");
     });
     };
+
+
+    
   }
 

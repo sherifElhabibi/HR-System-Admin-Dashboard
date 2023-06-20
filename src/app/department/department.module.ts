@@ -7,13 +7,15 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { EditComponent } from './edit/edit.component';
+import { DeleteComponent } from './delete/delete.component';
 
 
 @NgModule({
   declarations: [
     CreateComponent,
     ListComponent,
-    EditComponent
+    EditComponent,
+    DeleteComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,8 @@ import { EditComponent } from './edit/edit.component';
   exports:[
     ListComponent,
     CreateComponent,
-    EditComponent
+    EditComponent,
+    DeleteComponent
   ]
 })
 export class DepartmentModule { }

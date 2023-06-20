@@ -57,10 +57,11 @@
                                 <tr style="text-align: center;" class="text-light">
                                     <th>#NO</th>
                                     <th>Name</th>
-                                    <th>Start Date</th>
-                                    <th>End Date</th>
+                                    <th>StartDate</th>
+                                    <th>EndDate</th>
                                     <th>Milestone</th>
-                                    <th>Hr Budget</th>
+                                    <th>HrBudget</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -72,6 +73,23 @@
                                     <td>{{phase.phaseEndDate | date:'yyyy-MM-dd'}}</td>
                                     <td>{{phase.phaseMilestone}}</td>
                                     <td>{{phase.phaseHrBudget}}</td>
+                                    <td>
+                                      <a [routerLink]="['/phases/details/', phase.id]">
+                                          <button class="btn btn-sm btn-dark me-2">
+                                            <i class="fa fa-eye"></i>
+                                          </button>
+                                        </a>
+                                        <a>
+                                          <button class="btn btn-sm btn-danger me-2" (click)="delete(phase.id)">
+                                            <i class="fa fa-trash"></i>
+                                          </button>
+                                        </a>
+                                        <a [routerLink]="['/phases/edit/', phase.id]">
+                                          <button type="button" class="btn btn-sm btn-primary me-2">
+                                            <i class="fa fa-edit"></i>
+                                          </button>
+                                        </a>
+                                  </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -80,35 +98,50 @@
             </mat-card>
             <h3><b>Project Tasks</b></h3>
             <mat-card class="my-2 patient-card">
-              <mat-card-content>
-                <div class="table-responsive">
-                  <table class="table table-striped table-bordered styled-table">
-                    <thead style="background-color: #3a3d6a;">
-                      <tr style="text-align: center;" class="text-light">
-                        <th>#NO</th>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Total Hours</th>
-                      </tr>
-                    </thead>
-                    <tbody *ngIf="project?.projectTasks && project.projectTasks.length > 0; else emptyTable">
-                      <tr *ngFor="let task of project.projectTasks; let i = index" style="text-align: center;">
-                        <td>{{i+1}}</td>
-                        <td>{{task.taskName}}</td>
-                        <td>{{task.taskDescription}}</td>
-                        <td>{{task.totalHoursPerTask}}</td>
-                      </tr>
-                    </tbody>
-                    <ng-template #emptyTable>
-                      <tr>
-                        <td colspan="4" style="text-align: center;color: red;font-weight: bold;">No tasks assigned to this project yet.</td>
-                      </tr>
-                    </ng-template>
-                  </table>
-                </div>
-              </mat-card-content>
+                <mat-card-content>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered styled-table">
+                            <thead style="background-color: #3a3d6a;">
+                                <tr style="text-align: center;" class="text-light">
+                                    <th>#NO</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>TotalHours</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let task of project?.projectTasks;let i = index"
+                                    style="text-align: center;">
+                                    <td>{{i+1}}</td>
+                                    <td>{{task.taskName}}</td>
+                                    <td>{{task.taskDescription}}</td>
+                                    <td>{{task.totalHoursPerTask}}</td>
+                                    <td style="display: flex;justify-content: space-around;">
+                                      <div class="buttons d-flex flex-column d-md-flex flex-md-row gap-2">
+                                        <a [routerLink]="['/projecttask/edit/', task.id]">
+                                          <button type="button" class="btn btn-sm btn-primary me-2">
+                                            <i class="fa fa-edit"></i>
+                                          </button>
+                                        </a>
+                                        <a [routerLink]="['/projecttask/details/', task.id]">
+                                          <button class="btn btn-sm btn-dark me-2">
+                                            <i class="fa fa-eye"></i>
+                                          </button>
+                                        </a>
+                                        <!-- <a>
+                                          <button class="btn btn-sm btn-danger" >
+                                            <i class="fa fa-trash"></i>
+                                          </button>
+                                        </a> -->
+                                      </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </mat-card-content>
             </mat-card>
-            
             <h3><b>Employees in Project</b></h3>
             <mat-card class="my-2 patient-card">
                 <mat-card-content>
@@ -117,9 +150,9 @@
                             <thead style="background-color: #3a3d6a;">
                                 <tr style="text-align: center;" class="text-light">
                                     <th>#NO</th>
-                                    <th>Full Name</th>
+                                    <th>FullName</th>
                                     <th>Position</th>
-                                    <th>Total Cost</th>
+                                    <th>TotalCost</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -136,42 +169,37 @@
                     </div>
                 </mat-card-content>
             </mat-card>
-
             <h3><b>Project Attendances</b></h3>
             <mat-card class="my-2 patient-card">
-              <mat-card-content>
-                <div class="table-responsive">
-                  <table class="table table-striped table-bordered styled-table">
-                    <thead style="background-color: #3a3d6a;">
-                      <tr style="text-align: center;" class="text-light">
-                        <th>#NO</th>
-                        <th>Employee Name</th>
-                        <th>Phase Name</th>
-                        <th>Task Name</th>
-                        <th>Date</th>
-                        <th>Description</th>
-                        <th>Hours Spent</th>
-                      </tr>
-                    </thead>
-                    <tbody *ngIf="project?.projectAttendances && project.projectAttendances.length > 0; else emptyAttendancesTable">
-                      <tr *ngFor="let attendance of project.projectAttendances; let i = index" style="text-align: center;">
-                        <td>{{i+1}}</td>
-                        <td>{{attendance.employeeName}}</td>
-                        <td>{{attendance.phaseName}}</td>
-                        <td>{{attendance.taskName}}</td>
-                        <td>{{attendance.date | date:'yyyy-MM-dd'}}</td>
-                        <td>{{attendance.description}}</td>
-                        <td>{{attendance.hoursSpent}}</td>
-                      </tr>
-                    </tbody>
-                    <ng-template #emptyAttendancesTable>
-                      <tr>
-                        <td colspan="7" style="text-align: center;color: red;font-weight: bold;">There are no employees working in the project yet.</td>
-                      </tr>
-                    </ng-template>
-                  </table>
-                </div>
-              </mat-card-content>
+                <mat-card-content>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered styled-table">
+                            <thead style="background-color: #3a3d6a;">
+                                <tr style="text-align: center;" class="text-light">
+                                    <th>#NO</th>
+                                    <th>EmployeeName</th>
+                                    <th>PhaseName</th>
+                                    <th>TaskName</th>
+                                    <th>Date</th>
+                                    <th>Description</th>
+                                    <th>HoursSpent</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let attendance of project?.projectAttendances;let i = index"
+                                    style="text-align: center;">
+                                    <td>{{i+1}}</td>
+                                    <td>{{attendance.employeeName}}</td>
+                                    <td>{{attendance.phaseName}}</td>
+                                    <td>{{attendance.taskName}}</td>
+                                    <td>{{attendance.date | date:'yyyy-MM-dd'}}</td>
+                                    <td>{{attendance.description}}</td>
+                                    <td>{{attendance.hoursSpent}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </mat-card-content>
             </mat-card>
         </mat-card-content>
     </mat-card>
