@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { ProjectService } from '../../services/project.service';
@@ -16,6 +16,15 @@ import { DatePipe } from '@angular/common';
 export class AddProjectComponent {
   projectID: number = 0;
   employees: GetAllEmployees[] = [];
+  phaseOptions: any[] = [
+  { value: 0, label: 'Information Gathering' },
+  { value: 1, label: 'Specification' },
+  { value: 2, label: 'Project Planning' },
+  { value: 3, label: 'Implementation' },
+  { value: 4, label: 'Final Test and Delivery' },
+  { value: 5, label: 'Maintenance and Support' },
+  { value: 6, label: 'Other' }
+];
 
   validationMessages = {
     projectName: {
@@ -200,33 +209,39 @@ export class AddProjectComponent {
         }
       }
     
+      
       const phases = this.projectform.get('projectPhases') as FormArray | null;
       if (phases && phases.length > 0) {
-        const firstPhase = phases.at(0);
-        const phaseName = firstPhase.get('phaseName');
-        if (phaseName) {
-          const nameValue = phaseName.value;
-          if (typeof nameValue === 'string') {
-            const parsedValue = parseInt(nameValue, 10);
-            if (!isNaN(parsedValue)) {
-              phaseName.setValue(parsedValue);
+        phases.controls.forEach(
+          (phase: AbstractControl<any, any>, index: number) => {
+            const phaseGroup = phase as FormGroup;
+
+            const phaseName = phaseGroup.get('phaseName');
+            if (phaseName) {
+              const nameValue = phaseName.value;
+              if (typeof nameValue === 'string') {
+                const parsedValue = parseInt(nameValue, 10);
+                if (!isNaN(parsedValue)) {
+                  phaseName.setValue(parsedValue);
+                }
+              }
+            }
+
+            const phaseHrBudget = phaseGroup.get('phaseHrBudget');
+            if (phaseHrBudget) {
+              const budgetValue = phaseHrBudget.value;
+              if (typeof budgetValue === 'string') {
+                const parsedValue = parseInt(budgetValue, 10);
+                if (!isNaN(parsedValue)) {
+                  phaseHrBudget.setValue(parsedValue);
+                }
+              }
             }
           }
-        }
-    
-        const phaseHrBudget = firstPhase.get('phaseHrBudget');
-        if (phaseHrBudget) {
-          const budgetValue = phaseHrBudget.value;
-          if (typeof budgetValue === 'string') {
-            const parsedValue = parseInt(budgetValue, 10);
-            if (!isNaN(parsedValue)) {
-              phaseHrBudget.setValue(parsedValue);
-            }
-          }
-        }
+        );
       }
     }
-
+    console.log(this.projectform.value)
     if (this.projectform.valid) {
       this.projectService.createProject(this.projectform.value).subscribe(
         () => {
@@ -246,6 +261,18 @@ export class AddProjectComponent {
         duration: 3000,
       });
     }
+  }
+
+  getPhaseOptions(index: number): any[] {
+    const selectedOptions: number[] = [];
+    for (let i = 0; i < index; i++) {
+      const phase = this.projectPhases.controls[i].value;
+      selectedOptions.push(phase.phaseName);
+    }
+  
+    return this.phaseOptions.filter(option => {
+      return option.value === 6 || !selectedOptions.includes(option.value);
+    });
   }
 
   goBack(): void {

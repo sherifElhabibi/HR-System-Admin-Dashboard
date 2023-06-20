@@ -5,6 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 
 // Import routing module
@@ -82,6 +84,7 @@ const APP_CONTAINERS = [
     FormsModule,
     FormModule,
     ReactiveFormsModule,
+    MatSnackBarModule
     
   ],
   providers: [

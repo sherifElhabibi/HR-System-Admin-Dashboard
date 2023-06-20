@@ -32,18 +32,20 @@ export class ListComponent implements OnInit {
     );
   }
 
-  delete(id: number) {
+  delete(id: number): void {
     const dialogRef = this.dialog.open(DeleteConfirmationComponent);
+  
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.projectservice.deleteProject(id).subscribe(() => {
-          const index = this.projects.findIndex((p) => p.projectId === id);
-          if (index >= 0) {
-            this.projects.splice(index, 1);
-            this.snackBar.open('project deleted', 'Close', {
-              duration: 2000,
-            });
-          }
+          this.projectservice.getAllProjects().subscribe((projectList)=>{
+            this.projects=projectList;
+          })
+          this.snackBar.open('Project deleted', 'Close', {
+            duration: 2000,
+          });
+        }, (error) => {
+          console.error('Error deleting project:', error);
         });
       }
     });

@@ -1,1 +1,205 @@
-<p>edit-project works!</p>
+<div class="container">
+    <div class="row">
+      <div class="text-end">
+        <button mat-button class="button back-button" (click)="goBack()">
+          <mat-icon>arrow_back</mat-icon>
+          Back
+        </button>
+      </div>
+    </div>
+    <mat-card class="container p-3">
+      <mat-card-header>
+        <h2>Edit Project</h2>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="projectform" class="row">
+          <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-md-3 gap-0">
+            <mat-form-field class="col-12 col-md-6">
+              <mat-label>Project Name</mat-label>
+              <input matInput formControlName="projectName">
+              <mat-error class="error-message" *ngIf="projectform.get('projectName')?.invalid &&
+                  (projectform.get('projectName')?.dirty || projectform.get('projectName')?.touched)">
+                <span *ngIf="projectform.get('projectName')?.errors?.['required']">
+                  {{ validationMessages.projectName.required }}
+                </span>
+                <span *ngIf="projectform.get('projectName')?.errors?.['pattern']">
+                  {{ validationMessages.projectName.pattern }}
+                </span>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-12 col-md-6">
+              <mat-label>Total Budget</mat-label>
+              <input matInput formControlName="projectTotalBudget">
+              <mat-error class="error-message" *ngIf="projectform.get('projectTotalBudget')?.invalid &&
+                  (projectform.get('projectTotalBudget')?.dirty || projectform.get('projectTotalBudget')?.touched)">
+                <span *ngIf="projectform.get('projectTotalBudget')?.errors?.['required']">
+                  {{ validationMessages.projectTotalBudget.required }}
+                </span>
+                <span *ngIf="projectform.get('projectTotalBudget')?.errors?.['pattern']">
+                  {{ validationMessages.projectTotalBudget.pattern }}
+                </span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-md-3 gap-0">
+            <mat-form-field class="col-12 col-md-6">
+              <mat-label>project Hours</mat-label>
+              <input matInput formControlName="projectHours">
+              <mat-error class="error-message" *ngIf="projectform.get('projectHours')?.invalid &&
+                  (projectform.get('projectHours')?.dirty || projectform.get('projectHours')?.touched)">
+                <span *ngIf="projectform.get('projectHours')?.errors?.['required']">
+                  {{ validationMessages.projectHours.required }}
+                </span>
+                <span *ngIf="projectform.get('projectHours')?.errors?.['pattern']">
+                  {{ validationMessages.projectHours.pattern }}
+                </span>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-12 col-md-6">
+              <mat-label>Project Status</mat-label>
+              <input matInput formControlName="projectStatus">
+              <mat-error class="error-message" *ngIf="projectform.get('projectStatus')?.invalid &&
+                    (projectform.get('projectStatus')?.dirty || projectform.get('projectStatus')?.touched)">
+                <span *ngIf="projectform.get('projectStatus')?.errors?.['required']">
+                  {{ validationMessages.projectStatus.required }}
+                </span>
+                <span *ngIf="projectform.get('projectStatus')?.errors?.['enum']">
+                  {{ validationMessages.projectStatus.enum }}
+                </span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-md-3 gap-0">
+            <mat-form-field class="col-12 col-md-6">
+              <mat-label>project Location</mat-label>
+              <input matInput formControlName="projectLocation">
+              <mat-error class="error-message" *ngIf="projectform.get('projectLocation')?.invalid &&
+                  (projectform.get('projectLocation')?.dirty || projectform.get('projectLocation')?.touched)">
+                <span *ngIf="projectform.get('projectLocation')?.errors?.['required']">
+                  {{ validationMessages.projectLocation.required }}
+                </span>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-12 col-md-6">
+              <mat-label>project Description</mat-label>
+              <input matInput formControlName="projectDescription">
+              <mat-error class="error-message" *ngIf="projectform.get('projectDescription')?.invalid &&
+                    (projectform.get('projectDescription')?.dirty || projectform.get('projectDescription')?.touched)">
+                <span *ngIf="projectform.get('projectDescription')?.errors?.['required']">
+                  {{ validationMessages.projectDescription.required }}
+                </span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-md-3 gap-0">
+            <!-- ...existing code... -->
+            <mat-form-field class="col-12 col-md-6">
+              <mat-label>Project Start Date</mat-label>
+              <input matInput [matDatepicker]="startDatePicker" formControlName="projectStartDate">
+              <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+              <mat-datepicker #startDatePicker></mat-datepicker>
+              <mat-error class="error-message" *ngIf="projectform.get('projectStartDate')?.invalid &&
+                (projectform.get('projectStartDate')?.dirty || projectform.get('projectStartDate')?.touched)">
+                <span *ngIf="projectform.get('projectStartDate')?.errors?.['required']">
+                  {{ validationMessages.projectStartDate.required }}
+                </span>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-12 col-md-6">
+              <mat-label>Project End Date</mat-label>
+              <input matInput [matDatepicker]="endDatePicker" formControlName="projectEndDate">
+              <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+              <mat-datepicker #endDatePicker></mat-datepicker>
+              <mat-error class="error-message" *ngIf="projectform.get('projectEndDate')?.invalid &&
+                (projectform.get('projectEndDate')?.dirty || projectform.get('projectEndDate')?.touched)">
+                <span *ngIf="projectform.get('projectEndDate')?.errors?.['required']">
+                  {{ validationMessages.projectEndDate.required }}
+                </span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <!-- More form fields here -->
+          <div style="display: flex;justify-content: center;">
+            <button class="btn btn-primary mt-2 mb-2" style="width:100%" (click)="addProjectPhase()">Add New
+              Phase</button>
+          </div>
+          <div formArrayName="projectPhases" *ngFor="let phase of projectPhases.controls; let i = index;">
+            <div [formGroupName]="i">
+              <b class="me-2">Phase {{ i + 1 }}</b>
+              <button class="btn btn-danger mt-2 mb-2" (click)="removeProjectPhase(i)">&times;</button>
+              <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-md-3 gap-0">
+                <mat-form-field class="col-12 col-md-4">
+                  <mat-label>Phase Name</mat-label>
+                  <input matInput formControlName="phaseName">
+                  <mat-error class="error-message" *ngIf="phase.get('phaseName')?.invalid &&
+                    (phase.get('phaseName')?.dirty || phase.get('phaseName')?.touched)">
+                    <span *ngIf="phase.get('phaseName')?.errors?.['required']">
+                      {{ validationMessages.phaseName.required }}
+                    </span>
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field class="col-12 col-md-4">
+                  <mat-label>Phase Budget</mat-label>
+                  <input matInput formControlName="phaseHrBudget">
+                  <mat-error class="error-message" *ngIf="phase.get('phaseHrBudget')?.invalid &&
+                    (phase.get('phaseHrBudget')?.dirty || phase.get('phaseHrBudget')?.touched)">
+                    <span *ngIf="phase.get('phaseHrBudget')?.errors?.['required']">
+                      {{ validationMessages.phaseHrBudget.required }}
+                    </span>
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field class="col-12 col-md-4">
+                  <mat-label>Phase MileStone</mat-label>
+                  <input matInput formControlName="phaseMilestone">
+                  <mat-error class="error-message" *ngIf="phase.get('phaseMilestone')?.invalid &&
+                    (phase.get('phaseMilestone')?.dirty || phase.get('phaseMilestone')?.touched)">
+                    <span *ngIf="phase.get('phaseMilestone')?.errors?.['required']">
+                      {{ validationMessages.phaseMilestone.required }}
+                    </span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-md-3 gap-0">
+                <mat-form-field class="col-12 col-md-6">
+                  <mat-label>Phase Start Date</mat-label>
+                  <input matInput [matDatepicker]="phaseStartDatePicker" formControlName="phaseStartDate">
+                  <mat-datepicker-toggle matSuffix [for]="phaseStartDatePicker"></mat-datepicker-toggle>
+                  <mat-datepicker #phaseStartDatePicker></mat-datepicker>
+                  <mat-error class="error-message" *ngIf="projectform.get('phaseStartDate')?.invalid &&
+                (projectform.get('phaseStartDate')?.dirty || projectform.get('phaseStartDate')?.touched)">
+                    <span *ngIf="projectform.get('phaseStartDate')?.errors?.['required']">
+                      {{ validationMessages.phaseStartDate.required }}
+                    </span>
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field class="col-12 col-md-6">
+                  <mat-label>Phase End Date</mat-label>
+                  <input matInput [matDatepicker]="phaseEndDatePicker" formControlName="phaseEndDate">
+                  <mat-datepicker-toggle matSuffix [for]="phaseEndDatePicker"></mat-datepicker-toggle>
+                  <mat-datepicker #phaseEndDatePicker></mat-datepicker>
+                  <mat-error class="error-message" *ngIf="projectform.get('phaseEndDate')?.invalid &&
+                (projectform.get('phaseEndDate')?.dirty || projectform.get('phaseEndDate')?.touched)">
+                    <span *ngIf="projectform.get('phaseEndDate')?.errors?.['required']">
+                      {{ validationMessages.phaseEndDate.required }}
+                    </span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div formArrayName="employeesInProjectIds">
+            <label>Select Employees:</label>
+            <mat-select multiple (selectionChange)="onEmployeeSelectionChange($event)">
+              <mat-option *ngFor="let employee of employees" [value]="employee.emplyeeId">
+                {{ employee.employeeFirstName + ' ' + employee.employeeLastName }}
+              </mat-option>
+            </mat-select>
+          </div>
+          <div style="display: flex;justify-content: center;">
+            <button class="btn btn-primary mt-2" style="width: 15%;" (click)="save()"
+              >Save</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
