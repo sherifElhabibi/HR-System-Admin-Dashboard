@@ -2,7 +2,10 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
+
 import { EmployeeService } from 'src/app/services/employee.service';
+
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -17,7 +20,12 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 
 export class EmployeeCreateComponent {
-  constructor(public empService: EmployeeService, private fb: FormBuilder, public router:Router) {}
+  constructor(
+    public empService: EmployeeService,
+    private fb: FormBuilder,
+    public router:Router,
+    private datePipe: DatePipe
+    ) {}
   matcher = new MyErrorStateMatcher();
   createEmpForm = this.fb.group({
     employeeFirstName: [
@@ -36,9 +44,10 @@ export class EmployeeCreateComponent {
         Validators.pattern('[a-zA-Z]*'),
       ],
     ],
-    employeeSalaryPerHour: ['', [Validators.required]],
-    employeeOverTime: ['', [Validators.required]],
-    employeeSalary: ['', [Validators.required]],
+    employeeSalaryPerHour: [0, [Validators.required]],
+    employeeOvertimeRate: [0, [Validators.required]],
+    employeeRegularHoursPerDay: [0, [Validators.required]],
+    employeeWorkingDaysPerWeek: [0, [Validators.required]],
     employeeProfileUrl: [''],
     employeePhone: [
       '',
@@ -58,24 +67,26 @@ export class EmployeeCreateComponent {
     employeeHiringDate: ['', Validators.required],
   });
 
+  /* ------------------------ */
+  getEmployeeOvertimeRate() {
+    return this.createEmpForm.get('employeeOvertimeRate');
+  }
+  getEmployeeRegularHoursPerDay() {
+    return this.createEmpForm.get('employeeRegularHoursPerDay');
+  }
+  getEmployeeWorkingDaysPerWeek() {
+    return this.createEmpForm.get('employeeWorkingDaysPerWeek');
+  }
+  /* ------------------------ */
   getFname() {
     return this.createEmpForm.get('employeeFirstName');
   }
-
   getLname() {
     return this.createEmpForm.get('employeeLastName');
   }
 
   getSalaryPerHour() {
     return this.createEmpForm.get('employeeSalaryPerHour');
-  }
-
-  getOverTime() {
-    return this.createEmpForm.get('employeeOverTime');
-  }
-
-  getSalary() {
-    return this.createEmpForm.get('employeeSalary');
   }
 
   getProfileUrl() {
@@ -107,9 +118,18 @@ export class EmployeeCreateComponent {
   }
 
   createNewEmp(): void {
+    this.createEmpForm.value.employeeHiringDate = this.datePipe.transform(
+      this.createEmpForm.value.employeeHiringDate,
+      'yyyy-MM-dd'
+    );
     this.empService.createEmployee(this.createEmpForm.value).subscribe(
       (response) => {this.router.navigateByUrl('/employees/list'); console.log(response)},
       (error) => console.log(error)
     );
   }
+  /* ------------- */
+  goBack(): void {
+    this.router.navigate(['employees/list']);
+  }
+  /* ------------- */
 }
