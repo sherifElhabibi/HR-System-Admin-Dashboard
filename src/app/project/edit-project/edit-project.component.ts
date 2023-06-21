@@ -46,7 +46,7 @@ export class EditProjectComponent implements OnInit {
     { value: 3, label: 'Implementation' },
     { value: 4, label: 'Final Test and Delivery' },
     { value: 5, label: 'Maintenance and Support' },
-    { value: 6, label: 'Other' }
+    { value: 6, label: 'Other' },
   ];
   validationMessages = {
     projectName: {
@@ -111,10 +111,11 @@ export class EditProjectComponent implements OnInit {
     this.projectform = this.builder.group({
       projectName: this.builder.control(
         '',
-        Validators.compose([
-          Validators.required,
-          Validators.pattern('^[a-zA-Z]+$'),
-        ])
+        // Validators.compose([
+        //   Validators.required,
+        //   Validators.pattern('^[a-zA-Z]+$'),
+        // ])
+        Validators.compose([Validators.required])
       ),
       projectTotalBudget: this.builder.control(
         0,
@@ -148,7 +149,7 @@ export class EditProjectComponent implements OnInit {
         Validators.compose([Validators.required])
       ),
       projectPhases: this.builder.array([]),
-      employeesInProjectIds: this.builder.array([])
+      employeesInProjectIds: this.builder.array([]),
     });
     this.projectPhases = this.projectform.get('projectPhases') as FormArray;
     this.activatedRoute.params.subscribe((parameters) => {
@@ -224,8 +225,8 @@ export class EditProjectComponent implements OnInit {
       const phase = this.projectPhases.controls[i].value;
       selectedOptions.push(phase.phaseName);
     }
-  
-    return this.phaseOptions.filter(option => {
+
+    return this.phaseOptions.filter((option) => {
       return option.value === 6 || !selectedOptions.includes(option.value);
     });
   }
@@ -305,32 +306,43 @@ export class EditProjectComponent implements OnInit {
       }
     }
     console.log(this.projectform.value);
-     if (this.projectform.valid) {
+    //    if (this.projectform.valid) {
+    //     console.log(this.projectform.value);
+    //     this.activatedRoute.params.subscribe((parameters) => {
+    //      if (this.projectform.valid) {
+    //         this.projectService
+    //           .updateProject(parameters['id'], this.projectform.value)
+    //          .subscribe(
+    //            () => {
+    //              this.snackBar.open('Project edit successfully.', 'Close', {
+    //                duration: 3000,
+    //              });
+    //              this.router.navigate(['project']);
+    //             },
+    //             (error) => {
+    //               this.snackBar.open(error.message, 'Close', {
+    //                 duration: 3000,
+    //               });
+    //             }
+    //           );
+    //      } else {
+    //         this.snackBar.open('Please enter valid data.', 'Close', {
+    //           duration: 3000,
+    //         });
+    //      }
+    //     });
+    //  }
+    if (this.projectform.valid) {
       console.log(this.projectform.value);
       this.activatedRoute.params.subscribe((parameters) => {
-       if (this.projectform.valid) {
+        if (this.projectform.valid) {
           this.projectService
             .updateProject(parameters['id'], this.projectform.value)
-           .subscribe(
-             () => {
-               this.snackBar.open('Project edit successfully.', 'Close', {
-                 duration: 3000,
-               });
-               this.router.navigate(['project']);
-              },
-              (error) => {
-                this.snackBar.open(error.message, 'Close', {
-                  duration: 3000,
-                });
-              }
-            );
-       } else {
-          this.snackBar.open('Please enter valid data.', 'Close', {
-            duration: 3000,
-          });
-       }
+            .subscribe(() => {
+              this.router.navigate(['project']);
+            });
+        }
       });
-   }
-   
+    }
   }
 }
