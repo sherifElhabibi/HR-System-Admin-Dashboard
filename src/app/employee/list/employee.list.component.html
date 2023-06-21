@@ -1,43 +1,45 @@
-<table mat-table class="table table-hover table-borderless  rounded" [dataSource]="employees">
-
-
-  <!-- First Name Column -->
-  <ng-container matColumnDef="employeeFirstName">
-    <th mat-header-cell *matHeaderCellDef id="color">First Name</th>
-    <td mat-cell *matCellDef="let employee">{{ employee.employeeFirstName }}</td>
-  </ng-container>
-
-  <!-- Last Name Column -->
-  <ng-container matColumnDef="employeeLastName">
-    <th mat-header-cell *matHeaderCellDef id="color">Last Name</th>
-    <td mat-cell *matCellDef="let employee">{{ employee.employeeLastName }}</td>
-  </ng-container>
-
-  <!-- Profile URL Column -->
-  <ng-container matColumnDef="employeeProfileUrl" >
-    <th mat-header-cell *matHeaderCellDef class="text-center" id="color"><i class="bi bi-person-bounding-box"></i></th>
-    <td mat-cell *matCellDef="let employee" class="text-center">{{ employee.employeeProfileUrl }}</td>
-  </ng-container>
-
-  <!-- Actions Column -->
-  <ng-container matColumnDef="actions" >
-    <th mat-header-cell *matHeaderCellDef class="text-center" id="color">Actions</th>
-    <td mat-cell *matCellDef="let employee" class="text-center">
-      <a mat-button (click)="delete(employee.emplyeeId)"><i class="bi bi-x-circle-fill text-danger"></i></a>
-      <a mat-button [routerLink]="['/employees/edit',employee.emplyeeId]"><i class="bi bi-pen text-success"></i></a>
-      <a mat-button [routerLink]="['/employees/details',employee.emplyeeId]"><i class="bi bi-box-arrow-in-right text-info mx-3"></i></a>
-      
-    </td>
-  </ng-container>
-
-  <!-- Table Header -->
-  <thead>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+<div class="row mt-5">
+  <div class="col-6">
+      <h3>
+        <i class="bi bi-people-fill" aria-hidden="true"></i>
+        <b> All employees</b></h3>
+  </div>
+ 
+</div>
+<div class="table-responsive">
+<table class="table table-striped table-bordered styled-table">
+  <thead style="background-color: #3a3d6a;">
+      <tr style="text-align: center;" class="text-light">
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th><i class="bi bi-person-bounding-box"></i></th>
+          <th>Actions</th>
+      </tr>
   </thead>
-
-  <!-- Table Rows -->
   <tbody>
-    <tr mat-row *matRowDef="let employee; columns: displayedColumns;"></tr>
+      <tr *ngFor="let employee of employees;let i = index"
+          style="text-align: center;">
+          <td>{{ employee.employeeFirstName }}</td>
+          <td>{{employee.employeeLastName}}</td>
+          <td>{{ employee.employeeProfileUrl}}</td>
+          <td>   
+             <a [routerLink]="['/employees/edit',employee.emplyeeId]">
+            <button type="button" class="btn btn-sm btn-primary me-2">
+              <i class="fa fa-edit"></i>
+            </button>
+          </a>
+            <a  [routerLink]="['/employees/details',employee.emplyeeId]">
+                <button class="btn btn-sm btn-dark me-2">
+                  <i class="fa fa-eye"></i>
+                </button>
+              </a>
+              <a>
+                <button class="btn btn-sm btn-danger me-2" (click)="delete(employee.emplyeeId)">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </a>
+          </td>
+      </tr>
   </tbody>
-
 </table>
+</div>
