@@ -5,7 +5,7 @@
           <div class="form-column">
             <mat-form-field appearance="fill">
               <mat-label>Phase Name</mat-label>
-              <input matInput [formControlName]="'phaseName'" type="number">
+              <input matInput [formControlName]="'phaseName'" type="number" >{{getPhaseName()?.value}}
               <mat-error *ngIf="getPhaseName()?.invalid && getPhaseName()?.touched">
                 <small *ngIf="getPhaseName()?.errors?.['required']" class="text-danger">
                   Phase Name is required
@@ -69,3 +69,6 @@
     </div>
   </div>
   
+
+
+
