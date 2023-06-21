@@ -85,7 +85,7 @@ export const navItems: INavData[] = [
   {
     name: 'Projects Phases',
     url: '/phases',
-    iconComponent: { name: 'cui-chart' },
+    iconComponent: { name: 'cil-cursor' },
     children: [
       {
         name: 'List',
@@ -96,7 +96,7 @@ export const navItems: INavData[] = [
   {
     name: 'Projects',
     url: '/project',
-    iconComponent: { name: 'cil-briefcase' },
+    iconComponent: { name: 'cil-star' },
     children: [
       {
         name: 'List',
