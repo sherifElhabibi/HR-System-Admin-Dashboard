@@ -139,3 +139,11 @@ h6 {
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
+
+.btn-calc {
+  background-color: var(--sub-main2);
+  color: var(--white)
+}
+.btn-calc:hover{
+  background-color: var(--sub-main);
+}

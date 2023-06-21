@@ -1,0 +1,18 @@
+h3{
+  color: var(--main);
+}
+thead{
+  background-color: var(--sub-main2);
+}
+.buttons{
+  & .btn-edit {
+    background-color: var(--sub-main2);
+    color: var(--white);
+  }
+  & .btn-edit:hover{
+    background-color: var(--sub-main);
+  }
+  & .btn-danger{
+    color: whitesmoke;
+  }
+}

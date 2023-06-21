@@ -13,3 +13,16 @@ table {
     border: 1px solid var(--sub-main);
   }
 }
+
+.buttons{
+  & .btn-edit {
+    background-color: var(--sub-main2);
+    color: var(--white);
+  }
+  & .btn-edit:hover{
+    background-color: var(--sub-main);
+  }
+  & .btn-danger{
+    color: whitesmoke;
+  }
+}

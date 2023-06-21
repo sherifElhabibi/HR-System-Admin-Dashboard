@@ -33,4 +33,7 @@ export class EmployeeService {
   getEmployeesCostsInProject(projectId:number){
     return this.HttpClient.get<any>(this.baseUrl+'/employees'+'/'+'GetEmployeesCostsInProject'+'/'+projectId);
   }
+  getEmployeeSalary(employeeId: number,start:any,end:any):Observable<any>{
+    return this.HttpClient.get<any>(this.baseUrl+'/employees/GetEmployeeSalaryAndOverTime/'+employeeId+'/StartDate/'+start+'/EndDate/'+end);
+  }
 }

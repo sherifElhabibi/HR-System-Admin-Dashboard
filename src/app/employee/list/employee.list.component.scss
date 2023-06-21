@@ -1,10 +1,26 @@
 #color{
-    background-color: var(--main);
-    color: white;
+  background-color: var(--main);
+  color: white;
 }
-th{
-    padding-bottom:3%;
+h3{
+  color: var(--main);
 }
+
 table{
-    box-shadow: 1px 3px 10px var(--shadow);
+  box-shadow: 1px 3px 10px var(--shadow);
+}
+thead{
+  background-color: var(--sub-main2);
+}
+.buttons{
+  & .btn-edit {
+    background-color: var(--sub-main2);
+    color: var(--white);
+  }
+  & .btn-edit:hover{
+    background-color: var(--sub-main);
+  }
+  & .btn-danger{
+    color: whitesmoke;
+  }
 }

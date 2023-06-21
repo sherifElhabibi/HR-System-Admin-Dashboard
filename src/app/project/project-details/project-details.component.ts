@@ -52,7 +52,7 @@ export class ProjectDetailsComponent implements OnInit {
         this.employeeService.getEmployeesCostsInProject(parameters['id']).subscribe(
           (EmployeesCostsInProject)=>{
             this.EmployeesCostsInProject = EmployeesCostsInProject;
-             console.log(EmployeesCostsInProject);
+            console.log(EmployeesCostsInProject);
           }
         );
       });
@@ -88,4 +88,29 @@ export class ProjectDetailsComponent implements OnInit {
   // passingid(){
   //   this.outputEvent.emit(this.project.projectId);
   // }
+
+  getCostColor(): string {
+    let half = this.project.projectTotalBudget / 2;
+
+    if (this.ProjectHoursAndTotalCost.totalCost <= half) {
+      return 'green';
+    } else if (this.ProjectHoursAndTotalCost.totalCost > half && this.ProjectHoursAndTotalCost.totalCost <= this.project.projectTotalBudget) {
+      return 'yellow';
+    } else {
+      return 'red';
+    }
+  }
+
+  getTotalHoursColor(): string {
+    let halfHours = this.project.projectHours / 2;
+
+    if (this.ProjectHoursAndTotalCost.totalHoursSpent <= halfHours) {
+      return 'green';
+    } else if (this.ProjectHoursAndTotalCost.totalHoursSpent > halfHours && this.ProjectHoursAndTotalCost.totalHoursSpent <= this.project.projectHours) {
+      return 'yellow';
+    } else {
+      return 'red';
+    }
+  }
+
 }

@@ -14,7 +14,7 @@
                 <mat-card-content>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered styled-table">
-                            <thead style="background-color: #3a3d6a;" >
+                            <thead>
                                 <tr style="text-align: center;" class="text-light">
                                     <th>Name</th>
                                     <th>Total Budget</th>
@@ -32,9 +32,9 @@
                                 <tr style="text-align: center;">
                                     <td>{{project.projectName}}</td>
                                     <td>{{project.projectTotalBudget}}</td>
-                                    <td>{{ProjectHoursAndTotalCost.totalCost}}</td>
+                                    <td [style.color]="getCostColor()">{{ProjectHoursAndTotalCost.totalCost}}</td>
                                     <td>{{project.projectHours}}</td>
-                                    <td>{{ProjectHoursAndTotalCost.totalHoursSpent}}</td>
+                                    <td [style.color]="getTotalHoursColor()">{{ProjectHoursAndTotalCost.totalHoursSpent}}</td>
                                     <td>{{project.projectStatus}}</td>
                                     <td>{{project.projectLocation}}</td>
                                     <td>{{project.projectStartDate | date:'yyyy-MM-dd'}}</td>
@@ -45,7 +45,7 @@
                         </table>
                     </div>
                 </mat-card-content>
-            </mat-card> 
+            </mat-card>
             <div class="row mt-5">
                 <div class="col-6">
                     <h3><i class="fa fa-list-alt" aria-hidden="true"></i><b> Project Phases</b></h3>
@@ -58,13 +58,13 @@
                         </button>
                       </a>
                 </div> -->
-               
+
              </div>
             <mat-card class="my-2 patient-card">
                 <mat-card-content>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered styled-table">
-                            <thead style="background-color: #3a3d6a;">
+                            <thead>
                                 <tr style="text-align: center;" class="text-light">
                                     <th>#NO</th>
                                     <th>Name</th>
@@ -75,17 +75,23 @@
                                     <th>Actions</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="text-center">
                                 <tr *ngFor="let phase of project?.projectPhases;let i = index"
-                                    style="text-align: center;">
+                                    >
                                     <td>{{i+1}}</td>
                                     <td>{{phase.phaseName}}</td>
                                     <td>{{phase.phaseStartDate | date:'yyyy-MM-dd'}}</td>
                                     <td>{{phase.phaseEndDate | date:'yyyy-MM-dd'}}</td>
                                     <td>{{phase.phaseMilestone}}</td>
                                     <td>{{phase.phaseHrBudget}}</td>
-                                    <td>
-                                      <a [routerLink]="['/phases/details/', phase.id]">
+                                    <td class="actions d-flex justify-content-around" >
+                                      <div class="buttons d-flex flex-column d-md-flex flex-md-row gap-2">
+                                        <a [routerLink]="['/phases/edit/', phase.id]">
+                                          <button type="button" class="btn btn-sm btn-edit me-2">
+                                            <i class="fa fa-edit"></i>
+                                          </button>
+                                        </a>
+                                        <a [routerLink]="['/phases/details/', phase.id]">
                                           <button class="btn btn-sm btn-dark me-2">
                                             <i class="fa fa-eye"></i>
                                           </button>
@@ -95,11 +101,7 @@
                                             <i class="fa fa-trash"></i>
                                           </button>
                                         </a>
-                                        <a [routerLink]="['/phases/edit/', phase.id]">
-                                          <button type="button" class="btn btn-sm btn-primary me-2">
-                                            <i class="fa fa-edit"></i>
-                                          </button>
-                                        </a>
+                                      </div>
                                   </td>
                                 </tr>
                             </tbody>
@@ -117,14 +119,14 @@
                     </button>
                   </a>
                </div>
-              
+
             </div>
-           
+
             <mat-card class="my-2 patient-card">
                 <mat-card-content>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered styled-table">
-                            <thead style="background-color: #3a3d6a;">
+                            <thead>
                                 <tr style="text-align: center;" class="text-light">
                                     <th>#NO</th>
                                     <th>Name</th>
@@ -140,10 +142,10 @@
                                     <td>{{task.taskName}}</td>
                                     <td>{{task.taskDescription}}</td>
                                     <td>{{task.totalHoursPerTask}}</td>
-                                    <td style="display: flex;justify-content: space-around;">
+                                    <td class="actions d-flex justify-content-around" >
                                       <div class="buttons d-flex flex-column d-md-flex flex-md-row gap-2">
                                         <a [routerLink]="['/projecttask/edit/', task.id]">
-                                          <button type="button" class="btn btn-sm btn-primary me-2">
+                                          <button type="button" class="btn btn-sm btn-edit me-2">
                                             <i class="fa fa-edit"></i>
                                           </button>
                                         </a>
@@ -166,7 +168,7 @@
                 <mat-card-content>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered styled-table">
-                            <thead style="background-color: #3a3d6a;">
+                            <thead>
                                 <tr style="text-align: center;" class="text-light">
                                     <th>#NO</th>
                                     <th>Full Name</th>
@@ -194,7 +196,7 @@
                 <mat-card-content>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered styled-table">
-                            <thead style="background-color: #3a3d6a;">
+                            <thead>
                                 <tr style="text-align: center;" class="text-light">
                                     <th>#NO</th>
                                     <th>Employee Name</th>

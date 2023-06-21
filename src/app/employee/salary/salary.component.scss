@@ -1,0 +1,11 @@
+h3{
+  color: var(--main);
+}
+.btn-save{
+  background-color: var(--main);
+  color: var(--white);
+  width: 15%;
+  &:hover{
+    background-color: var(--sub-main);
+  }
+}

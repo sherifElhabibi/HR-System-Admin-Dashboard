@@ -85,4 +85,7 @@ export class EmployeeDetailsComponent implements OnInit {
   goBack(): void {
     this.router.navigate(['employees/list']);
   }
+  CalcSalary(){
+    this.router.navigate(['employees/salary/'+this.id]);
+  }
 }
