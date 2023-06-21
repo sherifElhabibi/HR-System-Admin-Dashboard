@@ -10,8 +10,7 @@
 <table class="table table-striped table-bordered styled-table">
   <thead>
       <tr style="text-align: center;" class="text-light">
-          <th>First Name</th>
-          <th>Last Name</th>
+          <th>Full Name</th>
           <th><i class="bi bi-person-bounding-box"></i></th>
           <th>Actions</th>
       </tr>
@@ -19,8 +18,7 @@
   <tbody>
       <tr *ngFor="let employee of employees;let i = index"
           style="text-align: center;">
-          <td>{{ employee.employeeFirstName }}</td>
-          <td>{{employee.employeeLastName}}</td>
+          <td>{{ employee.employeeFirstName+" "+employee.employeeLastName}}</td>
           <td><img src="{{ employee.employeeProfileUrl}}" alt="employee_Image"></td>
           <td class="actions d-flex justify-content-around" >
             <div class="buttons d-flex flex-column d-md-flex flex-md-row gap-2">
