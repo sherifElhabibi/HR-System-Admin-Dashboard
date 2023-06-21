@@ -77,5 +77,8 @@ export class CreateComponent {
     this.projectId= event.value;
  
   }
+  goBack(): void {
+    this.router.navigate(['projecttask/list']);
+  }
 
 }

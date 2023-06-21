@@ -68,4 +68,7 @@ export class CreatewithprojidComponent {
       (error) => console.log(error)
     );
   }
+  goBack(): void {
+    this.router.navigate(['project/details/'+this.idparam]);
+  }
 }

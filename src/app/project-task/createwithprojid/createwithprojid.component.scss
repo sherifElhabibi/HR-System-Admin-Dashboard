@@ -1,32 +1,17 @@
+.mybutton {
+  margin-top: 3%;
+  background-color: var(--main);
+  color: var(--white);
+}
+.mybutton:hover {
+  background-color: var(--sub-main);
+  transition: 0.2s;
+}
 
+.fullwidth {
+  width: 100%;
+}
 
-.form-row {
-    display: flex;
-  }
-  
-  .form-column {
-    padding: 0px 10px;
-  }
-  
-  .form-field {
-    width: 100%;
-    padding: 15px;
-  }
-  .mybutton{
-    margin-top: 3%;
-    background-color: var(--main);
-    color: var(--white);
-  }
-  .mybutton:hover{
-    background-color: var(--sub-main);
-    transition: 0.2s;
-  }
-  mat-form-field{
-      width: 100%;
-  }
-  input{
-      padding-top: 20px;
-  }
-  .projecttask-form-container{
-    margin-top: 10%;
-  }
+.halfwidth {
+  width: 48%;
+}
