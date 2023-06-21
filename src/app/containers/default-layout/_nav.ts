@@ -32,7 +32,7 @@ export const navItems: INavData[] = [
   {
     name: 'Employees',
     url: '/employees',
-    iconComponent: { name: 'cil-cursor' },
+    iconComponent: { name: 'cil-user' },
     children: [
       {
         name: 'Create',
@@ -47,7 +47,7 @@ export const navItems: INavData[] = [
   {
     name: 'Departments',
     url: '/department',
-    iconComponent: { name: 'cil-puzzle' },
+    iconComponent: { name: 'cil-building' },
     children: [
       {
         name: 'List',
@@ -70,7 +70,7 @@ export const navItems: INavData[] = [
   {
     name: 'Projects Tasks',
     url: '/projecttask',
-    iconComponent: { name: 'cil-puzzle' },
+    iconComponent: { name: 'cil-task' },
     children: [
       {
         name: 'List',
@@ -85,7 +85,7 @@ export const navItems: INavData[] = [
   {
     name: 'Projects Phases',
     url: '/phases',
-    iconComponent: { name: 'cil-puzzle' },
+    iconComponent: { name: 'cui-chart' },
     children: [
       {
         name: 'List',
@@ -96,7 +96,7 @@ export const navItems: INavData[] = [
   {
     name: 'Projects',
     url: '/project',
-    iconComponent: { name: 'cil-puzzle' },
+    iconComponent: { name: 'cil-briefcase' },
     children: [
       {
         name: 'List',
