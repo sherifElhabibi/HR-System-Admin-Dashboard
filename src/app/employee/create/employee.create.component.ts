@@ -63,8 +63,9 @@ export class EmployeeCreateComponent {
       ],
     ],
     employeePassword: ['', Validators.required],
-    employeePosition: ['', Validators.required],
+    employeePosition: [0, Validators.required],
     employeeHiringDate: ['', Validators.required],
+    employeeStatus:[0, Validators.required]
   });
 
   /* ------------------------ */
@@ -83,6 +84,9 @@ export class EmployeeCreateComponent {
   }
   getLname() {
     return this.createEmpForm.get('employeeLastName');
+  }
+  getEmployeeStatus() {
+    return this.createEmpForm.get('employeeStatus');
   }
 
   getSalaryPerHour() {
@@ -122,6 +126,34 @@ export class EmployeeCreateComponent {
       this.createEmpForm.value.employeeHiringDate,
       'yyyy-MM-dd'
     );
+
+    if (this.createEmpForm) {
+      const employeePosition = this.createEmpForm.get('employeePosition');
+      if (employeePosition) {
+        const EmployeePosition = employeePosition.value;
+        if (typeof EmployeePosition === 'string') {
+          const parsedValue = parseFloat(EmployeePosition);
+          if (!isNaN(parsedValue)) {
+            employeePosition.setValue(parsedValue);
+          }
+        }
+      }
+    }
+
+    if (this.createEmpForm) {
+      const employeeStatus = this.createEmpForm.get('employeeStatus');
+      if (employeeStatus) {
+        const EmployeeStatus = employeeStatus.value;
+        if (typeof EmployeeStatus === 'string') {
+          const parsedValue = parseFloat(EmployeeStatus);
+          if (!isNaN(parsedValue)) {
+            employeeStatus.setValue(parsedValue);
+          }
+        }
+      }
+    }
+    
+    console.log(this.createEmpForm.value)
     this.empService.createEmployee(this.createEmpForm.value).subscribe(
       (response) => {this.router.navigateByUrl('/employees/list'); console.log(response)},
       (error) => console.log(error)
