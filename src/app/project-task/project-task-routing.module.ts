@@ -4,6 +4,7 @@ import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 import { DetailsComponent } from './details/details.component';
 import { ListComponent } from './list/list.component';
+import { CreatewithprojidComponent } from './createwithprojid/createwithprojid.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,13 @@ const routes: Routes = [
         component: CreateComponent,
         data: {
           title: 'Create',
+        },
+      },
+      {
+        path: 'createid',
+        component: CreatewithprojidComponent,
+        data: {
+          title: 'Createid',
         },
       },
       {

@@ -4,6 +4,7 @@ import { ProjecttaskService} from 'src/app/services/projecttask.service';
 import {  FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormGroupDirective, NgForm } from '@angular/forms';
+import { ProjectService } from 'src/app/services/project.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -18,9 +19,19 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./create.component.scss']
 })
 export class CreateComponent {
-  constructor(public taskService: ProjecttaskService, public fb: FormBuilder, public router:Router) {}
-  matcher = new MyErrorStateMatcher();
+  projects:any=[];
+  projectId: any;
 
+  constructor(
+    public taskService: ProjecttaskService,   
+    public projectService: ProjectService,
+    public fb: FormBuilder, public router:Router) 
+  {
+    this.projectService.getAllProjects().subscribe((projectList) => {
+      this.projects = projectList;
+    });
+  }
+  matcher = new MyErrorStateMatcher();
   createProjectTaskForm = this.fb.group({
     taskName: [
       '',
@@ -39,7 +50,7 @@ export class CreateComponent {
       ],
     ],
     totalHoursPerTask: ['', [Validators.required]],
-    projectId: ['', [Validators.required]],
+    // projectId: ['', [Validators.required]],
 
   });
   gettaskName() {
@@ -51,13 +62,23 @@ export class CreateComponent {
   gettotalHoursPerTask() {
     return this.createProjectTaskForm.get('totalHoursPerTask');
   }
-  getprojectId() {
-    return this.createProjectTaskForm.get('projectId');
-  }
+  // getprojectId() {
+  //   return this.createProjectTaskForm.get('projectId');
+  // }
   createProjectTask(): void {
-    this.taskService.createProjectTask(this.createProjectTaskForm.value).subscribe(
+    this.taskService.createProjectTask(this.createProjectTaskForm.value,this.projectId).subscribe(
       (response) => {this.router.navigateByUrl('/projecttask'); console.log(response)},
       (error) => console.log(error)
     );
   }
+
+
+  onprojectIdChange(event: any) {
+    this.projectId= event.value;
+ 
+  }
+  goBack(): void {
+    this.router.navigate(['projecttask/list']);
+  }
+
 }

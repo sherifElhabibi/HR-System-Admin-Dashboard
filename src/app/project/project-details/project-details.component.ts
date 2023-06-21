@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -19,6 +19,9 @@ import { EmployeeService } from 'src/app/services/employee.service';
 export class ProjectDetailsComponent implements OnInit {
   project: GetProjectById = new GetProjectById('',0,0,'','',new Date(),new Date(),'',[],[],[],[]);
   phases!:Projectphases[];
+  idparam:any=0;
+  // @Output() outputEvent: EventEmitter<any> = new EventEmitter();
+
   ProjectHoursAndTotalCost: GetProjectHoursAndTotalCost = new GetProjectHoursAndTotalCost(0,'',0,0);
   EmployeesCostsInProject:any[] = [];
   constructor(
@@ -37,7 +40,8 @@ export class ProjectDetailsComponent implements OnInit {
         .getProjectById(parameters['id'])
         .subscribe((projectObject) => {
           this.project = projectObject;
-          console.log(projectObject);
+          this.project.projectId = parameters;
+          console.log(this.project);
         });
         this.projectService.getProjectHoursAndTotalCost(parameters['id']).subscribe(
           (ProjectHoursAndTotalCost)=>{
@@ -48,7 +52,7 @@ export class ProjectDetailsComponent implements OnInit {
         this.employeeService.getEmployeesCostsInProject(parameters['id']).subscribe(
           (EmployeesCostsInProject)=>{
             this.EmployeesCostsInProject = EmployeesCostsInProject;
-            console.log(EmployeesCostsInProject);
+             console.log(EmployeesCostsInProject);
           }
         );
       });
@@ -81,4 +85,7 @@ export class ProjectDetailsComponent implements OnInit {
       return 'initial';
     }
   }
+  // passingid(){
+  //   this.outputEvent.emit(this.project.projectId);
+  // }
 }

@@ -34,7 +34,6 @@ export class DetailsComponent {
    
          console.log(this.taskWithProjectName)
         })
-    
        })
   }
   delete(id: number) {
@@ -55,5 +54,8 @@ export class DetailsComponent {
       });
     })
    
+  }
+  back() {
+    this.router.navigateByUrl('project');
   }
 }

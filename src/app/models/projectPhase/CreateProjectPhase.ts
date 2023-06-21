@@ -5,6 +5,7 @@ export class CreateProjectPhase {
       public phaseEndDate: Date, 
       public phaseMilestone: string, 
       public phaseHrBudget: number, 
+      public projectid?: number, 
     ) {} 
    
   }

@@ -1,69 +1,80 @@
- <div class="projecttask-form-container">
-  <div class="projecttask-form d-flex justify-content-center text-center">
-    <form [formGroup]="createProjectTaskForm">
-      <div class="form-row">
-        <div class="form-column">
-          <mat-form-field appearance="fill">
-            <mat-label>taskName</mat-label>
-            <input matInput [formControlName]="'taskName'" >
-            <mat-error *ngIf="gettaskName()?.invalid && gettaskName()?.touched">
-              <small *ngIf="gettaskName()?.errors?.['required']" class="text-danger">
-                Task Name required (No Numbers)
-              </small>
-              <small *ngIf="gettaskName()?.errors?.['minlength']" class="text-danger">
-                Task Name must be at least 3 characters long
-              </small>
-              <small *ngIf="gettaskName()?.errors?.['pattern']" class="text-danger">
-                Task Name can only contain letters
-              </small>
-            </mat-error>
-          </mat-form-field>
-
-          <mat-form-field appearance="fill">
-            <mat-label>taskDescription</mat-label>
-            <input matInput [formControlName]="'taskDescription'">
-            <mat-error *ngIf="gettaskDescription()?.invalid && gettaskDescription()?.touched">
-              <small *ngIf="gettaskDescription()?.errors?.['required']" class="text-danger">
-                taskDescription required (No Numbers)
-              </small>
-              <small *ngIf="gettaskDescription()?.errors?.['minlength']" class="text-danger">
-                taskDescription must be at least 3 characters long
-              </small>
-              <small *ngIf="gettaskDescription()?.errors?.['pattern']" class="text-danger">
-                taskDescription  must has at least one  letter and one digit
-              </small>
-            </mat-error>
-          </mat-form-field>
-        </div>
-
-        <div class="form-column">
-          <mat-form-field appearance="fill">
-            <mat-label>totalHoursPerTask</mat-label>
-            <input matInput [formControlName]="'totalHoursPerTask'" type="number">
-            <mat-error *ngIf="gettotalHoursPerTask()?.invalid && gettotalHoursPerTask()?.touched">
-              <small *ngIf="gettotalHoursPerTask()?.errors?.['required']" class="text-danger">
-                totalHoursPerTask is required
-              </small>
-            </mat-error>
-          </mat-form-field>
-
-          <mat-form-field appearance="fill">
-            <mat-label>projectId</mat-label>
-            <input matInput [formControlName]="'projectId'" type="number">
-            <mat-error *ngIf="getprojectId()?.invalid && getprojectId()?.touched">
-              <small *ngIf="getprojectId()?.errors?.['required']" class="text-danger">
-                projectId is required
-              </small>
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-
- 
-   
-      <div class="form-actions">
-        <button class="mybutton" mat-raised-button (click)="createProjectTask()">Create ProjectTask</button>
-      </div>
-    </form>
+<div class="container">
+  <div class="row">
+    <div class="text-end">
+      <button mat-button class="button back-button" (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon>
+        Back
+      </button>
+    </div>
   </div>
-</div> 
+  <mat-card class="container p-3">
+    <mat-card-header>
+      <h2>Assign Project To Task</h2>
+    </mat-card-header>
+    <mat-card-content>
+      <div>
+        <div class="projecttask-form d-flex justify-content-center text-center">
+          <form [formGroup]="createProjectTaskForm">
+            <div class="form-row">
+              <div class="form-column">
+                <mat-form-field appearance="fill">
+                  <mat-label>Task Name</mat-label>
+                  <input matInput [formControlName]="'taskName'">
+                  <mat-error *ngIf="gettaskName()?.invalid && gettaskName()?.touched">
+                    <small *ngIf="gettaskName()?.errors?.['required']" class="text-danger">
+                      Task Name required (No Numbers)
+                    </small>
+                    <small *ngIf="gettaskName()?.errors?.['minlength']" class="text-danger">
+                      Task Name must be at least 3 characters long
+                    </small>
+                    <small *ngIf="gettaskName()?.errors?.['pattern']" class="text-danger">
+                      Task Name can only contain letters
+                    </small>
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                  <mat-label>Task Description</mat-label>
+                  <input matInput [formControlName]="'taskDescription'">
+                  <mat-error *ngIf="gettaskDescription()?.invalid && gettaskDescription()?.touched">
+                    <small *ngIf="gettaskDescription()?.errors?.['required']" class="text-danger">
+                      taskDescription required (No Numbers)
+                    </small>
+                    <small *ngIf="gettaskDescription()?.errors?.['minlength']" class="text-danger">
+                      taskDescription must be at least 3 characters long
+                    </small>
+                    <small *ngIf="gettaskDescription()?.errors?.['pattern']" class="text-danger">
+                      Task Description must has at least one letter and one digit
+                    </small>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="form-column">
+                <mat-form-field appearance="fill">
+                  <mat-label>Total Hours Per Task</mat-label>
+                  <input matInput [formControlName]="'totalHoursPerTask'" type="number">
+                  <mat-error *ngIf="gettotalHoursPerTask()?.invalid && gettotalHoursPerTask()?.touched">
+                    <small *ngIf="gettotalHoursPerTask()?.errors?.['required']" class="text-danger">
+                      Total Hours Per Task is required
+                    </small>
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field class="col-12 col-md-4 ">
+                  <mat-label>Select Project Name</mat-label>
+                  <mat-select (selectionChange)="onprojectIdChange($event)" class="small-select py-2">
+                    <mat-option *ngFor="let project of projects" [value]="project.projectId">
+                      {{ project.projectName }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="mybutton" mat-raised-button (click)="createProjectTask()">Create ProjectTask</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>

@@ -18,3 +18,18 @@ strong{
 p{
     color: var(--lightgrey);
 }
+thead{
+    background-color: var(--main);
+    color: white;
+}
+mat-card-title{
+    margin-bottom: 20px;
+    color: var(--main);
+}
+button{
+    
+    margin-left: 45%;
+}
+.button{
+    color: var(--sub-main);
+}

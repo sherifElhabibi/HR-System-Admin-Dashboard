@@ -1,39 +1,53 @@
-import { Component ,OnInit} from '@angular/core';
-import { FormBuilder, FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { DatePipe } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroupDirective,
+  NgForm,
+  Validators,
+} from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Department } from 'src/app/models/Department/department';
-import { DepartmentService } from 'src/app/services/department.service';
 import { EmployeeService } from 'src/app/services/employee.service';
 
-
 export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+  isErrorState(
+    control: FormControl | null,
+    form: FormGroupDirective | NgForm | null
+  ): boolean {
     const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+    return !!(
+      control &&
+      control.invalid &&
+      (control.dirty || control.touched || isSubmitted)
+    );
   }
 }
 
 @Component({
   selector: 'app-edit',
   templateUrl: './employee.edit.component.html',
-  styleUrls: ['./employee.edit.component.scss']
+  styleUrls: ['./employee.edit.component.scss'],
 })
 export class EmployeeEditComponent implements OnInit {
   depts: Department[] = [];
-  id!:number;
+  id!: number;
   constructor(
     public empService: EmployeeService,
-    private deptService: DepartmentService,
     private route: ActivatedRoute,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private datePipe: DatePipe
   ) {}
-  ngOnInit():void {
+  ngOnInit(): void {
     this.route.params.subscribe((params: any) => {
-       this.id =+params['emplyeeId']});
-      this.empService.getEmployeeById(this.id).subscribe((employee: any) => {
-      this.editEmpForm.patchValue(employee)});
+      this.id = +params['emplyeeId'];
+    });
+    this.empService.getEmployeeById(this.id).subscribe((employee: any) => {
+      this.editEmpForm.patchValue(employee);
+    });
   }
 
   matcher = new MyErrorStateMatcher();
@@ -55,8 +69,9 @@ export class EmployeeEditComponent implements OnInit {
       ],
     ],
     employeeSalaryPerHour: [0, [Validators.required]],
-    employeeOverTime: ['', [Validators.required]],
-    employeeSalary: ['', [Validators.required]],
+    employeeOvertimeRate: [0, [Validators.required]],
+    employeeRegularHoursPerDay: [0, [Validators.required]],
+    employeeWorkingDaysPerWeek: [0, [Validators.required]],
     employeeProfileUrl: [''],
     employeePhone: [
       '',
@@ -71,7 +86,6 @@ export class EmployeeEditComponent implements OnInit {
         ),
       ],
     ],
-    employeePassword: ['', Validators.required],
     employeePosition: ['', Validators.required],
     employeeHiringDate: ['', Validators.required],
   });
@@ -83,17 +97,18 @@ export class EmployeeEditComponent implements OnInit {
   getLname() {
     return this.editEmpForm.get('employeeLastName');
   }
+  getEmployeeOvertimeRate() {
+    return this.editEmpForm.get('employeeOvertimeRate');
+  }
+  getEmployeeRegularHoursPerDay() {
+    return this.editEmpForm.get('employeeRegularHoursPerDay');
+  }
+  getEmployeeWorkingDaysPerWeek() {
+    return this.editEmpForm.get('employeeWorkingDaysPerWeek');
+  }
 
   getSalaryPerHour() {
     return this.editEmpForm.get('employeeSalaryPerHour');
-  }
-
-  getOverTime() {
-    return this.editEmpForm.get('employeeOverTime');
-  }
-
-  getSalary() {
-    return this.editEmpForm.get('employeeSalary');
   }
 
   getProfileUrl() {
@@ -124,14 +139,19 @@ export class EmployeeEditComponent implements OnInit {
     return console.log(this.editEmpForm);
   }
 
-
   editEmp() {
-      this.empService.editEmployee(this.id,this.editEmpForm.value).subscribe(() => {
-        this.router.navigateByUrl("employees/list");
-    });
-    };
-
-
-    
+    this.editEmpForm.value.employeeHiringDate = this.datePipe.transform(
+      this.editEmpForm.value.employeeHiringDate,
+      'yyyy-MM-dd'
+    );
+    this.empService
+      .editEmployee(this.id, this.editEmpForm.value)
+      .subscribe(() => {
+          this.router.navigateByUrl('employees/list');
+      });
   }
 
+  goBack(): void {
+    this.router.navigate(['employees/list']);
+  }
+}

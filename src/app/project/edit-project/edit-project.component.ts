@@ -39,7 +39,15 @@ export class EditProjectComponent implements OnInit {
     []
   );
   projectPhases!: FormArray;
-
+  phaseOptions: any[] = [
+    { value: 0, label: 'Information Gathering' },
+    { value: 1, label: 'Specification' },
+    { value: 2, label: 'Project Planning' },
+    { value: 3, label: 'Implementation' },
+    { value: 4, label: 'Final Test and Delivery' },
+    { value: 5, label: 'Maintenance and Support' },
+    { value: 6, label: 'Other' }
+  ];
   validationMessages = {
     projectName: {
       required: 'You must enter the name of the project',
@@ -140,8 +148,9 @@ export class EditProjectComponent implements OnInit {
         Validators.compose([Validators.required])
       ),
       projectPhases: this.builder.array([]),
-      employeesInProjectIds: this.builder.array([]),
+      employeesInProjectIds: this.builder.array([])
     });
+    this.projectPhases = this.projectform.get('projectPhases') as FormArray;
     this.activatedRoute.params.subscribe((parameters) => {
       this.projectService
         .getProjectById(parameters['id'])
@@ -161,15 +170,17 @@ export class EditProjectComponent implements OnInit {
           this.projectPhases = this.projectform.get(
             'projectPhases'
           ) as FormArray;
-          project.projectPhases.forEach((phase: any) => {
-            this.projectPhases.push(this.createPhaseFormGroup(phase));
-          });
+          if (project.projectPhases) {
+            project.projectPhases?.forEach((phase: any) => {
+              this.projectPhases.push(this.createPhaseFormGroup(phase));
+            });
+          }
 
           // Populate selected employees
           const employeesInProjectIds = this.projectform.get(
             'employeesInProjectIds'
           ) as FormArray;
-          project.employeesInProjectIds.forEach((employeeId: any) => {
+          project.employeesInProjectIds?.forEach((employeeId: any) => {
             employeesInProjectIds.push(this.builder.control(employeeId));
           });
         });
@@ -184,6 +195,9 @@ export class EditProjectComponent implements OnInit {
       phaseEndDate: [phase.phaseEndDate, Validators.required],
     });
   }
+  get employeesInProjectIds(): FormArray {
+    return this.projectform.get('employeesInProjectIds') as FormArray;
+  }
 
   addProjectPhase() {
     this.projectPhases.push(this.createPhaseFormGroup({}));
@@ -194,14 +208,26 @@ export class EditProjectComponent implements OnInit {
   }
 
   onEmployeeSelectionChange(event: any) {
-    const employeesInProjectIds = this.projectform.get(
-      'employeesInProjectIds'
-    ) as FormArray;
-    employeesInProjectIds.clear();
+    const selectedEmployeeIds = event.value;
+    this.employeesInProjectIds.clear();
+    selectedEmployeeIds.forEach((emplyeeId: string) => {
+      this.employeesInProjectIds.push(this.builder.control(emplyeeId));
+    });
   }
 
   goBack(): void {
     this.router.navigate(['project']);
+  }
+  getPhaseOptions(index: number): any[] {
+    const selectedOptions: number[] = [];
+    for (let i = 0; i < index; i++) {
+      const phase = this.projectPhases.controls[i].value;
+      selectedOptions.push(phase.phaseName);
+    }
+  
+    return this.phaseOptions.filter(option => {
+      return option.value === 6 || !selectedOptions.includes(option.value);
+    });
   }
   save() {
     this.projectform.value.projectStartDate = this.datePipe.transform(
@@ -279,17 +305,18 @@ export class EditProjectComponent implements OnInit {
       }
     }
     console.log(this.projectform.value);
-    if (this.projectform.valid) {
+     if (this.projectform.valid) {
+      console.log(this.projectform.value);
       this.activatedRoute.params.subscribe((parameters) => {
-        if (this.projectform.valid) {
+       if (this.projectform.valid) {
           this.projectService
             .updateProject(parameters['id'], this.projectform.value)
-            .subscribe(
-              () => {
-                this.snackBar.open('Project edit successfully.', 'Close', {
-                  duration: 3000,
-                });
-                this.router.navigate(['project']);
+           .subscribe(
+             () => {
+               this.snackBar.open('Project edit successfully.', 'Close', {
+                 duration: 3000,
+               });
+               this.router.navigate(['project']);
               },
               (error) => {
                 this.snackBar.open(error.message, 'Close', {
@@ -297,12 +324,13 @@ export class EditProjectComponent implements OnInit {
                 });
               }
             );
-        } else {
+       } else {
           this.snackBar.open('Please enter valid data.', 'Close', {
             duration: 3000,
           });
-        }
+       }
       });
-    }
+   }
+   
   }
 }

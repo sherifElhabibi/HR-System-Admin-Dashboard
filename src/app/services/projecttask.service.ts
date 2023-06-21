@@ -12,7 +12,12 @@ import { Observable } from 'rxjs';
 export class ProjecttaskService {
   private baseUrl = environment.baseApi;
   constructor(public HttpClient:HttpClient) { }
-  createProjectTask(projectTask: any){
+  createProjectTask(projectTask: any,projectId:any){
+    projectTask.projectID=projectId;
+    return this.HttpClient.post<CreateProjectTask>(this.baseUrl + '/ProjectTask',projectTask);
+   }
+  createTaskwithprojId(projectTask: any,id:any){
+    projectTask.projectId=id;
     return this.HttpClient.post<CreateProjectTask>(this.baseUrl + '/ProjectTask',projectTask);
    }
    deleteProjectTaskById(id:number){

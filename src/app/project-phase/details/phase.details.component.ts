@@ -22,6 +22,6 @@ export class PhaseDetailsComponent implements OnInit {
   }
   
   back() {
-    this.router.navigateByUrl('project');
+    this.router.navigateByUrl('/phases/list');
   }
 }
