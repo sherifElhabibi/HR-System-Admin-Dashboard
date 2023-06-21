@@ -136,7 +136,7 @@
         <div formArrayName="projectPhases" *ngFor="let phase of projectPhases.controls; let i = index;">
           <div [formGroupName]="i">
             <b class="me-2">Phase {{ i + 1 }}</b>
-            <button class="btn btn-danger mt-2 mb-2" (click)="removeProjectPhase(i)"><i
+            <button class="btn btn-danger btn-trash mt-2 mb-2" (click)="removeProjectPhase(i)"><i
                 class="fa fa-trash"></i></button>
             <div class="d-flex flex-column flex-md-row justify-content-center align-items-start gap-md-3 gap-0">
               <mat-form-field class="col-12 col-md-4">
@@ -198,14 +198,14 @@
                   </span>
                 </mat-error>
               </mat-form-field>
-              <button mat-raised-button class="mb-4 text-light col-12 col-md-2"
-                style="padding: 28px 2px;background-color:rgb(15, 93, 15)  ;" (click)="addProjectPhase()"><i
+              <button mat-raised-button class="mb-4 text-light btn-add col-12 col-md-2"
+              (click)="addProjectPhase()"><i
                   class="fa-solid fa-plus"></i> Add New Phase</button>
             </div>
           </div>
         </div>
         <div style="display: flex;justify-content: center;">
-          <button class="btn btn-primary mt-2" style="width: 15%;background-color: #3a3d6a !important;"
+          <button class="btn btn-save mt-2"
             (click)="save()">Save</button>
         </div>
       </form>

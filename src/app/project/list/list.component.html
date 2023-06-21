@@ -2,7 +2,7 @@
     <div class="row">
       <div class="text-end">
         <a [routerLink]="['/project/add']">
-          <button type="button" class="btn btn-sm btn-primary me-2 col-2" style="background-color: #484c7f !important;" id="addButton">
+          <button type="button" class="btn btn-sm btn-primary me-2 col-2 btn-add" id="addButton">
             Add New Project
             <i class="fa fa-plus"></i>
           </button>
@@ -13,8 +13,8 @@
   </div>
   <br>
   <table class="table table-striped table-bordered styled-table">
-    <thead style="background-color: #3a3d6a;">
-      <tr style="text-align: center;" class="text-light">
+    <thead>
+      <tr class="text-light text-center">
         <th>#NO</th>
         <th>Name</th>
         <th>Total Hours</th>
@@ -26,7 +26,7 @@
     </thead>
     <tbody>
       <ng-container *ngIf="projects.length > 0; else emptyProjects">
-        <tr *ngFor="let project of projects; let i = index" style="text-align: center;">
+        <tr *ngFor="let project of projects; let i = index" class="text-center">
           <td>{{i+1}}</td>
           <td>{{project.projectName}}</td>
           <td>{{project.projectHours}}</td>
@@ -61,5 +61,5 @@
       </ng-template>
     </tbody>
   </table>
-  
+
   <router-outlet></router-outlet>
