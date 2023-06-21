@@ -44,11 +44,12 @@
                 </small>
               </mat-error>
             </mat-form-field>
+
           </div>
         </div>
   
         <div class="form-row">
-          <div class="form-column">
+          <div class="form-column col-6">
             <mat-form-field appearance="fill">
               <mat-label>Phase Hour Budget</mat-label>
               <input matInput [formControlName]="'phaseHrBudget'" type="number">
@@ -61,7 +62,7 @@
   
           </div>
         </div>
-        <div class="form-actions">
+        <div class="form-actions mt-5">
           <button class="mybutton" mat-raised-button (click)="editPhase()">Edit Phase</button>
         </div>
       </form>

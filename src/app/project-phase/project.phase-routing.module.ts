@@ -9,24 +9,22 @@ import { CreateProjectPhase } from '../models/projectPhase/CreateProjectPhase';
 
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   data: {
-  //     title: 'Phases',
-  //   },
-  //   children: [
-  //     {
-  //       path: 'add/:id',
-  //       component: PhaseCreateComponent,
-  //       data: {
-  //         title: 'Add',
-  //       },
-  //     },
-
- 
-  //   ],
-  // },
-  {path: 'list', component:PhaseListComponent},
+  {
+    path: '',
+    data: {
+      title: 'Phases',
+    },
+    children: [
+      {
+        path: 'list',
+        component: PhaseListComponent,
+        data: {
+          title: 'List',
+        },
+      },
+    ],
+  },
+  // {path: 'list', component:PhaseListComponent},
   {path: 'add/:id', component:PhaseCreateComponent},
   {path: 'edit/:id', component:PhaseEditComponent},
   {path: 'details/:id', component:PhaseDetailsComponent},

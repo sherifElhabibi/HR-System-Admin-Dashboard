@@ -47,15 +47,15 @@
             </mat-error>
           </mat-form-field>
 
-          <mat-form-field appearance="fill">
-            <mat-label>projectId</mat-label>
-            <input matInput [formControlName]="'projectId'" type="number">
-            <mat-error *ngIf="getprojectId()?.invalid && getprojectId()?.touched">
-              <small *ngIf="getprojectId()?.errors?.['required']" class="text-danger">
-                projectId is required
-              </small>
-            </mat-error>
+          <mat-form-field class="col-12 col-md-4 ">
+            <mat-label>Project id:</mat-label>
+            <mat-select  (selectionChange)="onprojectIdChange($event)" class="small-select py-2">
+              <mat-option *ngFor="let project of projects" [value]="project.projectId">
+                {{ project.projectName }}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
+
         </div>
       </div>
 
@@ -67,3 +67,6 @@
     </form>
   </div>
 </div> 
+
+
+

@@ -80,31 +80,19 @@ export const navItems: INavData[] = [
         name: 'Create',
         url: '/projecttask/create'
       },
+    ]
+  },
+  {
+    name: 'Phases',
+    url: '/phases',
+    iconComponent: { name: 'cil-puzzle' },
+    children: [
       {
-        name: 'Createid',
-        url: '/projecttask/createid'
-      },
-      {
-        name: 'Edit',
-        url: '/projecttask/edit/id'
-      },
-      {
-        name: 'Details',
-        url: '/projecttask/details/id'
+        name: 'List',
+        url: '/phases/list'
       },
     ]
   },
-  // {
-  //   name: 'Phases',
-  //   url: '/phases',
-  //   iconComponent: { name: 'cil-puzzle' },
-  //   children: [
-  //     {
-  //       name: 'Add',
-  //       url: '/phases/add/id'
-  //     },
-  //   ]
-  // },
   {
     name: 'Project',
     url: '/project',

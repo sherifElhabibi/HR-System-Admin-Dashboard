@@ -29,5 +29,8 @@ export class ProjectphasesService {
   createProjectPhase(idparam:number,projectPhase: any,){
     return this.HttpClient.post<Projectphases>(this.baseUrl + '/projectphases'+'/'+idparam,projectPhase);
    }
+  getAllPhases(){
+    return this.HttpClient.get<Projectphases>(this.baseUrl + '/projectphases');
 
+  }
 }
