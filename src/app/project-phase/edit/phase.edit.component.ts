@@ -51,7 +51,7 @@ export class PhaseEditComponent implements OnInit {
   editPhaseForm = this.fb.group({
     phaseName: [0, [Validators.required]],
     phaseStartDate: ['', [Validators.required]],
-    phaseEndDate: [0, [Validators.required]],
+    phaseEndDate: ['0', [Validators.required]],
     phaseMilestone: ['', [Validators.required]],
     phaseHrBudget: ['', Validators.required],
   });
@@ -80,6 +80,7 @@ export class PhaseEditComponent implements OnInit {
     return console.log(this.editPhaseForm);
   }
   editPhase() {
+    this.display();
     this.phaseService
       .editPhase(this.id, this.editPhaseForm.value)
       .subscribe(() => {

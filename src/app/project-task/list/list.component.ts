@@ -21,8 +21,6 @@ export class ListComponent {
 
     this.taskService.getAll().subscribe(data=>{
       this.tasks=data;
-      console.log("all depts")
-      console.log(this.tasks);
     });
 
   }
