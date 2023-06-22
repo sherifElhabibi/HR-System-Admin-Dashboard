@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -35,15 +36,22 @@ export class PhaseEditComponent implements OnInit {
     public phaseService: ProjectphasesService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private datePipe: DatePipe
   ) {}
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
       this.id = +params['id'];
     });
-    this.phaseService.getPhaseById(this.id).subscribe((data) => {
-      this.editPhaseForm.patchValue(data);
+    this.phaseService.getPhaseById(this.id).subscribe((phase) => {
+      this.editPhaseForm.patchValue({
+        phaseName: phase.phaseName,
+        phaseStartDate: phase.phaseStartDate,
+        phaseEndDate: phase.phaseEndDate,
+        phaseMilestone: phase.phaseMilestone,
+        phaseHrBudget: phase.phaseHrBudget,
+      });
     });
   }
   matcher = new MyErrorStateMatcher();
@@ -51,9 +59,9 @@ export class PhaseEditComponent implements OnInit {
   editPhaseForm = this.fb.group({
     phaseName: [0, [Validators.required]],
     phaseStartDate: ['', [Validators.required]],
-    phaseEndDate: ['0', [Validators.required]],
+    phaseEndDate: ['', [Validators.required]],
     phaseMilestone: ['', [Validators.required]],
-    phaseHrBudget: ['', Validators.required],
+    phaseHrBudget: [0, Validators.required],
   });
 
   getPhaseName() {
@@ -77,9 +85,40 @@ export class PhaseEditComponent implements OnInit {
   }
 
   display() {
-    return console.log(this.editPhaseForm);
+    return console.log(this.editPhaseForm.value);
   }
   editPhase() {
+    this.editPhaseForm.value.phaseStartDate = this.datePipe.transform(
+      this.editPhaseForm.value.phaseStartDate,
+      'yyyy-MM-dd'
+    );
+    this.editPhaseForm.value.phaseEndDate = this.datePipe.transform(
+      this.editPhaseForm.value.phaseEndDate,
+      'yyyy-MM-dd'
+    );
+
+    if (this.editPhaseForm) {
+      const phaseHrBudget = this.editPhaseForm.get('phaseHrBudget');
+      if (phaseHrBudget) {
+        const hrBudgetValue = phaseHrBudget.value;
+        if (typeof hrBudgetValue === 'string') {
+          const parsedValue = parseFloat(hrBudgetValue);
+          if (!isNaN(parsedValue)) {
+            phaseHrBudget.setValue(parsedValue);
+          }
+        }
+      }
+    }
+    const phaseName = this.editPhaseForm.get('phaseName');
+      if (phaseName) {
+        const phaseNameValue = phaseName.value;
+        if (typeof phaseNameValue === 'string') {
+          const parsedValue = parseInt(phaseNameValue, 10);
+          if (!isNaN(parsedValue)) {
+            phaseName.setValue(parsedValue);
+          }
+        }
+      }
     this.display();
     this.phaseService
       .editPhase(this.id, this.editPhaseForm.value)
