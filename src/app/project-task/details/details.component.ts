@@ -28,10 +28,8 @@ export class DetailsComponent {
     this.activatedRoute.params.subscribe((a)=>{
       this.taskService.getProjectTaskById(a['id']).subscribe(data=>
         {
-          this.idparams=a;
-          console.log(this.idparams);
+         this.idparams=a;
          this.taskWithProjectName=data;
-   
          console.log(this.taskWithProjectName)
         })
        })
@@ -56,6 +54,6 @@ export class DetailsComponent {
    
   }
   back() {
-    this.router.navigateByUrl('project');
+    this.router.navigateByUrl('projecttask/list');
   }
 }

@@ -83,6 +83,10 @@ export class EditComponent {
     return this.editProjectTaskForm.get('totalHoursPerTask');
   }
 
+  goBack(): void {
+    this.router.navigate(['projecttask/list']);
+  }
+
   editEmp() {
     this.activatedRoute.params.subscribe((a) => {
       this.taskService
@@ -94,12 +98,4 @@ export class EditComponent {
   }
 }
 
-// updatetask(){
-//   this.activatedRoute.params.subscribe((a)=>{
-//     this.taskService.editProjectTask(a['id'],this.updateProjectTask).subscribe((editnew)=>{
-//       this.router.navigateByUrl("/department/list")
-//       console.log("editnew");
-//       console.log(editnew);
-//     })
-//   })
-//   }
+

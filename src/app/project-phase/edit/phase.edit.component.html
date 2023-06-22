@@ -16,13 +16,22 @@
         <div class="d-flex flex-column flex-md-row justify-cotent-center align-items-center gap-md-2 gap-0">
           <mat-form-field class="col-12 col-md-6">
             <mat-label>Phase Name</mat-label>
-            <input matInput [formControlName]="'phaseName'" type="number">{{getPhaseName()?.value}}
+            <mat-select matInput [formControlName]="'phaseName'">
+              <mat-option value="0">Information Gathering</mat-option>
+              <mat-option value="1">Specification</mat-option>
+              <mat-option value="2">Project Planning</mat-option>
+              <mat-option value="3">Implementation</mat-option>
+              <mat-option value="4">Final Test and Delivery</mat-option>
+              <mat-option value="5">Maintenance and Support</mat-option>
+              <mat-option value="6">Other</mat-option>
+            </mat-select>
             <mat-error *ngIf="getPhaseName()?.invalid && getPhaseName()?.touched">
               <small *ngIf="getPhaseName()?.errors?.['required']" class="text-danger">
                 Phase Name is required
               </small>
             </mat-error>
-          </mat-form-field> 
+          </mat-form-field>
+          
           <mat-form-field class="col-12 col-md-6">
             <mat-label>Milestone</mat-label>
             <input matInput [formControlName]="'phaseMilestone'" type="text">
