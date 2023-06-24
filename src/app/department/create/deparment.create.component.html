@@ -1,226 +1,69 @@
-<!-- <form (ngSubmit)="createDepartment()" #form="ngForm" id="form">
-  <div>
-    <label for="departmentName" class="text-info">Department Name:</label>
-    <input type="text" id="departmentName" name="departmentName" [(ngModel)]="departmentName" required>
-  </div>
+<mat-card class="container p-3 ">
+  <mat-card-header>
+    <h2>Add Department</h2>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="createDeptForm" class="row">
+      <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-md-3 gap-0">
+        <mat-form-field class="col-4">
+          <mat-label>Department Name</mat-label>
+          <input matInput formControlName="departmentName" class="py-2" >
+          <mat-error class="error-message" *ngIf="createDeptForm.get('projectName')?.invalid &&
+              (createDeptForm.get('projectName')?.dirty || createDeptForm.get('projectName')?.touched)">
+            <span *ngIf="createDeptForm.get('projectName')?.errors?.['required']">
+              {{ validationMessages.departmentName.required }}
+            </span>
+            <span *ngIf="createDeptForm.get('projectName')?.errors?.['pattern']">
+              {{ validationMessages.departmentName.pattern }}
+            </span>
+          </mat-error>
+        </mat-form-field>
 
-  <div>
-    <label for="managerId" class="text-info">Manager ID:</label>
-    <input type="number" id="managerId" name="managerId" [(ngModel)]="managerId">
-  </div>
+        <mat-form-field class="col-4" > 
+          <mat-label>Manger</mat-label> 
+          <mat-select formControlName="managerId" class="py-2"> 
+            <mat-option *ngFor="let emp of emps" [value]="emp.emplyeeId"> 
+              {{emp.employeeFirstName}} {{ emp.employeeLastName }} 
+            </mat-option> 
+          </mat-select> 
+          <mat-error class="error-message" *ngIf="createDeptForm.get('managerId')?.invalid &&
+          (createDeptForm.get('managerId')?.dirty || createDeptForm.get('managerId')?.touched)">
+        <span *ngIf="createDeptForm.get('managerId')?.errors?.['required']">
+          {{ validationMessages.managerId.required }}
+        </span>
+        <span *ngIf="createDeptForm.get('managerId')?.errors?.['pattern']">
+          {{ validationMessages.managerId.pattern }}
+        </span>
+      </mat-error>
+        </mat-form-field> 
+      </div>
 
-  <div>
-    <label for="employessIds" class="text-info">Employee IDs:</label>
-    <input type="text" id="employessIds" name="employessIds" [(ngModel)]="employessIds">
-  </div>
-  <div>
-    <h4>Before create we check if this manager in another Dept </h4>
-      <label for="stopornot" class="text-info" style="font-size: 12px;">1-> Continue  <br/>0-> Stop</label>
-    <input type="number"  min="0" max="1" id="stopornot" name="stopornot" [(ngModel)]="stopornot">
-  </div>
+      <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-md-3 gap-0">
+        <mat-form-field class="col-4">
+          <mat-label>Select Employees:</mat-label>
+          <mat-select multiple (selectionChange)="onEmployeeSelectionChange($event)" class="small-select py-2">
+            <mat-option *ngFor="let employee of emps" [value]="employee.emplyeeId">
+              {{ employee.employeeFirstName + ' ' + employee.employeeLastName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="col-4" >
+        <mat-label>Select flag</mat-label>
+        <mat-select (selectionChange)="onflagChange($event)" class="small-select py-2">
+          <mat-option *ngFor="let num of flagArray" [value]="num">
+            {{ num }}
+          </mat-option>
+        </mat-select>
+        </mat-form-field>
+    
+      </div>
 
-  <button type="submit" [disabled]="!form.valid" class="btn btn-outline-info rounded mt-5">Create Department</button>
-</form> -->
-
-
-
-
-
-
-
-<div class="projecttask-form-container">
-  <div class="projecttask-form d-flex justify-content-center text-center">
-    <form [formGroup]="createDepartmentForm">
-      <div class="form-row">
-        <div class="form-column">
-          <mat-form-field appearance="fill">
-            <mat-label>departmentName</mat-label>
-            <input matInput [formControlName]="'departmentName'">
-            <mat-error *ngIf="getdepartmentName()?.invalid && getdepartmentName()?.touched">
-              <small *ngIf="getdepartmentName()?.errors?.['required']" class="text-danger">
-                departmentName required (No Numbers)
-              </small>
-              <small *ngIf="getdepartmentName()?.errors?.['minlength']" class="text-danger">
-                departmentName must be at least 3 characters long
-              </small>
-              <small *ngIf="getdepartmentName()?.errors?.['pattern']" class="text-danger">
-                departmentName can only contain letters
-              </small>
-            </mat-error>
-          </mat-form-field>
-
-
-          <!-- <select matInput [formControlName]="'managerId'" type="number"  >
-            <option *ngFor="let m of emps">{{m.emplyeeId}}</option>
-          </select> -->
-          <mat-form-field appearance="fill">
-           
-            <mat-label>managerId</mat-label>
-
-            <input matInput [formControlName]="'managerId'" type="number">
-           
-            <mat-error *ngIf="getmanagerId()?.invalid && getmanagerId()?.touched">
-              <small *ngIf="getmanagerId()?.errors?.['required']" class="text-danger">
-                managerId required
-              </small>
-              <small *ngIf="getmanagerId()?.errors?.['minlength']" class="text-danger">
-                managerId must be a number
-              </small>
-              <small *ngIf="getmanagerId()?.errors?.['pattern']" class="text-danger">
-                managerId must be a number
-              </small>
-            </mat-error>
-          </mat-form-field>
-        </div>
-
-        <div class="form-column">
-          <mat-form-field appearance="fill">
-            <mat-label>employessIds</mat-label>
-            <input matInput [formControlName]="'employessIds'" >
-            <mat-error *ngIf="getemployessIds()?.invalid && getemployessIds()?.touched">
-              <small *ngIf="getemployessIds()?.errors?.['required']" class="text-danger">
-                employessIds is required
-              </small>
-            </mat-error>
-          </mat-form-field>
+      <div class="d-flex justify-content-center">
+        <div class="form-actions">
+          <button class="mybutton" mat-raised-button (click)="createNewDept()">Create Department</button>
         </div>
       </div>
-      <div class="form-actions">
-        <button class="mybutton" mat-raised-button (click)="createDepartment()">Create Department</button>
-      </div>
+     
     </form>
-  </div>
-</div>
-
-
-
-
-<div>
- 
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--workeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeed-->
-
-<!-- <div class="projecttask-form-container">
-  <div class="projecttask-form d-flex justify-content-center text-center">
-    <form [formGroup]="createDepartmentForm">
-      <div class="form-row">
-        <div class="form-column">
-          <mat-form-field appearance="fill">
-            <mat-label>departmentName</mat-label>
-            <input matInput [formControlName]="'departmentName'" >
-            <mat-error *ngIf="getdepartmentName()?.invalid && getdepartmentName()?.touched">
-              <small *ngIf="getdepartmentName()?.errors?.['required']" class="text-danger">
-                departmentName required (No Numbers)
-              </small>
-              <small *ngIf="getdepartmentName()?.errors?.['minlength']" class="text-danger">
-                departmentName must be at least 3 characters long
-              </small>
-              <small *ngIf="getdepartmentName()?.errors?.['pattern']" class="text-danger">
-                departmentName can only contain letters
-              </small>
-            </mat-error>
-          </mat-form-field>
-
-          <mat-form-field appearance="fill">
-            <mat-label>managerId</mat-label>
-            <input matInput [formControlName]="'managerId'">
-            <mat-error *ngIf="getmanagerId()?.invalid && getmanagerId()?.touched">
-              <small *ngIf="getmanagerId()?.errors?.['required']" class="text-danger">
-                managerId required 
-              </small>
-              <small *ngIf="getmanagerId()?.errors?.['minlength']" class="text-danger">
-                managerId must be number
-              </small>
-              <small *ngIf="getmanagerId()?.errors?.['pattern']" class="text-danger">
-                managerId must be number        
-              </small>
-            </mat-error>
-          </mat-form-field>
-        </div>
-
-        <div class="form-column">
-          <mat-form-field appearance="fill">
-            <mat-label>employessIds</mat-label>
-            <input matInput [formControlName]="'employessIds'" type="number">
-            <mat-error *ngIf="getemployessIds()?.invalid && getemployessIds()?.touched">
-              <small *ngIf="getemployessIds()?.errors?.['required']" class="text-danger">
-                employessIds is required
-              </small>
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="form-actions">
-        <button class="mybutton" mat-raised-button (click)="createDepartment()">Create Department</button>
-      </div>
-    </form>
-  </div>
-</div>  -->
-
-
-
-
-
-
-
-  <!-- <mat-form-field appearance="fill"> -->
-    <!-- <mat-label>check</mat-label>
-    <input [(ngModel)]="check" type="number" [ngModelOptions]="{standalone: true}">
-    <mat-error *ngIf="check!=0 || check!=1">
-      <small>
-        check is required
-      </small>
-    </mat-error> -->
-  <!-- </mat-form-field> -->
-
-
-<!--end of workeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeed-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-
-<h4>departmentName</h4>
-<input type="text" [(ngModel)]="departmentName"><br><br>
-<h4>departmentName</h4>
-<input type="text" [(ngModel)]="managerId"><br><br>
-<h4>departmentName</h4>
-<input type="number" [(ngModel)]="employessIds"><br><br>
-<h4>Before create we check if this manager in another Dept </h4>
-<h5>so if you want to move it select (1)  or (0) to stop create</h5>
-<input type="text" [(ngModel)]="stopornot"><br><br> -->
-
+  </mat-card-content>
+</mat-card>
