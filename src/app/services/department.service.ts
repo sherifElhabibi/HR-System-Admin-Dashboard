@@ -19,7 +19,10 @@ export class DepartmentService {
     const url = `${this.baseUrl}/departments/${check}`;
     return this.http.post<Department>(url,department,check);
    }
-
+   updateDepartment(id: number, UpdateDept: any,managerId:any): Observable<any> {
+    UpdateDept.managerId=managerId
+   return this.http.put<Department>(this.baseUrl+'/departments/'+id, UpdateDept);
+ }
   getAll(){
     return this.http.get<Department[]>(this.baseUrl+ '/departments');
   }

@@ -78,7 +78,7 @@ const APP_CONTAINERS = [
     ListGroupModule,
     CardModule,
     NgScrollbarModule,
-    DepartmentModule,
+  DepartmentModule,
     ProjectModule,
     ProjectTaskModule,
     FormsModule,
