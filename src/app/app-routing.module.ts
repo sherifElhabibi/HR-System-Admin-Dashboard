@@ -19,7 +19,6 @@ const routes: Routes = [
       title: 'Home'
     },
     children: [
-      /* HELPERS */
       {
         path: 'employees',
         loadChildren: () =>
@@ -43,6 +42,11 @@ const routes: Routes = [
       {path: 'projecttask',
         loadChildren: () =>
           import('./project-task/project-task.module').then((m) => m.ProjectTaskModule)
+      },
+      {
+      path: 'login',
+      loadChildren: () =>
+        import('./login/login.module').then((m) => m.LoginModule)
       },
       {
         path: 'dashboard',

@@ -6,6 +6,7 @@ import { PhaseListComponent } from './list/phase.list.component';
 import { PhaseDetailsComponent } from './details/phase.details.component';
 import { DeleteConfirmationComponent } from '../shared/delete-confirmation.component';
 import { CreateProjectPhase } from '../models/projectPhase/CreateProjectPhase';
+import { AuthGuard } from '../models/Login/authGuard';
 
 
 const routes: Routes = [
@@ -15,21 +16,13 @@ const routes: Routes = [
       title: 'Phases',
     },
     children: [
-      {
-        path: 'list',
-        component: PhaseListComponent,
-        data: {
-          title: 'List',
-        },
-      },
+      { path: 'list', component: PhaseListComponent,/*canActivate: [AuthGuard],data:{ Postion: ['Accountant', 'Admin'] }*/},
     ],
   },
-  // {path: 'list', component:PhaseListComponent},
-  {path: 'add/:id', component:PhaseCreateComponent},
-  {path: 'edit/:id', component:PhaseEditComponent},
-  {path: 'details/:id', component:PhaseDetailsComponent},
-  {path: 'delete/:id', component:DeleteConfirmationComponent},
- 
+  { path: 'add/:id', component: PhaseCreateComponent,/* canActivate: [AuthGuard] ,data:{ Postion: ['Admin'] }*/},
+  { path: 'edit/:id', component: PhaseEditComponent, /*canActivate: [AuthGuard] ,data:{ Postion: ['Admin'] }*/},
+  { path: 'details/:id', component: PhaseDetailsComponent,/* canActivate: [AuthGuard],data:{ Postion: ['Admin,Accountant'] }*/ },
+  { path: 'delete/:id', component: DeleteConfirmationComponent, /*canActivate: [AuthGuard],data:{ Postion: ['Admin'] } */},
 ];
 
 @NgModule({

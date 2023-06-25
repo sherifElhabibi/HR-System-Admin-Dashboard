@@ -31,6 +31,6 @@ import { RouterModule } from '@angular/router';
     FormsModule
 
   ],
-  providers: [EmployeeService]
+  providers: [EmployeeService,]
 })
 export class EmployeeModule { }

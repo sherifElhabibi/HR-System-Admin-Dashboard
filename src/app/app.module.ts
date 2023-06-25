@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
-import {  HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
+import { TokenInterceptorService } from './token-interceptor/token.interceptor.service';
 
 
 // Import routing module
@@ -37,6 +37,7 @@ import {
   SidebarModule,
   TabsModule,
   UtilitiesModule,
+
   
 } from '@coreui/angular';
 
@@ -44,6 +45,7 @@ import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { DepartmentModule } from './department/department.module';
 import { ProjectModule } from './project/project.module';
 import { ProjectTaskModule } from './project-task/project-task.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -91,6 +93,11 @@ const APP_CONTAINERS = [
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
+    },
+        {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
     },
     IconSetService,
     Title,DatePipe
