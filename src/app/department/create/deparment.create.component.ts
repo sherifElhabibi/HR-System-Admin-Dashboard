@@ -91,6 +91,10 @@ export class CreateComponent {
 
   }
 
+  goBack(): void {
+    this.router.navigate(['department/list']);
+  }
+
   createNewDept(){
     console.log(this.createDeptForm.value)
     if (this.createDeptForm.valid) {

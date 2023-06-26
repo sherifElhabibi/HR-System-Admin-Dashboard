@@ -84,19 +84,11 @@ export class EditComponent implements OnInit {
     this.managerId= event.value;
   }
 
+  goBack(): void {
+    this.router.navigate(['department/list']);
+  }
+
   save() {
-    // if (this.deptform) {
-    //   const managerId = this.deptform.get('managerId');
-    //   if (managerId) {
-    //     const managerValue = managerId.value;
-    //     if (typeof managerValue === 'string') {
-    //       const parsedValue = parseFloat(managerValue);
-    //       if (!isNaN(parsedValue)) {
-    //         managerId.setValue(parsedValue);
-    //       }
-    //     }
-    //   }
-    // }
     console.log(this.deptform.value);
      if (this.deptform.valid) {
       console.log(this.deptform.value);

@@ -1,3 +1,12 @@
+<div class="container">
+  <div class="row">
+    <div class="text-end">
+      <button mat-button class="button back-button" (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon>
+        Back
+      </button>
+    </div>
+  </div>
 <mat-card class="container p-3 ">
   <mat-card-header>
     <h2>Add Department</h2>
@@ -5,7 +14,7 @@
   <mat-card-content>
     <form [formGroup]="createDeptForm" class="row">
       <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-md-3 gap-0">
-        <mat-form-field class="col-4">
+        <mat-form-field class="col-6">
           <mat-label>Department Name</mat-label>
           <input matInput formControlName="departmentName" class="py-2" >
           <mat-error class="error-message" *ngIf="createDeptForm.get('projectName')?.invalid &&
@@ -19,8 +28,8 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="col-4" > 
-          <mat-label>Manger</mat-label> 
+        <mat-form-field class="col-6" > 
+          <mat-label>Select Manger Name:</mat-label> 
           <mat-select formControlName="managerId" class="py-2"> 
             <mat-option *ngFor="let emp of emps" [value]="emp.emplyeeId"> 
               {{emp.employeeFirstName}} {{ emp.employeeLastName }} 
@@ -39,7 +48,7 @@
       </div>
 
       <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-md-3 gap-0">
-        <mat-form-field class="col-4">
+        <mat-form-field class="col-6">
           <mat-label>Select Employees:</mat-label>
           <mat-select multiple (selectionChange)="onEmployeeSelectionChange($event)" class="small-select py-2">
             <mat-option *ngFor="let employee of emps" [value]="employee.emplyeeId">
@@ -47,7 +56,7 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <mat-form-field class="col-4" >
+        <mat-form-field class="col-6" >
         <mat-label>Select flag</mat-label>
         <mat-select (selectionChange)="onflagChange($event)" class="small-select py-2">
           <mat-option *ngFor="let num of flagArray" [value]="num">

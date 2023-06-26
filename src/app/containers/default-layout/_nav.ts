@@ -46,7 +46,7 @@ import { INavData } from '@coreui/angular';
       ]
     },
     {
-      name: 'EmployeeProfil',
+      name: 'My Profile',
       url: '/employeeProfil',
       iconComponent: { name: 'cil-user' },
       children: [
@@ -68,15 +68,7 @@ import { INavData } from '@coreui/angular';
         {
           name: 'Create',
           url: '/department/create'
-        },
-        {
-          name: 'Edit',
-          url: '/department/edit/id'
-        },
-        {
-          name: 'Delete',
-          url: '/department/delete/id'
-        },
+        }
       ]
     },
     {

@@ -1,4 +1,28 @@
-thead{
-    background-color: var(--header);
-    color: white;
+table {
+    width: 100%;
+    & thead{
+      background-color: var(--header);
+    }
+}
+
+.btn-add{
+  background-color: var(--header);
+  border: 1px solid var(--header);
+  &:hover{
+    background-color: var(--sub-main);
+    border: 1px solid var(--sub-main);
+  }
+}
+
+.buttons{
+  & .btn-edit {
+    background-color: var(--sub-main2);
+    color: var(--white);
+  }
+  & .btn-edit:hover{
+    background-color: var(--sub-main);
+  }
+  & .btn-danger{
+    color: whitesmoke;
+  }
 }
