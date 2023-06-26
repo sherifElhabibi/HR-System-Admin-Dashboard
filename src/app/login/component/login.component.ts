@@ -47,16 +47,19 @@ export class LoginComponent {
             sessionStorage.setItem('role', JSON.stringify(this.decodedData.Position));
             
             switch (this.decodedData.Position) {
-              case 'Admin':
-                this.router.navigateByUrl('/employees/list');
-                break;
-                case 'HR':
-                    this.router.navigateByUrl('/employees/list');
+                 case 'Admin':
+                     this.router.navigateByUrl('/employeeProfile');
+                     break;
+                 case 'HR':
+                    this.router.navigateByUrl('/employeeProfile');
                     break;
                  case 'Accountant':
-                    this.router.navigateByUrl('/employees/list');
+                    this.router.navigateByUrl('/employeeProfile');
                     break;
-                default:
+                 case 'Employee':
+                   this.router.navigateByUrl('/employeeProfile');
+                   break;
+                 default:
                 this.router.navigateByUrl('/Home');
                 break;
             }

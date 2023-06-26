@@ -21,7 +21,7 @@ export class EmployeeService {
    editEmployee(id:number,employee: any):Observable<any> {
     return this.HttpClient.put<Employee>(this.baseUrl + '/employees'+'/'+id,employee);
    }
-   getEmployeeById(id:number):Observable<any> {
+   getEmployeeById(id:any):Observable<any> {
     return this.HttpClient.get<GetEmployeeById>(this.baseUrl+'/employees'+'/'+id);
   }
   deleteEmployeeById(id:number):Observable<any> {
