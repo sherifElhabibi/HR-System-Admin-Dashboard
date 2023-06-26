@@ -5,9 +5,8 @@ import { ListComponent } from './list/deparment.list.component';
 import { EditComponent } from './edit/edit.component';
 import { DeleteComponent } from './delete/delete.component';
 import { AuthGuard } from '../models/Login/authGuard';
-
-
-const routes: Routes = [
+var routes:Routes;
+if(true){ routes = [
   {
     path: '',
     data: {
@@ -53,6 +52,8 @@ const routes: Routes = [
     ],
   },
 ];
+}
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

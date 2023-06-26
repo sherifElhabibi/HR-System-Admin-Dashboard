@@ -46,6 +46,7 @@ import { DepartmentModule } from './department/department.module';
 import { ProjectModule } from './project/project.module';
 import { ProjectTaskModule } from './project-task/project-task.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { EmployeeProfileModule } from './employee-profile/employee-profile.module';
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -54,7 +55,7 @@ const APP_CONTAINERS = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ...APP_CONTAINERS],
+  declarations: [AppComponent, ...APP_CONTAINERS,],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -80,14 +81,14 @@ const APP_CONTAINERS = [
     ListGroupModule,
     CardModule,
     NgScrollbarModule,
-  DepartmentModule,
+    DepartmentModule,
     ProjectModule,
     ProjectTaskModule,
     FormsModule,
     FormModule,
     ReactiveFormsModule,
-    MatSnackBarModule
-    
+    MatSnackBarModule,
+    EmployeeProfileModule    
   ],
   providers: [
     {

@@ -1,0 +1,122 @@
+h3 ,h1{
+  color: var(--primary-color);
+}
+h4{
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: var(--primary-color);
+
+}
+hr {
+  color: var(--bs-gray-500);
+}
+
+h5 {
+  color: var(--primary-color);
+  font-size: 1rem;
+}
+
+h6 {
+  font-size: .8rem;
+}
+
+#divhover:hover {
+  box-shadow: 1px 2px 5px var(--shadow-color);
+}
+
+.bi.bi-currency-dollar {
+  font-size: 1.2rem;
+  color: var(--primary-color);
+}
+
+#totalHoursPerTask {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--chart-color1);
+}
+
+#iconmore {
+  color: var(--primary-color);
+}
+
+small {
+  font-size: 0.7rem;
+  color: var(--bs-gray-500);
+}
+
+.card {
+  height: max-content;
+}
+
+.left-col .profile-img {
+  border: 1px solid var(--bs-gray-500);
+  background-color: var(--bs-white);
+}
+
+.left-col .contact-info {
+  color: #707274;
+}
+
+@media screen and (min-width: 481px) {
+  .left-col .card .details {
+    border-left: 1px solid var(--bs-gray-500);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .left-col .profile-img {
+    width: 50%;
+  }
+}
+
+.right-col {
+  border: 1px solid var(--bs-gray-500);
+  background-color: var(--bs-white);
+}
+
+.tasks .right-col .card-title {
+  padding: 0.1rem 0.4rem;
+  /* background-color: #A8D7E0; */
+  width: max-content;
+}
+
+@media screen and (min-width: 481px) and (max-width: 1200px) {
+  .tasks .right-col .cards {
+    display: flex;
+    justify-content: space-between;
+  }
+  .tasks .right-col .cards .card {
+    width: 48%;
+  }
+}
+
+@media screen and (min-width: 481px) {
+  .current-projects .projects {
+    display: flex;
+    justify-content: space-between;
+  }
+  .current-projects .projects .card {
+    width: 95%;
+    margin: 0 auto;
+  }
+}
+
+.current-projects .projects .progress-days span {
+  background-color: #F1C8DB;
+  color: var(--bs-gray-700);
+}
+
+b {
+  font-size: 10px;
+}
+#more{
+  margin-right: 5px;
+  margin-top: 10px;
+  color: var(--bs-gray-500);
+
+}
+#more b{
+  font-size: .7rem;
+  margin-left: 3px;
+
+}
