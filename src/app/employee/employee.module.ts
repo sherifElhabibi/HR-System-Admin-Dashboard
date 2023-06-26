@@ -11,6 +11,8 @@ import { EmployeeEditComponent } from './edit/employee.edit.component';
 import { EmployeeDetailsComponent } from './details/employee.details.component';
 import { SalaryComponent } from './salary/salary.component';
 import { RouterModule } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { AuthGuard } from '../models/Login/authGuard';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,6 @@ import { RouterModule } from '@angular/router';
     FormsModule
 
   ],
-  providers: [EmployeeService,]
+  providers: [EmployeeService]
 })
 export class EmployeeModule { }

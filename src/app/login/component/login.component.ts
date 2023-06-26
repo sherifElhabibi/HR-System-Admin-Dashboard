@@ -51,12 +51,12 @@ export class LoginComponent {
                 this.router.navigateByUrl('/employees/list');
                 break;
                 case 'HR':
-                  this.router.navigateByUrl('/employees/list');
-                  break;
-                  case 'Accountant':
                     this.router.navigateByUrl('/employees/list');
                     break;
-              default:
+                 case 'Accountant':
+                    this.router.navigateByUrl('/employees/list');
+                    break;
+                default:
                 this.router.navigateByUrl('/Home');
                 break;
             }
