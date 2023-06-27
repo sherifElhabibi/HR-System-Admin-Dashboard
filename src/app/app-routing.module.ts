@@ -5,6 +5,7 @@ import { Page404Component } from './views/pages/page404/page404.component';
 import { Page500Component } from './views/pages/page500/page500.component';
 import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
+import { AttendanceComponent } from './attendance/attendance.component';
 
 const routes: Routes = [
   {
@@ -48,6 +49,8 @@ const routes: Routes = [
         loadChildren: () =>
           import('./project-task/project-task.module').then((m) => m.ProjectTaskModule)
       },
+      { path: 'attendance', component: AttendanceComponent }
+      ,
       {
       path: 'login',
       loadChildren: () =>

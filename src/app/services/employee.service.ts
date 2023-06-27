@@ -4,7 +4,7 @@ import { environment } from '../../environment/environment';
 import { Employee } from '../models/Employee/employee';
 import { GetEmployeeById } from '../models/Employee/EmployeeGetId';
 import { Observable } from 'rxjs';
-import {GetAllEmployees} from '../models/Employee/GetAllEmployees'
+import {GetEmployeeProjects} from '../models/Employee/GetEmployeeProjects'
 
 @Injectable({
   providedIn: 'root'
@@ -36,4 +36,9 @@ export class EmployeeService {
   getEmployeeSalary(employeeId: number,start:any,end:any):Observable<any>{
     return this.HttpClient.get<any>(this.baseUrl+'/employees/GetEmployeeSalaryAndOverTime/'+employeeId+'/StartDate/'+start+'/EndDate/'+end);
   }
+
+  getEmployeeProjects(employeeId: number): Observable<any> {
+    return this.HttpClient.get<GetEmployeeProjects>(this.baseUrl + '/employees/GetEmployeeProjects/' + employeeId);
+  }
+  
 }

@@ -49,14 +49,6 @@ export class DeleteComponent implements OnInit {
       });
   }
 
-  //  deleteDepartment(targetDepartmentId: number): void {
-  //    const selectedEmployeeIds = this.employeeForm.get('selectedEmployeeIds')?.value;
-  //    console.log(selectedEmployeeIds);
-  //    this.departmentService
-  //      .delete(this.departmentId, targetDepartmentId, selectedEmployeeIds)
-  //      .subscribe(() => {});
-  //  }
-
   deleteDepartment(targetDepartmentId: number | null): void {
     const selectedEmployeeIds = this.employeeForm.get('selectedEmployeeIds')?.value;
     console.log(selectedEmployeeIds);
