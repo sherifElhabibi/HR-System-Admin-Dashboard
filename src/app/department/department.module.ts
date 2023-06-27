@@ -10,6 +10,7 @@ import { MaterialModule } from '../shared/material.module';
 import { DepartmentService } from '../services/department.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DetailsComponent } from './details/details.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CreateComponent,
     ListComponent,
     EditComponent,
-    DeleteComponent
+    DeleteComponent,
+    DetailsComponent
   ],
   imports: [
     CommonModule,

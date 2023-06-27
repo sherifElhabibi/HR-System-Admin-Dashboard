@@ -5,6 +5,7 @@ import { ListComponent } from './list/deparment.list.component';
 import { EditComponent } from './edit/edit.component';
 import { DeleteComponent } from './delete/delete.component';
 import { AuthGuard } from '../models/Login/authGuard';
+import { DetailsComponent } from './details/details.component';
 var routes:Routes;
 if(true){ routes = [
   {
@@ -25,6 +26,15 @@ if(true){ routes = [
       {
         path: 'create',
         component: CreateComponent,
+       /* canActivate:[AuthGuard],
+        data: {
+          title: 'Create',
+          Position: ['Admin']
+        },*/
+      },
+      {
+        path: 'details/:id',
+        component: DetailsComponent,
        /* canActivate:[AuthGuard],
         data: {
           title: 'Create',
