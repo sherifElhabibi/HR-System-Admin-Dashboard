@@ -1,0 +1,37 @@
+#details{
+    box-shadow: 1px 7px 10px var(--lightgrey);
+    border-radius: 10px;
+    padding: 7px;
+    margin-left: 5%;
+    margin-top: 10%;
+    // width: 40%;
+}
+h2{
+    color: var(--chart-bg);
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.5rem;
+}
+strong{
+    color: var(--chart-bg);
+    font-weight: 400;
+}
+p{
+    // color: var(--lightgrey);
+    font-weight: 500;
+    margin-left: 20%;
+}
+thead{
+    background-color: var(--main);
+    color: white;
+}
+mat-card-title{
+    margin-bottom: 20px;
+    color: var(--main);
+}
+button{
+    
+    margin-left: 45%;
+}
+.button{
+    color: var(--sub-main);
+}

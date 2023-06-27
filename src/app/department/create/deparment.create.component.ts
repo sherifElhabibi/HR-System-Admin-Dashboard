@@ -129,4 +129,15 @@ export class CreateComponent {
       });
     }
   }
+  showDiv() {
+    const divElement = document.getElementById('more');
+  
+    if (divElement?.style.display=='none') {
+      divElement.style.display ='';
+    }
+    else if(divElement?.style.display==''){
+      divElement.style.display ='none';
+
+    }
+  }
 }
