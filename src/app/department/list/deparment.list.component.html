@@ -41,7 +41,7 @@
                 <i class="fa fa-eye"></i>
               </button>
             </a>
-            <a class="btn btn-sm btn-danger" [routerLink]="['delete',department.departmentId]"> <i class="fa fa-trash"></i>
+            <a class="btn btn-sm btn-danger" [routerLink]="['/department/delete/',department.departmentId]"> <i class="fa fa-trash"></i>
             </a> 
           </div>
         </td>
@@ -49,7 +49,7 @@
     </ng-container>
     <ng-template #emptyDepts>
       <tr>
-        <td colspan="4" style="text-align: center;color: red;font-weight: bold;">No Departments created yet.</td>
+        <td colspan="5" style="text-align: center;color: red;font-weight: bold;">No Departments Created Yet.</td>
       </tr>
     </ng-template>
   </tbody>
