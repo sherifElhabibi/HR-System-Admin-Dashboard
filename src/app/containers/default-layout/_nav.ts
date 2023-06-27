@@ -122,5 +122,3 @@ import { INavData } from '@coreui/angular';
     },
 
   ];
-
-

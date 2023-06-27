@@ -1,1 +1,44 @@
-<p>delete works!</p>
+<div class="container">
+  <div class="row">
+    <div class="text-end">
+      <button mat-button class="button back-button" (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon>
+        Back
+      </button>
+    </div>
+  </div>
+<mat-card  class="container p-3 ">
+  <mat-card-header>
+    <h2>Delete Department</h2>
+  </mat-card-header>
+  <div class="danger-instructions">
+    <p>Please note that clicking "Delete" without selecting a target department will result in the deletion of all employees within the department.</p>
+    <p>If you wish to delete the department and move the employees to another department, please make sure to select both a target department and the employees to be moved.</p>
+  </div>
+  <br><br>
+    <mat-card-content>
+      <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-md-3 gap-0">
+      <mat-form-field class="col-12 col-md-6">
+        <mat-label>Select Department to Move Employees</mat-label>
+        <mat-select [(ngModel)]="selectedTargetDepartment" #targetDepartment>
+          <mat-option *ngFor="let department of departments" [value]="department.departmentId">
+            {{ department.departmentName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field class="col-12 col-md-6">
+        <mat-label>Select Employees to Move</mat-label>
+        <mat-select [formControl]="selectedEmployeeIds" multiple>
+          <mat-option *ngFor="let employee of employees" [value]="employee.employeeId">
+            {{ employee.employeeFirstName+' '+employee.employeeLastName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+      <div class="d-flex justify-content-center">
+        <button mat-raised-button color="warn" (click)="deleteDepartment(targetDepartment.value)">Delete</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  

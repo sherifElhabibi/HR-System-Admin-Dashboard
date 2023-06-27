@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-5">
   <div class="row">
     <div class="text-end">
       <button mat-button class="button back-button" (click)="goBack()">
@@ -7,72 +7,89 @@
       </button>
     </div>
   </div>
-<mat-card class="container p-3 ">
-  <mat-card-header>
-    <h2>Add Department</h2>
-  </mat-card-header>
-  <mat-card-content>
-    <form [formGroup]="createDeptForm" class="row">
-      <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-md-3 gap-0">
-        <mat-form-field class="col-6">
-          <mat-label>Department Name</mat-label>
-          <input matInput formControlName="departmentName" class="py-2" >
-          <mat-error class="error-message" *ngIf="createDeptForm.get('projectName')?.invalid &&
-              (createDeptForm.get('projectName')?.dirty || createDeptForm.get('projectName')?.touched)">
-            <span *ngIf="createDeptForm.get('projectName')?.errors?.['required']">
-              {{ validationMessages.departmentName.required }}
-            </span>
-            <span *ngIf="createDeptForm.get('projectName')?.errors?.['pattern']">
-              {{ validationMessages.departmentName.pattern }}
-            </span>
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="col-6" > 
-          <mat-label>Select Manger Name:</mat-label> 
-          <mat-select formControlName="managerId" class="py-2"> 
-            <mat-option *ngFor="let emp of emps" [value]="emp.emplyeeId"> 
-              {{emp.employeeFirstName}} {{ emp.employeeLastName }} 
-            </mat-option> 
-          </mat-select> 
-          <mat-error class="error-message" *ngIf="createDeptForm.get('managerId')?.invalid &&
-          (createDeptForm.get('managerId')?.dirty || createDeptForm.get('managerId')?.touched)">
-        <span *ngIf="createDeptForm.get('managerId')?.errors?.['required']">
-          {{ validationMessages.managerId.required }}
-        </span>
-        <span *ngIf="createDeptForm.get('managerId')?.errors?.['pattern']">
-          {{ validationMessages.managerId.pattern }}
-        </span>
-      </mat-error>
-        </mat-form-field> 
-      </div>
-
-      <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-md-3 gap-0">
-        <mat-form-field class="col-6">
-          <mat-label>Select Employees:</mat-label>
-          <mat-select multiple (selectionChange)="onEmployeeSelectionChange($event)" class="small-select py-2">
-            <mat-option *ngFor="let employee of emps" [value]="employee.emplyeeId">
-              {{ employee.employeeFirstName + ' ' + employee.employeeLastName }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field class="col-6" >
-        <mat-label>Select flag</mat-label>
-        <mat-select (selectionChange)="onflagChange($event)" class="small-select py-2">
-          <mat-option *ngFor="let num of flagArray" [value]="num">
-            {{ num }}
-          </mat-option>
-        </mat-select>
-        </mat-form-field>
-    
-      </div>
-
-      <div class="d-flex justify-content-center">
-        <div class="form-actions">
-          <button class="mybutton" mat-raised-button (click)="createNewDept()">Create Department</button>
+  <mat-card class="container p-3 ">
+    <!-- <mat-card-header class="col-12 bg-info container"> -->
+      <div class="row">
+       <div class="col"><h2 >Add Department</h2></div> 
+       
+        <div class="col" id="flag"  >
+          <div class="row me-3">
+            <p class="col-11" id="more" style="display: none;">
+              1 to continue and change manager || 0 to cancle this process
+            </p>
+            <i class="bi bi-info-circle text-warning col-1 fa-lg" (click)="showDiv()"></i>
+          
+          </div>
+        
         </div>
       </div>
-     
-    </form>
-  </mat-card-content>
-</mat-card>
+
+    <!-- </mat-card-header> -->
+    <mat-card-content>
+      <form [formGroup]="createDeptForm" class="row">
+        <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-md-3 gap-0">
+          <mat-form-field class="col-12 col-md-6">
+            <mat-label>Department Name</mat-label>
+            <input matInput formControlName="departmentName" class="py-2">
+            <mat-error class="error-message" *ngIf="createDeptForm.get('projectName')?.invalid &&
+              (createDeptForm.get('projectName')?.dirty || createDeptForm.get('projectName')?.touched)">
+              <span *ngIf="createDeptForm.get('projectName')?.errors?.['required']">
+                {{ validationMessages.departmentName.required }}
+              </span>
+              <span *ngIf="createDeptForm.get('projectName')?.errors?.['pattern']">
+                {{ validationMessages.departmentName.pattern }}
+              </span>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field  class="col-12 col-md-6">
+            
+            <mat-label >Select Num<br></mat-label>
+          
+            <mat-select (selectionChange)="onflagChange($event)" class="small-select py-2">
+              <mat-option *ngFor="let num of flagArray" [value]="num">
+                {{ num }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+         
+        </div>
+
+        <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-md-3 gap-0">
+          <mat-form-field class="col-12 col-md-6">
+            <mat-label>Select Manger Name:</mat-label>
+            <mat-select formControlName="managerId" class="py-2">
+              <mat-option *ngFor="let emp of emps" [value]="emp.emplyeeId">
+                {{emp.employeeFirstName}} {{ emp.employeeLastName }}
+              </mat-option>
+            </mat-select>
+            <mat-error class="error-message" *ngIf="createDeptForm.get('managerId')?.invalid &&
+          (createDeptForm.get('managerId')?.dirty || createDeptForm.get('managerId')?.touched)">
+              <span *ngIf="createDeptForm.get('managerId')?.errors?.['required']">
+                {{ validationMessages.managerId.required }}
+              </span>
+              <span *ngIf="createDeptForm.get('managerId')?.errors?.['pattern']">
+                {{ validationMessages.managerId.pattern }}
+              </span>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="col-12 col-md-6">
+            <mat-label>Select Employees:</mat-label>
+            <mat-select multiple (selectionChange)="onEmployeeSelectionChange($event)" class="small-select py-2">
+              <mat-option *ngFor="let employee of emps" [value]="employee.emplyeeId">
+                {{ employee.employeeFirstName + ' ' + employee.employeeLastName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          
+
+        </div>
+
+        <div class="d-flex justify-content-center">
+          <div class="form-actions">
+            <button class="mybutton" mat-raised-button (click)="createNewDept()">Create Department</button>
+          </div>
+        </div>
+
+      </form>
+    </mat-card-content>
+  </mat-card>

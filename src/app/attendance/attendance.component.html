@@ -1,0 +1,56 @@
+<mat-card class="container p-3">
+  <mat-card-header>
+    <h2>Add Project</h2>
+  </mat-card-header>
+  <mat-card-content>
+    <div [formGroup]="attendanceForm">
+      <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-md-3 gap-0">
+        <mat-form-field class="col-12 col-md-6">
+          <mat-label>Select Project</mat-label>
+          <mat-select formControlName="projectId" [(ngModel)]="selectedProjectId" (selectionChange)="onProjectChange()">
+            <mat-option *ngFor="let project of employeeProjects" [value]="project.projectId">
+              {{ project.projectName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6">
+          <mat-label>Select Phase:</mat-label>
+          <mat-select formControlName="projectPhaseId">
+            <mat-option *ngFor="let phase of projectPhases" [value]="phase.phaseId">
+              {{ phase.phaseName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-md-3 gap-0">
+        <mat-form-field class="col-12 col-md-6">
+          <mat-label>Select Task:</mat-label>
+          <mat-select formControlName="projectTaskId">
+            <mat-option *ngFor="let task of projectTasks" [value]="task.taskId">
+              {{ task.taskName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6">
+          <mat-label>Date:</mat-label>
+          <input matInput formControlName="date" [matDatepicker]="picker">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-md-3 gap-0">
+        <mat-form-field class="col-12 col-md-6">
+          <mat-label>Description:</mat-label>
+          <textarea matInput formControlName="description"></textarea>
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6">
+          <mat-label>Hours Spent:</mat-label>
+          <input matInput type="number" formControlName="hoursSpent">
+        </mat-form-field>
+      </div>
+      <div style="display: flex;justify-content: center;">
+        <button mat-raised-button color="primary" (click)="submit()">Save</button>
+      </div>
+    </div>
+
+  </mat-card-content>

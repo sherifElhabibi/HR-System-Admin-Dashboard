@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="row">
+      <div class="text-end">
+        <button mat-button class="button back-button" (click)="back()">
+          <mat-icon>arrow_back</mat-icon>
+          Back
+        </button>
+      </div>
+    </div>
+    <!-- departmentName
+: 
+"deptone"
+
+
+noEmployees
+: 
+1 -->
+    <mat-card class="my-2 patient-card">
+      <mat-card-header class="patient-card-header">
+        <mat-card-title>Department Details</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <table class="table table-striped table-bordered styled-table">
+          <thead>
+            <tr style="text-align: center;">
+              <th>Department Name</th>
+              <th>Manager Name</th>
+              <th>Employees</th>
+              <th>#Employees</th>
+    
+            </tr>
+          </thead>
+          <tbody *ngIf="idparams!=0">
+            <tr style="text-align: center;">
+              <td>{{ currentDept.departmentName }}</td>
+              <td>{{ currentDept.managerName  }}</td>
+              <td >
+                <h5 *ngFor="let emp of currentDept.employees">
+                  {{emp.employeeFirstName}} {{emp.employeeLastName}}
+                </h5>
+              </td>
+               <td>{{currentDept.noEmployees}}</td>
+
+            </tr>
+          </tbody>
+          <tbody *ngIf="idparams==0">
+            <tr>
+              <td colspan="4" style="text-align: center;color: red;font-weight: bold;">No Tasks created yet.</td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  
