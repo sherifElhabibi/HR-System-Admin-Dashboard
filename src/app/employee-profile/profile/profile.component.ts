@@ -5,6 +5,7 @@ import { GetAllProjects } from 'src/app/models/project/GetAllProjects';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { ProjectService } from 'src/app/services/project.service';
 import { ProjectTaskWithId } from 'src/app/models/ProjectTask/ProjectTaskWithId';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -39,9 +40,10 @@ export class ProfileComponent {
   );
 
   constructor(
-    public empService: EmployeeService,
-    public projectService: ProjectService,
+    private empService: EmployeeService,
+    private projectService: ProjectService,
     private activatedRoute: ActivatedRoute,
+    private authService: AuthService,
     private router: Router
   ) {}
 
@@ -98,5 +100,9 @@ export class ProfileComponent {
     } else if (divElement?.style.display == '') {
       divElement.style.display = 'none';
     }
+  }
+  signOut(){
+    this.authService.logOut();
+    this.router.navigateByUrl('/login');
   }
 }

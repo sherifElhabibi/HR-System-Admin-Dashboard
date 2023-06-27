@@ -120,3 +120,20 @@ b {
   margin-left: 3px;
 
 }
+button{
+  border:1px solid #838AEC;
+   border-top-left-radius: 15px;
+   border-top-right-radius: 0;
+   border-bottom-right-radius: 15px;
+   border-bottom-left-radius: 0;
+   color: #838AEC;
+   
+}
+button:hover{
+  background-color:#838AEC ;
+  border-top-left-radius: 0;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 15px;
+  color: white;
+}

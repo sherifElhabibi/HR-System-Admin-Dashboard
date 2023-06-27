@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ChangeDetectorRef  } from '@angular/core';
 import { INavData } from '@coreui/angular';
 import { navItems } from './_nav';
 import { AuthService } from 'src/app/services/auth.service';
@@ -16,7 +16,7 @@ export class DefaultLayoutComponent implements OnInit {
     suppressScrollX: true,
   };
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.updateNavItems();
@@ -36,6 +36,7 @@ export class DefaultLayoutComponent implements OnInit {
     else if (userPosition === 'Employee') {
       this.navItems = navItems.filter(item => this.isEmpNavItem(item.name!));
     }
+    this.cdr.detectChanges();
   }
 
 
