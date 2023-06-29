@@ -83,6 +83,9 @@
               <span *ngIf="projectform.get('projectLocation')?.errors?.['required']">
                 {{ validationMessages.projectLocation.required }}
               </span>
+              <span *ngIf="projectform.get('projectLocation')?.errors?.['pattern']">
+                {{ validationMessages.projectLocation.pattern }}
+              </span>
             </mat-error>
           </mat-form-field>
           <mat-form-field class="col-12 col-md-6">
@@ -92,6 +95,9 @@
                   (projectform.get('projectDescription')?.dirty || projectform.get('projectDescription')?.touched)">
               <span *ngIf="projectform.get('projectDescription')?.errors?.['required']">
                 {{ validationMessages.projectDescription.required }}
+              </span>
+              <span *ngIf="projectform.get('projectDescription')?.errors?.['pattern']">
+                {{ validationMessages.projectDescription.pattern }}
               </span>
             </mat-error>
           </mat-form-field>
@@ -150,6 +156,9 @@
                   <span *ngIf="phase.get('phaseName')?.errors?.['required']">
                     {{ validationMessages.phaseName.required }}
                   </span>
+                  <span *ngIf="phase.get('phaseName')?.errors?.['pattern']">
+                    {{ validationMessages.phaseName.pattern }}
+                  </span>
                 </mat-error>
               </mat-form-field>
               <mat-form-field class="col-12 col-md-4">
@@ -160,6 +169,9 @@
                   <span *ngIf="phase.get('phaseHrBudget')?.errors?.['required']">
                     {{ validationMessages.phaseHrBudget.required }}
                   </span>
+                  <span *ngIf="phase.get('phaseHrBudget')?.errors?.['pattern']">
+                    {{ validationMessages.phaseHrBudget.pattern }}
+                  </span>
                 </mat-error>
               </mat-form-field>
               <mat-form-field class="col-12 col-md-4">
@@ -169,6 +181,9 @@
                   (phase.get('phaseMilestone')?.dirty || phase.get('phaseMilestone')?.touched)">
                   <span *ngIf="phase.get('phaseMilestone')?.errors?.['required']">
                     {{ validationMessages.phaseMilestone.required }}
+                  </span>
+                  <span *ngIf="phase.get('phaseMilestone')?.errors?.['pattern']">
+                    {{ validationMessages.phaseMilestone.pattern }}
                   </span>
                 </mat-error>
               </mat-form-field>
