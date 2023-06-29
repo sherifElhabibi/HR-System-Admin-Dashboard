@@ -47,6 +47,9 @@ import { ProjectModule } from './project/project.module';
 import { ProjectTaskModule } from './project-task/project-task.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { EmployeeProfileModule } from './employee-profile/employee-profile.module';
+import { AttendanceComponent } from './attendance/attendance.component';
+import { AttendanceModule } from './attendance/attendance.module';
+import { MaterialModule } from './shared/material.module';
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -55,7 +58,7 @@ const APP_CONTAINERS = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ...APP_CONTAINERS,],
+  declarations: [AppComponent, ...APP_CONTAINERS],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -88,7 +91,9 @@ const APP_CONTAINERS = [
     FormModule,
     ReactiveFormsModule,
     MatSnackBarModule,
-    EmployeeProfileModule    
+    EmployeeProfileModule,
+    AttendanceModule
+        
   ],
   providers: [
     {

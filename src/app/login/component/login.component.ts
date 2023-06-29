@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service'; 
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { User } from 'src/app/models/Login/User';
+import { User } from '../../models/Login/User';
 
 
 @Component({
@@ -11,7 +11,7 @@ import { User } from 'src/app/models/Login/User';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
+export class LoginnComponent {
   token: any;
   decodedData:any;
   id: any;
@@ -27,10 +27,11 @@ export class LoginComponent {
     getEmail() {
       return this.loginForm.get('email');
     }
-  
+
     getPassword() {
       return this.loginForm.get('password');
     }
+    
     onSubmit() {
       const { email, password } = this.loginForm.value;
       let user = new User(email, password);
@@ -47,16 +48,19 @@ export class LoginComponent {
             sessionStorage.setItem('role', JSON.stringify(this.decodedData.Position));
             
             switch (this.decodedData.Position) {
-              case 'Admin':
-                this.router.navigateByUrl('/employees/list');
-                break;
-                case 'HR':
-                  this.router.navigateByUrl('/employees/list');
-                  break;
-                  case 'Accountant':
-                    this.router.navigateByUrl('/employees/list');
+                 case 'Admin':
+                     this.router.navigateByUrl('/dashboard');
+                     break;
+                 case 'HR':
+                    this.router.navigateByUrl('/employeeProfil/profile/'+this.decodedData.Id);
                     break;
-              default:
+                 case 'Accountant':
+                    this.router.navigateByUrl('/employeeProfil/profile/'+this.decodedData.Id);
+                    break;
+                 case 'Employee':
+                   this.router.navigateByUrl('/employeeProfil/profile/'+this.decodedData.Id);
+                   break;
+                 default:
                 this.router.navigateByUrl('/Home');
                 break;
             }

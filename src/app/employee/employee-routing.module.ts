@@ -11,10 +11,10 @@ import {AuthGuard} from '../models/Login/authGuard';
 const routes: Routes = [
   { path: 'list', component: EmployeeListComponent, /*canActivate: [AuthGuard], data: { Postion: ['Admin'] }*/ },
   { path: 'create', component: EmployeeCreateComponent, /*canActivate: [AuthGuard], data: { Postion: ['Admin'] } */},
-  { path: 'edit/:employeeId', component: EmployeeEditComponent, /*canActivate: [AuthGuard], data: { Postion: ['Admin'] }*/ },
-  { path: 'details/:employeeId', component: EmployeeDetailsComponent, /*canActivate: [AuthGuard], data: { Postion: ['HR','Accountant','Admin'] } */},
-  { path: 'salary/:employeeId', component: SalaryComponent, /*canActivate: [AuthGuard], data: { Postion: ['Employee', 'Admin','HR'] }*/ },
-  { path: 'delete/:employeeId', component: DeleteConfirmationComponent, /*canActivate: [AuthGuard], data: { Postion: ['Admin'] } */},
+  { path: 'edit/:emplyeeId', component: EmployeeEditComponent, /*canActivate: [AuthGuard], data: { Postion: ['Admin'] }*/ },
+  { path: 'details/:emplyeeId', component: EmployeeDetailsComponent, /*canActivate: [AuthGuard], data: { Postion: ['HR','Accountant','Admin'] } */},
+  { path: 'salary/:emplyeeId', component: SalaryComponent, /*canActivate: [AuthGuard], data: { Postion: ['Employee', 'Admin','HR'] }*/ },
+  { path: 'delete/:emplyeeId', component: DeleteConfirmationComponent, /*canActivate: [AuthGuard], data: { Postion: ['Admin'] } */},
 ];
 
 @NgModule({
