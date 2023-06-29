@@ -39,6 +39,9 @@
               <small *ngIf="getPhaseMilestone()?.errors?.['required']" class="text-danger">
                 Milestone is required
               </small>
+              <small *ngIf="getPhaseMilestone()?.errors?.['pattern']" class="text-danger">
+                 can contain uppercase, lowercase letters, numbers and spaces
+              </small>
             </mat-error>
           </mat-form-field>
           
@@ -73,6 +76,9 @@
               <small *ngIf="getPhaseHrBudgety()?.errors?.['required']" class="text-danger">
                 Phase Hour Budget
               </small>
+              <small *ngIf="getPhaseHrBudgety()?.errors?.['pattern']" class="text-danger">
+                only contains numbers
+                           </small>
             </mat-error>
           </mat-form-field>
           

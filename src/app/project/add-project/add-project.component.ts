@@ -61,7 +61,7 @@ export class AddProjectComponent {
     /*------------- projectPhases validation -------------------*/
     phaseName: {
       required: 'You must enter the phase name.',
-      pattern: 'Phase name can contains combination of uppercase and lowercase letters, numbers, and spaces'
+      pattern: 'Phase name can contains combination of uppercase and lowercase letters, numbers, and saces'
     },
     phaseStartDate: {
       required: 'You must enter the phase start date.',
@@ -71,11 +71,11 @@ export class AddProjectComponent {
     },
     phaseMilestone: {
       required: 'You must enter the phase milestone.',
-      pattern: 'Location can contains combination of uppercase and lowercase letters, numbers, and spaces'
+      pattern: 'Milestone can contains combination of uppercase and lowercase letters, numbers, and spaces'
     },
     phaseHrBudget: {
       required: 'You must enter the phase hour budget.',
-      pattern: 'Project total budget must be a non-negative number',
+      pattern: 'phase Hr Budget must be a non-negative number',
     },
   };
 
@@ -102,7 +102,10 @@ export class AddProjectComponent {
     ),
     projectTotalBudget: this.builder.control(
       0,
-      Validators.compose([Validators.required, Validators.pattern('^[0-9]*$')])
+      Validators.compose([
+        Validators.required,
+         Validators.pattern('^[0-9]+$')
+        ])
     ),
     projectStatus: this.builder.control(
       0,
@@ -110,11 +113,17 @@ export class AddProjectComponent {
     ),
     projectHours: this.builder.control(
       0,
-      Validators.compose([Validators.required, Validators.pattern('^[0-9]*$')])
+      Validators.compose([
+        Validators.required, 
+        Validators.pattern('^[0-9]+$')
+      ])
     ),
     projectLocation: this.builder.control(
       '',
-      Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9\\s]*$')])
+      Validators.compose([
+        Validators.required, 
+        Validators.pattern('^[a-zA-Z0-9\\s]*$')
+      ])
     ),
     projectStartDate: this.builder.control(
       '',
@@ -126,7 +135,10 @@ export class AddProjectComponent {
     ),
     projectDescription: this.builder.control(
       '',
-      Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9\\s]*$')])
+      Validators.compose([
+        Validators.required, 
+        Validators.pattern('^[a-zA-Z0-9\\s]*$')
+      ])
     ),
     projectPhases: this.builder.array([this.projectPhasesForm()]),
     employeesInProjectIds: this.builder.array([]),
@@ -146,8 +158,19 @@ export class AddProjectComponent {
         '',
         Validators.compose([Validators.required])
       ),
-      phaseMilestone: this.builder.control('', Validators.required),
-      phaseHrBudget: this.builder.control(0, Validators.required),
+      phaseMilestone: this.builder.control(
+        '',
+        Validators.compose([
+        Validators.required, 
+        Validators.pattern('^[a-zA-Z0-9\\s]*$')
+      ])
+      ),
+      phaseHrBudget: this.builder.control(0,
+        Validators.compose([
+          Validators.required, 
+          Validators.pattern('^[0-9]+$')
+        ]) 
+        ),
     });
   }
 

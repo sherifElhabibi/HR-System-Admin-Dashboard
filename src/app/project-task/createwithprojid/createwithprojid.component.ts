@@ -37,7 +37,6 @@ export class CreatewithprojidComponent {
       [
         Validators.required,
         Validators.minLength(3),
-        Validators.maxLength(20),
         Validators.pattern('^[a-zA-Z0-9\\s]*$'),
       ],
     ],
@@ -46,11 +45,13 @@ export class CreatewithprojidComponent {
       [
         Validators.required,
         Validators.minLength(3),
-        Validators.maxLength(60),
-        Validators.pattern('^[a-zA-Z0-9\\s]*$'),
+        Validators.pattern('^(?=.*[a-zA-Z])(?=.*\\d).+$'),
       ],
     ],
-    totalHoursPerTask: ['', [Validators.required]],
+    totalHoursPerTask:  ['', [
+      Validators.required,
+      Validators.pattern('^[0-9]+$'),
+    ]],
 
 
   });

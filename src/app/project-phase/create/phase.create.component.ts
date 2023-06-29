@@ -60,8 +60,13 @@ export class PhaseCreateComponent {
     phaseName: ['', [Validators.required,],],
     phaseStartDate: ['', [Validators.required,],],
     phaseEndDate: ['', [Validators.required]],
-    phaseMilestone: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9\\s]*$')]],
-    phaseHrBudget: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+    phaseMilestone: ['', [
+      Validators.required, 
+      Validators.pattern('^[a-zA-Z0-9\\s]*$')
+    ]],
+    phaseHrBudget: ['', [
+      Validators.required,
+       Validators.pattern('^[0-9]+$')]],
   });
   getphaseName() {
     return this.createProjectphaseForm.get('phaseName');

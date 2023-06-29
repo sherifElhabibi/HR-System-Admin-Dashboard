@@ -61,8 +61,14 @@ export class PhaseEditComponent implements OnInit {
     phaseName: [0, [Validators.required]],
     phaseStartDate: ['', [Validators.required]],
     phaseEndDate: ['', [Validators.required]],
-    phaseMilestone: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9\\s]*$')]],
-    phaseHrBudget: [0, Validators.required, Validators.pattern('^[0-9]+$')],
+    phaseMilestone:  ['', [
+      Validators.required, 
+      Validators.pattern('^[a-zA-Z0-9\\s]*$')
+    ]],
+    phaseHrBudget: [0, [
+      Validators.required, 
+      Validators.pattern('^[0-9]+$')
+     ]],
   });
 
   getPhaseName() {

@@ -71,10 +71,13 @@ export class EditComponent {
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(60),
-        Validators.pattern('^[a-zA-Z0-9\\s]*$'),
+        Validators.pattern('^(?=.*[a-zA-Z])(?=.*\\d).+$'),
       ],
     ],
-    totalHoursPerTask: ['', [Validators.required]],
+    totalHoursPerTask:  ['', [
+      Validators.required,
+      Validators.pattern('^[0-9]+$'),
+    ]],
   });
   gettaskName() {
     return this.editProjectTaskForm.get('taskName');

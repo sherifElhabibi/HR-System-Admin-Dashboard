@@ -40,7 +40,7 @@
                 taskDescription must be at least 3 characters long
               </small>
               <small *ngIf="gettaskDescription()?.errors?.['pattern']" class="text-danger">
-                taskDescription must has at least one letter and one digit
+                should only contains letters      
               </small>
             </mat-error>
           </mat-form-field>
@@ -51,6 +51,9 @@
               <small *ngIf="gettotalHoursPerTask()?.errors?.['required']" class="text-danger">
                 totalHoursPerTask is required
               </small>
+              <small *ngIf="gettotalHoursPerTask()?.errors?.['pattern']" class="text-danger">
+                should only contains numbers             
+               </small>
             </mat-error>
           </mat-form-field>
         </div>
