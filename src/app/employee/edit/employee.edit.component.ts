@@ -11,6 +11,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Department } from 'src/app/models/Department/department';
 import { EmployeeService } from 'src/app/services/employee.service';
+import Swal from 'sweetalert2';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -40,7 +41,7 @@ export class EmployeeEditComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private datePipe: DatePipe
-  ) {}
+  ) { }
   ngOnInit(): void {
     this.route.params.subscribe((params: any) => {
       this.id = +params['emplyeeId'];
@@ -57,7 +58,8 @@ export class EmployeeEditComponent implements OnInit {
       [
         Validators.required,
         Validators.minLength(3),
-        Validators.pattern('[a-zA-Z]*'),
+        Validators.maxLength(30),
+        Validators.pattern('^[a-zA-Z\\s]*$'),
       ],
     ],
     employeeLastName: [
@@ -65,17 +67,45 @@ export class EmployeeEditComponent implements OnInit {
       [
         Validators.required,
         Validators.minLength(3),
-        Validators.pattern('[a-zA-Z]*'),
+        Validators.maxLength(30),
+        Validators.pattern('^[a-zA-Z\\s]*$'),
       ],
     ],
-    employeeSalaryPerHour: [0, [Validators.required]],
-    employeeOvertimeRate: [0, [Validators.required]],
-    employeeRegularHoursPerDay: [0, [Validators.required]],
-    employeeWorkingDaysPerWeek: [0, [Validators.required]],
-    employeeProfileUrl: [''],
+    employeeSalaryPerHour: [0,
+      [
+        Validators.required,
+        Validators.pattern('^[0-9]+$')
+      ]
+    ],
+    employeeOvertimeRate: [0,
+      [
+        Validators.required,
+        Validators.pattern('^[0-9]+$')
+      ]
+    ],
+    employeeRegularHoursPerDay: [0,
+      [
+        Validators.required,
+        Validators.pattern('^[0-9]+$')
+      ]
+    ],
+    employeeWorkingDaysPerWeek: [0,
+      [
+        Validators.required,
+        Validators.pattern('^[0-9]+$')
+      ]
+    ],
+    employeeProfileUrl: ['',
+      [
+        Validators.pattern('\.(jpg|png|jpeg)$')
+      ]
+    ],
     employeePhone: [
       '',
-      [Validators.required, Validators.pattern(/^01[0125][0-9]{8}$/)],
+      [
+        Validators.required,
+        Validators.pattern(/^01[0125][0-9]{8}$/)
+      ],
     ],
     employeeEmail: [
       '',
@@ -86,8 +116,15 @@ export class EmployeeEditComponent implements OnInit {
         ),
       ],
     ],
-    employeePosition: ['', Validators.required],
+    employeePassword: ['',
+      [
+        Validators.required,
+        Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&\\s])[A-Za-z\\d@$!%*#?&\\s]{8,}$')
+      ]
+    ],
+    employeePosition: [0, Validators.required],
     employeeHiringDate: ['', Validators.required],
+    employeeStatus: [0, Validators.required]
   });
 
   getFname() {
@@ -147,8 +184,28 @@ export class EmployeeEditComponent implements OnInit {
     this.empService
       .editEmployee(this.id, this.editEmpForm.value)
       .subscribe(() => {
-          this.router.navigateByUrl('employees/list');
-      });
+        this.router.navigateByUrl('employees/list');
+      },
+      (error)=>{
+        if(error.status==200){
+        Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Your work has been saved',
+              showConfirmButton: false,
+              timer: 1500
+            })
+     }
+     else{
+          Swal.fire({
+            icon: 'warning',
+            text: 'Check your data !',
+            showConfirmButton: false,
+            timer:3000,
+          })
+     }
+      }
+      );
   }
 
   goBack(): void {

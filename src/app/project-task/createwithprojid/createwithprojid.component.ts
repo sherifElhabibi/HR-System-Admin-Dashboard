@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProjecttaskService } from 'src/app/services/projecttask.service';
 import { MyErrorStateMatcher } from '../create/create.component';
 import { ProjectService } from 'src/app/services/project.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-createwithprojid',
@@ -11,24 +12,23 @@ import { ProjectService } from 'src/app/services/project.service';
   styleUrls: ['./createwithprojid.component.scss']
 })
 export class CreatewithprojidComponent {
-  idparam:any;
+  idparam: any;
   constructor(public taskService: ProjecttaskService,
     private activatedRoute: ActivatedRoute,
-     public fb: FormBuilder, public router:Router) 
-     {
-      
-     }
-     ngOnInit() {
-      this.activatedRoute.params.subscribe((a) => {
-     
-            this.idparam=a['id'];
-            console.log("create wih proj id" );
-            console.log(this.idparam );
-            
-          });
-        
-      
-    }
+    public fb: FormBuilder, public router: Router) {
+
+  }
+  ngOnInit() {
+    this.activatedRoute.params.subscribe((a) => {
+
+      this.idparam = a['id'];
+      console.log("create wih proj id");
+      console.log(this.idparam);
+
+    });
+
+
+  }
 
   matcher = new MyErrorStateMatcher();
   createProjectTaskForm = this.fb.group({
@@ -37,7 +37,7 @@ export class CreatewithprojidComponent {
       [
         Validators.required,
         Validators.minLength(3),
-        Validators.pattern('[a-zA-Z]*'),
+        Validators.pattern('^[a-zA-Z0-9\\s]*$'),
       ],
     ],
     taskDescription: [
@@ -45,11 +45,14 @@ export class CreatewithprojidComponent {
       [
         Validators.required,
         Validators.minLength(3),
-        Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9]).*$'),
+        Validators.pattern('^(?=.*[a-zA-Z])(?=.*\\d).+$'),
       ],
     ],
-    totalHoursPerTask: ['', [Validators.required]],
- 
+    totalHoursPerTask:  ['', [
+      Validators.required,
+      Validators.pattern('^[0-9]+$'),
+    ]],
+
 
   });
   gettaskName() {
@@ -63,12 +66,30 @@ export class CreatewithprojidComponent {
   }
 
   createProjectTask(): void {
-    this.taskService.createTaskwithprojId(this.createProjectTaskForm.value,this.idparam).subscribe(
-      (response) => {this.router.navigateByUrl('/projecttask'); console.log(response),console.log(this.createProjectTaskForm.value)},
-      (error) => console.log(error)
+    this.taskService.createTaskwithprojId(this.createProjectTaskForm.value, this.idparam).subscribe(
+      (response) => { this.router.navigateByUrl('/projecttask'); console.log(response), console.log(this.createProjectTaskForm.value) },
+      (error) =>{
+        if(error.status==200){
+          Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Your work has been saved',
+                showConfirmButton: false,
+                timer: 1500
+              })
+       }
+       else{
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!',
+              showConfirmButton: false,
+            })
+       }
+      }
     );
   }
   goBack(): void {
-    this.router.navigate(['project/details/'+this.idparam]);
+    this.router.navigate(['project/details/' + this.idparam]);
   }
 }

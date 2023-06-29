@@ -13,6 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectService } from 'src/app/services/project.service';
 import { ProjecttaskService } from 'src/app/services/projecttask.service';
 import { DeleteConfirmationComponent } from 'src/app/shared/delete-confirmation.component';
+import Swal from 'sweetalert2';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -42,7 +43,7 @@ export class EditComponent {
     private router: Router,
     public activatedRoute: ActivatedRoute,
     private fb: FormBuilder
-  ) {}
+  ) { }
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((a) => {
       this.taskService.getProjectTaskById(a['id']).subscribe((task: any) => {
@@ -60,7 +61,8 @@ export class EditComponent {
       [
         Validators.required,
         Validators.minLength(3),
-        Validators.pattern('[a-zA-Z]*'),
+        Validators.maxLength(20),
+        Validators.pattern('^[a-zA-Z0-9\\s]*$'),
       ],
     ],
     taskDescription: [
@@ -68,10 +70,14 @@ export class EditComponent {
       [
         Validators.required,
         Validators.minLength(3),
-        Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9]).*$'),
+        Validators.maxLength(60),
+        Validators.pattern('^(?=.*[a-zA-Z])(?=.*\\d).+$'),
       ],
     ],
-    totalHoursPerTask: ['', [Validators.required]],
+    totalHoursPerTask:  ['', [
+      Validators.required,
+      Validators.pattern('^[0-9]+$'),
+    ]],
   });
   gettaskName() {
     return this.editProjectTaskForm.get('taskName');
@@ -93,6 +99,25 @@ export class EditComponent {
         .editProjectTask(a['id'], this.editProjectTaskForm.value)
         .subscribe(() => {
           this.router.navigateByUrl('employees/list');
+        },
+        (error)=>{
+               if(error.status==200){
+        Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Your work has been saved',
+              showConfirmButton: false,
+              timer: 1500
+            })
+     }
+     else{
+          Swal.fire({
+            icon: 'warning',
+            text: 'Check your data !',
+            showConfirmButton: false,
+            timer:3000,
+          })
+     }
         });
     });
   }

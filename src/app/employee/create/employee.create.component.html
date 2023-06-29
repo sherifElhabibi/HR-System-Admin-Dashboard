@@ -24,6 +24,9 @@
               <small *ngIf="getFname()?.errors?.['minlength']" class="text-danger">
                 First Name must be at least 3 characters long
               </small>
+              <small *ngIf="getFname()?.errors?.['maxlength']" class="text-danger">
+                First Name must be maximum 10 characters long
+              </small>
               <small *ngIf="getFname()?.errors?.['pattern']" class="text-danger">
                 First Name can only contain letters
               </small>
@@ -39,6 +42,9 @@
               <small *ngIf="getLname()?.errors?.['minlength']" class="text-danger">
                 Last Name must be at least 3 characters long
               </small>
+              <small *ngIf="getLname()?.errors?.['maxlength']" class="text-danger">
+                Last Name must be at least 10 characters long
+              </small>
               <small *ngIf="getLname()?.errors?.['pattern']" class="text-danger">
                 Last Name can only contain letters
               </small>
@@ -53,6 +59,9 @@
               <small *ngIf="getSalaryPerHour()?.errors?.['required']" class="text-danger">
                 Salary Per Hour is required
               </small>
+              <small *ngIf="getSalaryPerHour()?.errors?.['pattern']" class="text-danger">
+                Salary Per Hour should only contains numbers
+              </small>
             </mat-error>
           </mat-form-field>
           <mat-form-field class="col-12 col-md-6">
@@ -61,6 +70,9 @@
             <mat-error *ngIf="getEmployeeOvertimeRate()?.invalid && getEmployeeOvertimeRate()?.touched">
               <small *ngIf="getEmployeeOvertimeRate()?.errors?.['required']" class="text-danger">
                 Overtime Rate is required
+              </small>
+              <small *ngIf="getEmployeeOvertimeRate()?.errors?.['pattern']" class="text-danger">
+                Overtime Rate should only contains numbers
               </small>
             </mat-error>
           </mat-form-field>
@@ -73,6 +85,9 @@
               <small *ngIf="getEmployeeRegularHoursPerDay()?.errors?.['required']" class="text-danger">
                 Regular Hours PerDay is required
               </small>
+              <small *ngIf="getEmployeeRegularHoursPerDay()?.errors?.['pattern']" class="text-danger">
+                Regular Hours PerDay should only contains numbers
+              </small>
             </mat-error>
           </mat-form-field>
           <mat-form-field class="col-12 col-md-6">
@@ -81,6 +96,9 @@
             <mat-error *ngIf="getEmployeeWorkingDaysPerWeek()?.invalid && getEmployeeWorkingDaysPerWeek()?.touched">
               <small *ngIf="getEmployeeWorkingDaysPerWeek()?.errors?.['required']" class="text-danger">
                 Working Days Per Week is required
+              </small>
+              <small *ngIf="getEmployeeWorkingDaysPerWeek()?.errors?.['pattern']" class="text-danger">
+                Working Days Per Week should only contains numbers
               </small>
             </mat-error>
           </mat-form-field>
@@ -106,6 +124,9 @@
             <mat-error *ngIf="getPassword()?.invalid && getPassword()?.touched">
               <small *ngIf="getPassword()?.errors?.['required']" class="text-danger">
                 Password is required
+              </small>
+              <small *ngIf="getPassword()?.errors?.['pattern']" class="text-danger">
+                Password must enter at least one Upper case letter, degit, special chaaracters, and at least 8 length
               </small>
             </mat-error>
           </mat-form-field>
@@ -168,6 +189,9 @@
             <mat-error *ngIf="getProfileUrl()?.invalid && getProfileUrl()?.touched">
               <small *ngIf="getProfileUrl()?.errors?.['required']" class="text-danger">
                 Profile Image URL is required
+              </small>
+              <small *ngIf="getProfileUrl()?.errors?.['pattern']" class="text-danger">
+                This Format is not supported 
               </small>
             </mat-error>
           </mat-form-field>          

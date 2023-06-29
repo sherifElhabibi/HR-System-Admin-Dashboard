@@ -6,6 +6,7 @@ import { Department } from 'src/app/models/Department/department';
 import { Employee } from 'src/app/models/Employee/employee';
 import { DepartmentService } from 'src/app/services/department.service';
 import { EmployeeService } from 'src/app/services/employee.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit',
@@ -21,7 +22,7 @@ export class EditComponent implements OnInit {
   validationMessages = {
     departmentName: {
       required: 'You must enter the name of the project',
-      pattern: 'Name should only contain letters',
+      pattern: 'You can use combination of uppercase and lowercase letters, numbers, and spaces',
     },
   };
 
@@ -43,7 +44,9 @@ export class EditComponent implements OnInit {
         '',
         Validators.compose([
           Validators.required,
-          Validators.pattern('^[a-zA-Z]+$'),
+          Validators.minLength(3),
+          Validators.maxLength(20),
+          Validators.pattern('^[a-zA-Z0-9\\s]*$'),
         ])
       ),
      employessIds: this.builder.array([]),
@@ -103,18 +106,40 @@ export class EditComponent implements OnInit {
                });
                this.router.navigate(['department']);
               },
-              (error) => {
-                this.snackBar.open(error.message, 'Close', {
-                  duration: 3000,
-                });
+              (error)=>{
+                if(error.status==200){
+                Swal.fire({
+                      position: 'top-end',
+                      icon: 'success',
+                      title: 'Your work has been saved',
+                      showConfirmButton: false,
+                      timer: 1500
+                    })
+             }
+             else{
+                  Swal.fire({
+                    icon: 'warning',
+                    text: 'Check your data !',
+                    showConfirmButton: false,
+                    timer:3000,
+                  })
+             }
               }
             );
-       } else {
-          this.snackBar.open('Please enter valid data.', 'Close', {
-            duration: 3000,
-          });
+       } 
+       else {
+        Swal.fire({
+          icon: 'warning',
+          text: 'Please enter valid data!',
+          showConfirmButton: false,
+          timer:3000,
+        })
+          // this.snackBar.open('Please enter valid data.', 'Close', {
+          //   duration: 3000,
+          // });
        }
       });
+ 
    }
    
   }

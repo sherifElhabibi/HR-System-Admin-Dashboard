@@ -14,6 +14,7 @@ import { EmployeeService } from '../../services/employee.service';
 import { GetAllEmployees } from '../../models/Employee/GetAllEmployees';
 import { DatePipe } from '@angular/common';
 import { GetProjectById } from 'src/app/models/project/GetProjectById';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-project',
@@ -51,7 +52,7 @@ export class EditProjectComponent implements OnInit {
   validationMessages = {
     projectName: {
       required: 'You must enter the name of the project',
-      pattern: 'Name should only contain letters',
+      pattern: 'Name can use combination of uppercase and lowercase letters, numbers, and spaces',
     },
     projectTotalBudget: {
       required: 'You must enter the project total budget.',
@@ -63,9 +64,11 @@ export class EditProjectComponent implements OnInit {
     },
     projectLocation: {
       required: 'You must enter the project location.',
+      pattern: 'Location can contains combination of uppercase and lowercase letters, numbers, and spaces'
     },
     projectDescription: {
       required: 'You must enter the project description.',
+      pattern: 'Location can contains combination of uppercase and lowercase letters, numbers, and spaces'
     },
     projectStartDate: {
       required: 'You must enter the project description.',
@@ -80,6 +83,7 @@ export class EditProjectComponent implements OnInit {
     /*------------- projectPhases validation -------------------*/
     phaseName: {
       required: 'You must enter the phase name.',
+      pattern: 'Phase name can contains combination of uppercase and lowercase letters, numbers, and saces'
     },
     phaseStartDate: {
       required: 'You must enter the phase start date.',
@@ -89,9 +93,11 @@ export class EditProjectComponent implements OnInit {
     },
     phaseMilestone: {
       required: 'You must enter the phase milestone.',
+      pattern: 'Milestone can contains combination of uppercase and lowercase letters, numbers, and spaces'
     },
     phaseHrBudget: {
       required: 'You must enter the phase hour budget.',
+      pattern: 'phase Hr Budget must be a non-negative number',
     },
   };
 
@@ -103,7 +109,7 @@ export class EditProjectComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private snackBar: MatSnackBar,
     private datePipe: DatePipe
-  ) {}
+  ) { }
   ngOnInit() {
     this.employeeService.getAllEmployees().subscribe((employeeList) => {
       this.employees = employeeList;
@@ -111,18 +117,17 @@ export class EditProjectComponent implements OnInit {
     this.projectform = this.builder.group({
       projectName: this.builder.control(
         '',
-        // Validators.compose([
-        //   Validators.required,
-        //   Validators.pattern('^[a-zA-Z]+$'),
-        // ])
-        Validators.compose([Validators.required])
+        Validators.compose([
+          Validators.required,
+          Validators.pattern('^[a-zA-Z0-9\\s]*$'),
+        ])
       ),
       projectTotalBudget: this.builder.control(
         0,
         Validators.compose([
           Validators.required,
-          Validators.pattern('^[0-9]*$'),
-        ])
+           Validators.pattern('^[0-9]+$')
+          ])
       ),
       projectStatus: this.builder.control(
         0,
@@ -130,11 +135,17 @@ export class EditProjectComponent implements OnInit {
       ),
       projectHours: this.builder.control(
         0,
-        Validators.compose([Validators.required])
+        Validators.compose([
+          Validators.required,
+           Validators.pattern('^[0-9]+$')
+          ])
       ),
       projectLocation: this.builder.control(
         '',
-        Validators.compose([Validators.required])
+        Validators.compose([
+          Validators.required, 
+          Validators.pattern('^[a-zA-Z0-9\\s]*$')
+        ])
       ),
       projectStartDate: this.builder.control(
         '',
@@ -146,7 +157,10 @@ export class EditProjectComponent implements OnInit {
       ),
       projectDescription: this.builder.control(
         '',
-        Validators.compose([Validators.required])
+        Validators.compose([
+          Validators.required, 
+          Validators.pattern('^[a-zA-Z0-9\\s]*$')
+        ])
       ),
       projectPhases: this.builder.array([]),
       employeesInProjectIds: this.builder.array([]),
@@ -190,8 +204,16 @@ export class EditProjectComponent implements OnInit {
   createPhaseFormGroup(phase: any): FormGroup {
     return this.builder.group({
       phaseName: [phase.phaseName, Validators.required],
-      phaseHrBudget: [phase.phaseHrBudget, Validators.required],
-      phaseMilestone: [phase.phaseMilestone, Validators.required],
+      phaseHrBudget: [phase.phaseHrBudget,
+         Validators.compose([
+        Validators.required, 
+        Validators.pattern('^[0-9]+$')
+      ])],
+      phaseMilestone: [phase.phaseMilestone,
+      Validators.compose([
+      Validators.required, 
+      Validators.pattern('^[a-zA-Z0-9\\s]*$')
+    ])],
       phaseStartDate: [phase.phaseStartDate, Validators.required],
       phaseEndDate: [phase.phaseEndDate, Validators.required],
     });
@@ -340,9 +362,37 @@ export class EditProjectComponent implements OnInit {
             .updateProject(parameters['id'], this.projectform.value)
             .subscribe(() => {
               this.router.navigate(['project']);
+            },
+            (error)=>{
+              if(error.status==200){
+                Swal.fire({
+                      position: 'top-end',
+                      icon: 'success',
+                      title: 'Your work has been saved',
+                      showConfirmButton: false,
+                      timer: 1500
+                    })
+             }
+             else{
+                  Swal.fire({
+                    icon: 'warning',
+                    text: 'Check your data !',
+                    showConfirmButton: false,
+                    timer:3000,
+                  })
+             }
             });
         }
-      });
+        else {
+          Swal.fire({
+            icon: 'warning',
+            text: 'Please enter valid data!',
+            showConfirmButton: false,
+            timer:3000,
+          })
+         }
+      }
+      );
     }
   }
 }

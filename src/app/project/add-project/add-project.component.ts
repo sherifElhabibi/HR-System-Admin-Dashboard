@@ -7,6 +7,7 @@ import { ProjectService } from '../../services/project.service';
 import { EmployeeService } from '../../services/employee.service';
 import { GetAllEmployees } from '../../models/Employee/GetAllEmployees';
 import { DatePipe } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-project',
@@ -17,19 +18,19 @@ export class AddProjectComponent {
   projectID: number = 0;
   employees: GetAllEmployees[] = [];
   phaseOptions: any[] = [
-  { value: 0, label: 'Information Gathering' },
-  { value: 1, label: 'Specification' },
-  { value: 2, label: 'Project Planning' },
-  { value: 3, label: 'Implementation' },
-  { value: 4, label: 'Final Test and Delivery' },
-  { value: 5, label: 'Maintenance and Support' },
-  { value: 6, label: 'Other' }
-];
+    { value: 0, label: 'Information Gathering' },
+    { value: 1, label: 'Specification' },
+    { value: 2, label: 'Project Planning' },
+    { value: 3, label: 'Implementation' },
+    { value: 4, label: 'Final Test and Delivery' },
+    { value: 5, label: 'Maintenance and Support' },
+    { value: 6, label: 'Other' }
+  ];
 
   validationMessages = {
     projectName: {
       required: 'You must enter the name of the project',
-      pattern: 'Name should only contain letters',
+      pattern: 'Name can use combination of uppercase and lowercase letters, numbers, and spaces',
     },
     projectTotalBudget: {
       required: 'You must enter the project total budget.',
@@ -41,9 +42,11 @@ export class AddProjectComponent {
     },
     projectLocation: {
       required: 'You must enter the project location.',
+      pattern: 'Location can contains combination of uppercase and lowercase letters, numbers, and spaces'
     },
     projectDescription: {
       required: 'You must enter the project description.',
+      pattern: 'Location can contains combination of uppercase and lowercase letters, numbers, and spaces'
     },
     projectStartDate: {
       required: 'You must enter the project description.',
@@ -58,6 +61,7 @@ export class AddProjectComponent {
     /*------------- projectPhases validation -------------------*/
     phaseName: {
       required: 'You must enter the phase name.',
+      pattern: 'Phase name can contains combination of uppercase and lowercase letters, numbers, and saces'
     },
     phaseStartDate: {
       required: 'You must enter the phase start date.',
@@ -67,9 +71,11 @@ export class AddProjectComponent {
     },
     phaseMilestone: {
       required: 'You must enter the phase milestone.',
+      pattern: 'Milestone can contains combination of uppercase and lowercase letters, numbers, and spaces'
     },
     phaseHrBudget: {
       required: 'You must enter the phase hour budget.',
+      pattern: 'phase Hr Budget must be a non-negative number',
     },
   };
 
@@ -91,12 +97,15 @@ export class AddProjectComponent {
       '',
       Validators.compose([
         Validators.required,
-        Validators.pattern('^[a-zA-Z]+$'),
+        Validators.pattern('^[a-zA-Z0-9\\s]*$'),
       ])
     ),
     projectTotalBudget: this.builder.control(
       0,
-      Validators.compose([Validators.required, Validators.pattern('^[0-9]*$')])
+      Validators.compose([
+        Validators.required,
+         Validators.pattern('^[0-9]+$')
+        ])
     ),
     projectStatus: this.builder.control(
       0,
@@ -104,11 +113,17 @@ export class AddProjectComponent {
     ),
     projectHours: this.builder.control(
       0,
-      Validators.compose([Validators.required])
+      Validators.compose([
+        Validators.required, 
+        Validators.pattern('^[0-9]+$')
+      ])
     ),
     projectLocation: this.builder.control(
       '',
-      Validators.compose([Validators.required])
+      Validators.compose([
+        Validators.required, 
+        Validators.pattern('^[a-zA-Z0-9\\s]*$')
+      ])
     ),
     projectStartDate: this.builder.control(
       '',
@@ -120,7 +135,10 @@ export class AddProjectComponent {
     ),
     projectDescription: this.builder.control(
       '',
-      Validators.compose([Validators.required])
+      Validators.compose([
+        Validators.required, 
+        Validators.pattern('^[a-zA-Z0-9\\s]*$')
+      ])
     ),
     projectPhases: this.builder.array([this.projectPhasesForm()]),
     employeesInProjectIds: this.builder.array([]),
@@ -140,8 +158,19 @@ export class AddProjectComponent {
         '',
         Validators.compose([Validators.required])
       ),
-      phaseMilestone: this.builder.control('', Validators.required),
-      phaseHrBudget: this.builder.control(0, Validators.required),
+      phaseMilestone: this.builder.control(
+        '',
+        Validators.compose([
+        Validators.required, 
+        Validators.pattern('^[a-zA-Z0-9\\s]*$')
+      ])
+      ),
+      phaseHrBudget: this.builder.control(0,
+        Validators.compose([
+          Validators.required, 
+          Validators.pattern('^[0-9]+$')
+        ]) 
+        ),
     });
   }
 
@@ -174,7 +203,7 @@ export class AddProjectComponent {
       this.projectform.value.projectEndDate,
       'yyyy-MM-dd'
     );
-    
+
     if (this.projectform) {
       const projectTotalBudget = this.projectform.get('projectTotalBudget');
       if (projectTotalBudget) {
@@ -186,7 +215,7 @@ export class AddProjectComponent {
           }
         }
       }
-    
+
       const projectStatus = this.projectform.get('projectStatus');
       if (projectStatus) {
         const statusValue = projectStatus.value;
@@ -197,7 +226,7 @@ export class AddProjectComponent {
           }
         }
       }
-    
+
       const projectHours = this.projectform.get('projectHours');
       if (projectHours) {
         const hoursValue = projectHours.value;
@@ -208,8 +237,8 @@ export class AddProjectComponent {
           }
         }
       }
-    
-      
+
+
       const phases = this.projectform.get('projectPhases') as FormArray | null;
       if (phases && phases.length > 0) {
         phases.controls.forEach(
@@ -251,15 +280,36 @@ export class AddProjectComponent {
           this.router.navigate(['project']);
         },
         (error) => {
-          this.snackBar.open(error.message, 'Close', {
-            duration: 3000,
-          });
+          if(error.status==200){
+            Swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'Your work has been saved',
+                  showConfirmButton: false,
+                  timer: 1500
+                })
+         }
+         else{
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+                showConfirmButton: false,
+              })
+         }
         }
       );
     } else {
-      this.snackBar.open('Please enter valid data.', 'Close', {
-        duration: 3000,
-      });
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: 'Please enter valid data',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      // this.snackBar.open('Please enter valid data.', 'Close', {
+      //   duration: 3000,
+      // });
     }
   }
 
@@ -269,7 +319,7 @@ export class AddProjectComponent {
       const phase = this.projectPhases.controls[i].value;
       selectedOptions.push(phase.phaseName);
     }
-  
+
     return this.phaseOptions.filter(option => {
       return option.value === 6 || !selectedOptions.includes(option.value);
     });

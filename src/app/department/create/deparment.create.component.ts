@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Employee } from 'src/app/models/Employee/employee';
+import Swal from 'sweetalert2';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -42,7 +43,7 @@ export class CreateComponent {
   validationMessages = {
     departmentName: {
       required: 'You must enter the name of the department',
-      pattern: 'Name should only contain letters',
+      pattern: 'You can use combination of uppercase and lowercase letters, numbers, and spaces',
     },
     managerId: {
       required: 'You must enter the managerId',
@@ -56,7 +57,7 @@ export class CreateComponent {
     public fb: FormBuilder,
     private empService: EmployeeService,
     public router: Router
-  ) {}
+  ) { }
   ngOnInit() {
     this.empService.getAllEmployees().subscribe((emps: any) => {
       this.emps = emps;
@@ -73,7 +74,9 @@ export class CreateComponent {
       '',
       Validators.compose([
         Validators.required,
-        Validators.pattern('^[a-zA-Z]+$'),
+        Validators.minLength(3),
+        Validators.maxLength(20),
+        Validators.pattern('^[a-zA-Z0-9\\s]*$'),
       ])
     ),
     managerId: this.builder.control(
@@ -111,32 +114,55 @@ export class CreateComponent {
         .subscribe(
           (response) => {
             console.log(response);
-            this.snackBar.open('dept added successfully.', 'Close', {
-              duration: 3000,
-            });
             this.router.navigate(['project']);
           },
           (error) => {
             console.log(error);
-            this.snackBar.open(error.message, 'Close', {
-              duration: 3000,
-            });
+            if(error.status==200){
+              Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Your work has been saved',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+                  // this.snackBar.open('dept added successfully.', 'Close', {
+                  //   duration: 3000,
+                  // });
+           }
+           else{
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Something went wrong!',
+                  showConfirmButton: false,
+                  timer: 1500
+                })
+           }
+            // this.snackBar.open(error.message, 'Close', {
+            //   duration: 3000,
+            // });
           }
         );
     } else {
-      this.snackBar.open('Please enter valid data.', 'Close', {
-        duration: 3000,
-      });
+      Swal.fire({
+        icon: 'error',
+        title: 'Please enter valid data',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      // this.snackBar.open('Please enter valid data.', 'Close', {
+      //   duration: 3000,
+      // });
     }
   }
   showDiv() {
     const divElement = document.getElementById('more');
-  
-    if (divElement?.style.display=='none') {
-      divElement.style.display ='';
+
+    if (divElement?.style.display == 'none') {
+      divElement.style.display = '';
     }
-    else if(divElement?.style.display==''){
-      divElement.style.display ='none';
+    else if (divElement?.style.display == '') {
+      divElement.style.display = 'none';
 
     }
   }

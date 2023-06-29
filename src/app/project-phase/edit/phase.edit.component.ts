@@ -10,6 +10,7 @@ import {
 import { ErrorStateMatcher } from '@angular/material/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectphasesService } from 'src/app/services/projectphases.service';
+import Swal from 'sweetalert2';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -60,8 +61,14 @@ export class PhaseEditComponent implements OnInit {
     phaseName: [0, [Validators.required]],
     phaseStartDate: ['', [Validators.required]],
     phaseEndDate: ['', [Validators.required]],
-    phaseMilestone: ['', [Validators.required]],
-    phaseHrBudget: [0, Validators.required],
+    phaseMilestone:  ['', [
+      Validators.required, 
+      Validators.pattern('^[a-zA-Z0-9\\s]*$')
+    ]],
+    phaseHrBudget: [0, [
+      Validators.required, 
+      Validators.pattern('^[0-9]+$')
+     ]],
   });
 
   getPhaseName() {
@@ -124,6 +131,25 @@ export class PhaseEditComponent implements OnInit {
       .editPhase(this.id, this.editPhaseForm.value)
       .subscribe(() => {
         this.router.navigateByUrl('employees/list');
+      },
+      (error)=>{
+     if(error.status==200){
+        Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Your work has been saved',
+              showConfirmButton: false,
+              timer: 1500
+            })
+     }
+     else{
+          Swal.fire({
+            icon: 'warning',
+            text: 'Check your data !',
+            showConfirmButton: false,
+            timer:3000,
+          })
+     }
       });
   }
   back() {
