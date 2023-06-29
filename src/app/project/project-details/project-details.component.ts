@@ -10,6 +10,7 @@ import { ProjectphasesService } from 'src/app/services/projectphases.service';
 import { DeleteConfirmationComponent } from 'src/app/shared/delete-confirmation.component';
 import { GetProjectHoursAndTotalCost } from 'src/app/models/project/GetProjectHoursAndTotalCost';
 import { EmployeeService } from 'src/app/services/employee.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-project-details',
@@ -24,6 +25,7 @@ export class ProjectDetailsComponent implements OnInit {
 
   ProjectHoursAndTotalCost: GetProjectHoursAndTotalCost = new GetProjectHoursAndTotalCost(0,'',0,0);
   EmployeesCostsInProject:any[] = [];
+  position!: string;
   constructor(
     public projectService: ProjectService,
     public employeeService:EmployeeService,
@@ -31,7 +33,8 @@ export class ProjectDetailsComponent implements OnInit {
     private phaseService: ProjectphasesService,
     private dialoge:MatDialog,
     private snackBar:MatSnackBar,
-    private router: Router
+    private router: Router,
+    private authService:AuthService
   ) {}
 
   ngOnInit() {
@@ -56,7 +59,10 @@ export class ProjectDetailsComponent implements OnInit {
           }
         );
       });
+          this.position = this.authService.getPostion();
+
   }
+  
   delete(id: number) {
     const dialogRef = this.dialoge.open(DeleteConfirmationComponent);
     dialogRef.afterClosed().subscribe((result) => {

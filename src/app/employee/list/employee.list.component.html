@@ -22,14 +22,14 @@
         <td><img src="{{ employee.employeeProfileUrl}}" alt="employee_Image"></td>
         <td class="actions d-flex justify-content-around">
           <div class="buttons d-flex flex-column d-md-flex flex-md-row gap-2">
-            <div *ngIf="position === 'Admin' || position === 'HR'">
+            <div *ngIf="position === 'Admin' || position === 'HR' ">
               <a [routerLink]="['/employees/edit',employee.emplyeeId]">
                 <button type="button" class="btn btn-sm btn-edit me-2">
                   <i class="fa fa-edit"></i>
                 </button>
               </a>
             </div>
-            <div *ngIf="position === 'Admin' || position === 'Accountant' || position === 'Employee'">
+            <div *ngIf="position === 'Admin' || position === 'HR' || position === 'Accountant'">
               <a [routerLink]="['/employees/details',employee.emplyeeId]">
                 <button class="btn btn-sm btn-dark me-2">
                   <i class="fa fa-eye"></i>

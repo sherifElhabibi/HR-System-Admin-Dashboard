@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ProjectphasesService} from '../../services/projectphases.service';
-import { ProjectPhaseById } from 'src/app/models/projectPhase/ProjectPhaseById';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ProjectPhaseById } from 'src/app/models/projectPhase/ProjectPhaseById';
+import { ProjectphasesService } from '../../services/projectphases.service';
 
 @Component({
   selector: 'app-phase.details',

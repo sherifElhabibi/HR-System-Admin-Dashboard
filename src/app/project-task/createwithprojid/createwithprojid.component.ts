@@ -22,9 +22,6 @@ export class CreatewithprojidComponent {
     this.activatedRoute.params.subscribe((a) => {
 
       this.idparam = a['id'];
-      console.log("create wih proj id");
-      console.log(this.idparam);
-
     });
 
 
@@ -67,7 +64,7 @@ export class CreatewithprojidComponent {
 
   createProjectTask(): void {
     this.taskService.createTaskwithprojId(this.createProjectTaskForm.value, this.idparam).subscribe(
-      (response) => { this.router.navigateByUrl('/projecttask'); console.log(response), console.log(this.createProjectTaskForm.value) },
+      (response) => { this.router.navigateByUrl('/projecttask');},
       (error) =>{
         if(error.status==200){
           Swal.fire({

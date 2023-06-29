@@ -28,7 +28,6 @@ export class PhaseListComponent {
   ngOnInit():void {
     this.phaseService.getAllPhases().subscribe((data)=>{
       this.phases=data;
-      console.log(this.phases);
     })
     this.position = this.authService.getPostion();
   }
@@ -39,7 +38,6 @@ export class PhaseListComponent {
         .getPhaseById(id)
         .subscribe((Object) => {
           this.phase = Object;
-          console.log(Object);
         });
       })
     const dialogRef = this.dialog.open(DeleteConfirmationComponent);

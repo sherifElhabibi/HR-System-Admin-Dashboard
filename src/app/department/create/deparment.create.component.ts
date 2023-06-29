@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Department } from '../../models/Department/department';
-import { DepartmentService } from '../../services/department.service';
+
 import { ErrorStateMatcher } from '@angular/material/core';
 import {
   FormArray,
@@ -11,10 +10,12 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { EmployeeService } from 'src/app/services/employee.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Employee } from 'src/app/models/Employee/employee';
 import Swal from 'sweetalert2';
+
+import { Department } from '../../models/Department/department';
+import { Employee } from 'src/app/models/Employee/employee';
+import { DepartmentService } from '../../services/department.service';
+import { EmployeeService } from 'src/app/services/employee.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -52,7 +53,6 @@ export class CreateComponent {
   };
   constructor(
     private builder: FormBuilder,
-    private snackBar: MatSnackBar,
     private deptService: DepartmentService,
     public fb: FormBuilder,
     private empService: EmployeeService,
@@ -61,11 +61,11 @@ export class CreateComponent {
   ngOnInit() {
     this.empService.getAllEmployees().subscribe((emps: any) => {
       this.emps = emps;
-      console.log(emps);
+      
     });
     this.deptService.getAll().subscribe((depts: any) => {
       this.depts = depts;
-      console.log(depts);
+      
     });
   }
 
@@ -107,17 +107,14 @@ export class CreateComponent {
   }
 
   createNewDept() {
-    console.log(this.createDeptForm.value);
     if (this.createDeptForm.valid) {
       this.deptService
         .createDepartment(this.createDeptForm.value, this.flag)
         .subscribe(
           (response) => {
-            console.log(response);
             this.router.navigate(['project']);
           },
           (error) => {
-            console.log(error);
             if(error.status==200){
               Swal.fire({
                     position: 'top-end',
@@ -126,9 +123,7 @@ export class CreateComponent {
                     showConfirmButton: false,
                     timer: 1500
                   })
-                  // this.snackBar.open('dept added successfully.', 'Close', {
-                  //   duration: 3000,
-                  // });
+
            }
            else{
                 Swal.fire({
@@ -138,9 +133,7 @@ export class CreateComponent {
                   timer: 1500
                 })
            }
-            // this.snackBar.open(error.message, 'Close', {
-            //   duration: 3000,
-            // });
+
           }
         );
     } else {
@@ -150,9 +143,7 @@ export class CreateComponent {
         showConfirmButton: false,
         timer: 1500
       })
-      // this.snackBar.open('Please enter valid data.', 'Close', {
-      //   duration: 3000,
-      // });
+
     }
   }
   showDiv() {

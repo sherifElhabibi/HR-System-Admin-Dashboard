@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DepartmentService } from 'src/app/services/department.service';
 
@@ -16,8 +14,7 @@ export class DetailsComponent {
     public departmentService: DepartmentService,
     private router: Router,
     public activatedRoute:ActivatedRoute,
-    private dialog: MatDialog,
-    private snackBar: MatSnackBar
+
 
   ) {}
   ngOnInit():void {
@@ -26,7 +23,6 @@ export class DetailsComponent {
         {
          this.idparams=a;
          this.currentDept=data;
-         console.log(this.currentDept)
         })
        })
   }

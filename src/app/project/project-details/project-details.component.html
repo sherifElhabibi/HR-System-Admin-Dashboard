@@ -60,7 +60,7 @@
                 </div> -->
 
              </div>
-            <mat-card class="my-2 patient-card">
+            <mat-card  *ngIf="position === 'Admin' || position === 'Accountant'" class="my-2 patient-card">
                 <mat-card-content>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered styled-table">
@@ -72,7 +72,7 @@
                               <th>End Date</th>
                               <th>Milestone</th>
                               <th>Hr Budget</th>
-                              <th>Actions</th>
+                              <th >Actions</th>
                             </tr>
                           </thead>
                           <tbody class="text-center">
@@ -86,17 +86,17 @@
                                 <td>{{ phase.phaseHrBudget }}</td>
                                 <td class="actions d-flex justify-content-around">
                                   <div class="buttons d-flex flex-column d-md-flex flex-md-row gap-2">
-                                    <a [routerLink]="['/phases/edit/', phase.id]">
+                                    <a  *ngIf="position === 'Admin'" [routerLink]="['/phases/edit/', phase.id]">
                                       <button type="button" class="btn btn-sm btn-edit me-2">
                                         <i class="fa fa-edit"></i>
                                       </button>
                                     </a>
-                                    <a [routerLink]="['/phases/details/', phase.id]">
+                                    <a  *ngIf="position === 'Admin' || position === 'Accountant'" [routerLink]="['/phases/details/', phase.id]">
                                       <button class="btn btn-sm btn-dark me-2">
                                         <i class="fa fa-eye"></i>
                                       </button>
                                     </a>
-                                    <a>
+                                    <a  *ngIf="position === 'Admin'">
                                       <button class="btn btn-sm btn-danger me-2" (click)="delete(phase.id)">
                                         <i class="fa fa-trash"></i>
                                       </button>
@@ -119,7 +119,7 @@
             <div class="row mt-5">
                <div class="col-6"><h3><i class="fa fa-tasks" aria-hidden="true"> </i><b> Project Tasks</b></h3></div>
                <div class="col-6 text-end" >
-                <a [routerLink]="['/projecttask/createid',project.projectId]">
+                <a *ngIf="position === 'Admin'" [routerLink]="['/projecttask/createid',project.projectId]">
                     <button type="button" class="btn btn-sm btn-primary  col-4" style="background-color: #484c7f !important;margin-right: 20px;" id="addButton">
                       Add New Task
                       <i class="fa fa-plus"></i>
@@ -129,7 +129,7 @@
 
             </div>
 
-            <mat-card class="my-2 patient-card">
+            <mat-card *ngIf="position === 'Admin' || position === 'Accountant'" class="my-2 patient-card">
                 <mat-card-content>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered styled-table">
@@ -139,7 +139,7 @@
                               <th>Name</th>
                               <th>Description</th>
                               <th>Total Hours</th>
-                              <th>Actions</th>
+                              <th *ngIf="position === 'Admin' || position === 'Accountant'">Actions</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -151,12 +151,12 @@
                                 <td>{{ task.totalHoursPerTask }}</td>
                                 <td class="actions d-flex justify-content-around">
                                   <div class="buttons d-flex flex-column d-md-flex flex-md-row gap-2">
-                                    <a [routerLink]="['/projecttask/edit/', task.id]">
+                                    <a *ngIf="position === 'Admin'" [routerLink]="['/projecttask/edit/', task.id]">
                                       <button type="button" class="btn btn-sm btn-edit me-2">
                                         <i class="fa fa-edit"></i>
                                       </button>
                                     </a>
-                                    <a [routerLink]="['/projecttask/details/', task.id]">
+                                    <a *ngIf="position === 'Admin' || position === 'Accountant'" [routerLink]="['/projecttask/details/', task.id]">
                                       <button class="btn btn-sm btn-dark me-2">
                                         <i class="fa fa-eye"></i>
                                       </button>
@@ -176,8 +176,8 @@
                 </mat-card-content>
             </mat-card>
 
-            <h3 class="mt-5"><i class="fa fa-users" aria-hidden="true"></i><b> Employees in Project</b></h3>
-            <mat-card class="my-2 patient-card">
+            <h3 *ngIf="position === 'Admin' || position === 'HR'"  class="mt-5"><i class="fa fa-users" aria-hidden="true"></i><b> Employees in Project</b></h3>
+            <mat-card *ngIf="position === 'Admin' || position === 'HR'"  class="my-2 patient-card">
                 <mat-card-content>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered styled-table">
@@ -210,8 +210,8 @@
                 </mat-card-content>
             </mat-card>
 
-            <h3 class="mt-5"><i class="fa-solid fa-users"></i><b> Project Attendances</b></h3>
-            <mat-card class="my-2 patient-card">
+            <h3 *ngIf="position === 'Admin' || position === 'HR'"  class="mt-5"><i class="fa-solid fa-users"></i><b> Project Attendances</b></h3>
+            <mat-card *ngIf="position === 'Admin' || position === 'HR'" class="my-2 patient-card">
                 <mat-card-content>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered styled-table">

@@ -152,9 +152,7 @@ export class EmployeeCreateComponent {
     return this.createEmpForm.get('employeeHiringDate');
   }
 
-  display() {
-    return console.log(this.createEmpForm);
-  }
+
 
   createNewEmp(): void {
     this.createEmpForm.value.employeeHiringDate = this.datePipe.transform(
@@ -187,8 +185,7 @@ export class EmployeeCreateComponent {
         }
       }
     }
-
-    console.log(this.createEmpForm.value)
+    
     this.empService.createEmployee(this.createEmpForm.value).subscribe(
       (response) => { this.router.navigateByUrl('/employees/list');
       if(response.status==200){
@@ -199,15 +196,12 @@ export class EmployeeCreateComponent {
               showConfirmButton: false,
               timer: 1500
             })
-            // this.snackBar.open('dept added successfully.', 'Close', {
-            //   duration: 3000,
-            // });
+
             }
-      //  console.log(response),console.log(response.status);
+
      },
       (error) => {
-        console.log(error),
-        console.log(error.status)
+
         if(error.status==200){
           Swal.fire({
                 position: 'top-end',

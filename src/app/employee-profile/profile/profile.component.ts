@@ -60,15 +60,11 @@ export class ProfileComponent {
           this.idparams = idparams;
           this.employeeHiringDate = new Date(data.employeeHiringDate);
           this.employee = data;
-          console.log(this.idparams);
-          console.log(this.employeeHiringDate);
-          console.log(this.employee);
-          
+        
         });
 
         this.projectService.getAllProjects().subscribe((projects) => {
           this.projects = projects;
-          console.log(this.projects);
           this.projectsforemp = [];
 
           projects.forEach((element: any) => {
@@ -84,9 +80,6 @@ export class ProfileComponent {
               this.tasksForOpenProjects = pro.projectTasks;
             }
           });
-
-          console.log('tasksForOpenProjects');
-          console.log(this.tasksForOpenProjects);
         });
       });
     }

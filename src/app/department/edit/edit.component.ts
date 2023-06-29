@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { Department } from 'src/app/models/Department/department';
 import { Employee } from 'src/app/models/Employee/employee';
 import { DepartmentService } from 'src/app/services/department.service';
 import { EmployeeService } from 'src/app/services/employee.service';
+
 import Swal from 'sweetalert2';
 
 @Component({
@@ -62,12 +65,6 @@ export class EditComponent implements OnInit {
           department.employees?.forEach((employeeId: any) => {
             employeesIndeptIds.push(this.builder.control(employeeId));
           });
-            //  // Populate manager Id
-            //  let managerIdindept = this.deptform.get(
-            //   'managerId'
-            // );
-            // managerIdindept=this.builder.control(managerIdindept);
-          
         });
     });
   }
@@ -92,9 +89,7 @@ export class EditComponent implements OnInit {
   }
 
   save() {
-    console.log(this.deptform.value);
      if (this.deptform.valid) {
-      console.log(this.deptform.value);
       this.activatedRoute.params.subscribe((parameters) => {
        if (this.deptform.valid) {
           this.departmentService
@@ -134,9 +129,6 @@ export class EditComponent implements OnInit {
           showConfirmButton: false,
           timer:3000,
         })
-          // this.snackBar.open('Please enter valid data.', 'Close', {
-          //   duration: 3000,
-          // });
        }
       });
  

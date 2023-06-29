@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormControl, FormGroup } from '@angular/forms';
 
 import { Department } from '../../models/Department/department';
 import { Employee } from '../../models/Employee/employee';
 import { DepartmentService } from '../../services/department.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-delete',

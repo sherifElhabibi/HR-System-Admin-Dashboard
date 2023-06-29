@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { Department } from 'src/app/models/Department/department';
 import { Employee } from 'src/app/models/Employee/employee';
+import { AuthService } from 'src/app/services/auth.service';
 import { EmployeeService } from 'src/app/services/employee.service';
 
 @Component({
@@ -56,8 +57,10 @@ export class EmployeeDetailsComponent implements OnInit {
   constructor(
     public empService: EmployeeService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
+  position!:string;
   ngOnInit(): void {
     this.route.params.subscribe((params: any) => {
       this.id = +params['emplyeeId'];
@@ -67,18 +70,17 @@ export class EmployeeDetailsComponent implements OnInit {
       .subscribe((currentEmployee: any) => {
         this.employee = currentEmployee;
       });
+    this.position = this.authService.getPostion();
     this.empService
       .GetEmployeesHoursAndTotoalCostInAllProjects()
       .subscribe((data) => {
         this.HoursAndTotoalCostInAllProjects = data;
         this.HoursAndTotoalCostInAllProjects.forEach((element: any) => {
+
           if (element.employeeId == this.id) {
             this.filteredEmp = element;
-            console.log(this.filteredEmp);
-            console.log(this.id);
-          } else {
-            console.log('not found');
-          }
+          } 
+          
         });
       });
   }

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Department } from '../../models/Department/department';
-import { DepartmentService } from '../../services/department.service';
 import { Employee } from 'src/app/models/Employee/employee';
+import { Department } from '../../models/Department/department';
 import { EmployeeService } from 'src/app/services/employee.service';
+import { DepartmentService } from '../../services/department.service';
 import { AuthService } from '../../services/auth.service'
 
 
@@ -45,6 +45,5 @@ export class ListComponent implements OnInit {
   save(current: Department) {
     this.flag = true;
     this.currentDept = current;
-    console.log(this.currentDept);
   }
 }

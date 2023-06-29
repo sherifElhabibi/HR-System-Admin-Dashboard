@@ -4,7 +4,6 @@ import { CreateComponent } from './create/deparment.create.component';
 import { ListComponent } from './list/deparment.list.component';
 import { EditComponent } from './edit/edit.component';
 import { DeleteComponent } from './delete/delete.component';
-import { AuthGuard } from '../models/Login/authGuard';
 import { DetailsComponent } from './details/details.component';
 var routes:Routes;
 if(true){ routes = [
@@ -17,47 +16,22 @@ if(true){ routes = [
       {
         path: 'list',
         component: ListComponent,
-       /* canActivate:[AuthGuard],
-        data: {
-          title: 'List',
-          Position: ['Admin','HR','Accountant']
-        },*/
       },
       {
         path: 'create',
         component: CreateComponent,
-       /* canActivate:[AuthGuard],
-        data: {
-          title: 'Create',
-          Position: ['Admin']
-        },*/
       },
       {
         path: 'details/:id',
         component: DetailsComponent,
-       /* canActivate:[AuthGuard],
-        data: {
-          title: 'Create',
-          Position: ['Admin']
-        },*/
       },
       {
         path: 'edit/:id',
         component: EditComponent,
-      /*  canActivate:[AuthGuard],
-        data: {
-          title: 'Edit',
-          Position: ['Admin']
-        },*/
       },
       {
         path: 'delete/:id',
         component: DeleteComponent,
-       /* canActivate:[AuthGuard],
-        data: {
-          title: 'Delete',
-          Position: ['Admin']
-        },*/
       },
     ],
   },

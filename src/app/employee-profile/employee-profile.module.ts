@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { EmployeeProfileRoutingModule } from './employee-profile-routing.module';
-import { ProfileComponent } from './profile/profile.component';
 import { HttpClientModule } from '@angular/common/http';
+import { EmployeeProfileRoutingModule } from './employee-profile-routing.module';
+
+import { ProfileComponent } from './profile/profile.component';
 import { DatePipe } from '@angular/common';
 
 

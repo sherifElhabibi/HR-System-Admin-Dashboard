@@ -53,7 +53,6 @@ export class CreateComponent {
       Validators.required,
       Validators.pattern('^[0-9]+$'),
     ]],
-    // projectId: ['', [Validators.required]],
 
   });
   gettaskName() {
@@ -65,15 +64,12 @@ export class CreateComponent {
   gettotalHoursPerTask() {
     return this.createProjectTaskForm.get('totalHoursPerTask');
   }
-  // getprojectId() {
-  //   return this.createProjectTaskForm.get('projectId');
-  // }
+
   createProjectTask(): void {
     this.taskService.createProjectTask(this.createProjectTaskForm.value, this.projectId).subscribe(
-      (response) => { this.router.navigateByUrl('/projecttask'); console.log(response) },
+      (response) => { this.router.navigateByUrl('/projecttask');},
       (error) => {
-        console.log(error),
-        console.log(error.status)
+
         if(error.status==200){
           Swal.fire({
                 position: 'top-end',
@@ -82,9 +78,6 @@ export class CreateComponent {
                 showConfirmButton: false,
                 timer: 1500
               })
-              // this.snackBar.open('dept added successfully.', 'Close', {
-              //   duration: 3000,
-              // });
        }
        else{
             Swal.fire({

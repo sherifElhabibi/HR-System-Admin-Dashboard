@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="d-flex  justify-content-between">
-      <div class="">
-        <button class="btn btn-calc" (click)="CalcSalary()">Calaculte Salary</button>
+      <div *ngIf="position === 'Accountant' || position === 'Admin'">
+        <button  class="btn btn-calc" (click)="CalcSalary()">Calaculte Salary</button>
       </div>
       <div class="text-end">
         <button mat-button class="button back-button" (click)="goBack()">

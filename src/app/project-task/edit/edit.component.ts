@@ -48,7 +48,6 @@ export class EditComponent {
     this.activatedRoute.params.subscribe((a) => {
       this.taskService.getProjectTaskById(a['id']).subscribe((task: any) => {
         this.idparams = a;
-        console.log(this.idparams);
         this.editProjectTaskForm.patchValue(task);
       });
     });

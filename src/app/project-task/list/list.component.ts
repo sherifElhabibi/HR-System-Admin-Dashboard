@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
+
+import { TaskWithProjectName } from 'src/app/models/ProjectTask/TaskWithProjectName';
 
 import { AuthService } from '../../services/auth.service'
-import { TaskWithProjectName } from 'src/app/models/ProjectTask/TaskWithProjectName';
 import { ProjecttaskService } from 'src/app/services/projecttask.service';
 
 @Component({
@@ -13,7 +14,6 @@ import { ProjecttaskService } from 'src/app/services/projecttask.service';
 export class ListComponent {
   constructor(
   public taskService:ProjecttaskService,
-  activatedRoute:ActivatedRoute,
   public router:Router,
   public authService:AuthService,
   ){}

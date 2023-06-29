@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environment/environment';
 import { ProjectTask  } from '../../app/models/ProjectTask/projectTask';
-import { CreateProjectTask  } from '../../app/models/ProjectTask/CreateProjectTask';//dto for create
+import { CreateProjectTask  } from '../../app/models/ProjectTask/CreateProjectTask';
 import { Observable } from 'rxjs';
 
 

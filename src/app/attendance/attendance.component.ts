@@ -98,7 +98,6 @@ export class AttendanceComponent implements OnInit {
       'yyyy-MM-dd'
     );
     this.attendanceForm.value.employeeId= this.employeeId;
-    console.log(this.attendanceForm.value)
     this.attendanceService.attend(this.attendanceForm.value).subscribe(()=>{
 
     });

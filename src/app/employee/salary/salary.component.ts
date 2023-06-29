@@ -39,7 +39,6 @@ export class SalaryComponent implements OnInit {
   });
   ngOnInit(): void {
     this.employeeId = this.routerActive.snapshot.paramMap.get('emplyeeId');
-    console.log("salary", this.employeeId);
   }
 
   Calculate() {
@@ -58,7 +57,6 @@ export class SalaryComponent implements OnInit {
       if (startDate && endDate) {
         this.employeeService.getEmployeeSalary(this.employeeId, startDate, endDate).subscribe((data)=>{
           this.employeeSalaryData= data;
-          console.log(this.employeeSalaryData,"salary");
         });
       }
     }
