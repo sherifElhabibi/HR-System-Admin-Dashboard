@@ -5,6 +5,7 @@ import { Department } from '../../models/Department/department';
 import { DepartmentService } from '../../services/department.service';
 import { Employee } from 'src/app/models/Employee/employee';
 import { EmployeeService } from 'src/app/services/employee.service';
+import { AuthService } from '../../services/auth.service'
 
 
 @Component({
@@ -17,8 +18,10 @@ export class ListComponent implements OnInit {
   constructor(
     public departmentService: DepartmentService,
     public empService: EmployeeService,
+    public authService:AuthService,
     public router: Router
   ) {}
+  position!:string;
   depts: Department[] = [];
   emps: Employee[] = [];
   flag = false;
@@ -33,6 +36,7 @@ export class ListComponent implements OnInit {
     this.departmentService.getAll().subscribe((data) => {
       this.depts = data;
     });
+    this.position = this.authService.getPostion();
   }
   editDept(deptedit: Department) {
     this.router.navigateByUrl(`/department/edit/${deptedit.departmentId}`);

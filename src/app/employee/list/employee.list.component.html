@@ -1,45 +1,51 @@
 <div class="row mt-5">
   <div class="col-6">
-      <h3>
-        <i class="bi bi-people-fill" aria-hidden="true"></i>
-        <b> All employees</b></h3>
+    <h3>
+      <i class="bi bi-people-fill" aria-hidden="true"></i>
+      <b> All employees</b>
+    </h3>
   </div>
 
 </div>
 <div class="table-responsive">
-<table class="table table-striped table-bordered styled-table">
-  <thead>
+  <table class="table table-striped table-bordered styled-table">
+    <thead>
       <tr style="text-align: center;" class="text-light">
-          <th>Full Name</th>
-          <th><i class="bi bi-person-bounding-box"></i></th>
-          <th>Actions</th>
+        <th>Full Name</th>
+        <th><i class="bi bi-person-bounding-box"></i></th>
+        <th>Actions</th>
       </tr>
-  </thead>
-  <tbody>
-      <tr *ngFor="let employee of employees;let i = index"
-          style="text-align: center;">
-          <td>{{ employee.employeeFirstName+" "+employee.employeeLastName}}</td>
-          <td><img src="{{ employee.employeeProfileUrl}}" alt="employee_Image"></td>
-          <td class="actions d-flex justify-content-around" >
-            <div class="buttons d-flex flex-column d-md-flex flex-md-row gap-2">
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employees;let i = index" style="text-align: center;">
+        <td>{{ employee.employeeFirstName+" "+employee.employeeLastName}}</td>
+        <td><img src="{{ employee.employeeProfileUrl}}" alt="employee_Image"></td>
+        <td class="actions d-flex justify-content-around">
+          <div class="buttons d-flex flex-column d-md-flex flex-md-row gap-2">
+            <div *ngIf="position === 'Admin' || position === 'HR'">
               <a [routerLink]="['/employees/edit',employee.emplyeeId]">
                 <button type="button" class="btn btn-sm btn-edit me-2">
                   <i class="fa fa-edit"></i>
                 </button>
               </a>
-                <a  [routerLink]="['/employees/details',employee.emplyeeId]">
-                    <button class="btn btn-sm btn-dark me-2">
-                      <i class="fa fa-eye"></i>
-                    </button>
-                  </a>
-                  <a>
-                    <button class="btn btn-sm btn-danger me-2" (click)="delete(employee.emplyeeId)">
-                      <i class="fa fa-trash"></i>
-                    </button>
-                  </a>
             </div>
-          </td>
+            <div *ngIf="position === 'Admin' || position === 'Accountant' || position === 'Employee'">
+              <a [routerLink]="['/employees/details',employee.emplyeeId]">
+                <button class="btn btn-sm btn-dark me-2">
+                  <i class="fa fa-eye"></i>
+                </button>
+              </a>
+            </div>
+            <div *ngIf="position === 'Admin' || position === 'HR'">
+              <a>
+                <button class="btn btn-sm btn-danger me-2" (click)="delete(employee.emplyeeId)">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </a>
+            </div>
+          </div>
+        </td>
       </tr>
-  </tbody>
-</table>
+    </tbody>
+  </table>
 </div>

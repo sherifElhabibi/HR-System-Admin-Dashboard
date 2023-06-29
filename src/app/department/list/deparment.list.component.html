@@ -1,12 +1,14 @@
 <div class="container">
   <div class="row">
     <div class="text-end">
-      <a [routerLink]="['/department/create']">
-        <button type="button" class="btn btn-sm btn-primary me-2 col-2 btn-add" id="addButton">
-          Add New Department
-          <i class="fa fa-plus"></i>
-        </button>
-      </a>
+      <div *ngIf="position === 'Admin'">
+        <a [routerLink]="['/department/create']">
+          <button type="button" class="btn btn-sm btn-primary me-2 col-2 btn-add" id="addButton">
+            Add New Department
+            <i class="fa fa-plus"></i>
+          </button>
+        </a>
+      </div>
     </div>
   </div>
   <br>
@@ -31,18 +33,25 @@
         <td>{{department.noEmployees}}</td>
         <td style="display: flex;justify-content: space-around;">
           <div class="buttons d-flex flex-column d-md-flex flex-md-row gap-2">
-            <a  [routerLink]="['edit',department.departmentId]"  (click)="editDept(department)" >
-              <button type="button" class="btn btn-sm btn-edit me-2">
-                <i class="fa fa-edit"></i>
-              </button>
-            </a>
-            <a [routerLink]="['/department/details/', department.departmentId]">
-              <button class="btn btn-sm btn-dark me-2">
-                <i class="fa fa-eye"></i>
-              </button>
-            </a>
-            <a class="btn btn-sm btn-danger" [routerLink]="['/department/delete/',department.departmentId]"> <i class="fa fa-trash"></i>
-            </a> 
+            <div *ngIf="position == 'Admin'">
+              <a [routerLink]="['edit',department.departmentId]" (click)="editDept(department)">
+                <button type="button" class="btn btn-sm btn-edit me-2">
+                  <i class="fa fa-edit"></i>
+                </button>
+              </a>
+            </div>
+            <div *ngIf="position === 'Admin' || position === 'HR'">
+              <a [routerLink]="['/department/details/', department.departmentId]">
+                <button class="btn btn-sm btn-dark me-2">
+                  <i class="fa fa-eye"></i>
+                </button>
+              </a>
+            </div>
+            <div *ngIf="position == 'Admin'">
+              <a class="btn btn-sm btn-danger" [routerLink]="['/department/delete/',department.departmentId]"> <i
+                  class="fa fa-trash"></i>
+              </a>
+            </div>
           </div>
         </td>
       </tr>
@@ -85,17 +94,16 @@
     <option *ngFor="let option of depts" [ngValue]="option.departmentId">{{ option.departmentName}}</option>
   </select><br/> -->
 
- 
-  <!-- <select [(ngModel)]="eachobject" multiple>
+
+<!-- <select [(ngModel)]="eachobject" multiple>
     <option *ngFor="let emp of eachobject" >
       {{emp}}
     </option>
   </select> -->
-  <!-- <div>
+<!-- <div>
     selectedEmployeeIds
     <input type="text" id="eachobject" name="eachobject" [(ngModel)]="eachobject">
   </div>
   <a (click)="deleteDept(idd,targetDepartmentId,eachobject)"> <i class="bi bi-x-circle-fill text-danger"></i></a>
 
 </div>  -->
-

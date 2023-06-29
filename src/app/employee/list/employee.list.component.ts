@@ -4,6 +4,7 @@ import { EmployeeService } from '../../services/employee.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DeleteConfirmationComponent } from 'src/app/shared/delete-confirmation.component';
+import { AuthService } from '../../services/auth.service'
 
 @Component({
   selector: 'app-employee-list',
@@ -14,10 +15,12 @@ export class EmployeeListComponent implements OnInit {
   constructor(
     private empServ: EmployeeService,    
     private dialog: MatDialog,
+    public authService:AuthService,
     private snackBar: MatSnackBar) {
   }
   displayedColumns: string[] = ['employeeFirstName', 'employeeLastName','employeeProfileUrl', 'actions'];
   employees: Employee[]=[];
+  position!:string;
   ngOnInit(): void {
     this.empServ.getAllEmployees().subscribe(
       (response:any) => {
@@ -28,6 +31,7 @@ export class EmployeeListComponent implements OnInit {
         console.log(error);
       }
     );
+    this.position = this.authService.getPostion();
   }
   delete(id: number) {
     const dialogRef = this.dialog.open(DeleteConfirmationComponent);
