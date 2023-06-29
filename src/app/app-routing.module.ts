@@ -101,11 +101,6 @@ const routes: Routes = [
         loadChildren: () =>
           import('./views/widgets/widgets.module').then((m) => m.WidgetsModule)
       },
-      // {
-      //   path: 'pages',
-      //   loadChildren: () =>
-      //     import('./views/pages/pages.module').then((m) => m.PagesModule)
-      // },
     ]
   },
   { path: '**', redirectTo: 'login' }
