@@ -31,6 +31,8 @@ export class AddProjectComponent {
     projectName: {
       required: 'You must enter the name of the project',
       pattern: 'Name can use combination of uppercase and lowercase letters, numbers, and spaces',
+      minLength: 'Project should be at least 3 characters long',
+      maxLength: 'Project should be at most 20 characters long'
     },
     projectTotalBudget: {
       required: 'You must enter the project total budget.',
@@ -42,17 +44,21 @@ export class AddProjectComponent {
     },
     projectLocation: {
       required: 'You must enter the project location.',
-      pattern: 'Location can contains combination of uppercase and lowercase letters, numbers, and spaces'
+      pattern: 'Location can contains combination of uppercase and lowercase letters, numbers, and spaces',
+      minLength: 'Project location should be at least 3 characters long',
+      maxLength: 'Project location should be at most 20 characters long'
     },
     projectDescription: {
       required: 'You must enter the project description.',
-      pattern: 'Location can contains combination of uppercase and lowercase letters, numbers, and spaces'
+      pattern: 'Location can contains combination of uppercase and lowercase letters, numbers, and spaces',
+      minLength: 'Project description should be at least 3 characters long',
+      maxLength: 'Project description should be at most 60 characters long'
     },
     projectStartDate: {
-      required: 'You must enter the project description.',
+      required: 'You must enter the project start date.',
     },
     projectEndDate: {
-      required: 'You must enter the project description.',
+      required: 'You must enter the project end date.',
     },
     projectStatus: {
       required: 'Project status is required.',
@@ -61,7 +67,9 @@ export class AddProjectComponent {
     /*------------- projectPhases validation -------------------*/
     phaseName: {
       required: 'You must enter the phase name.',
-      pattern: 'Phase name can contains combination of uppercase and lowercase letters, numbers, and saces'
+      pattern: 'Phase name can contains combination of uppercase and lowercase letters, numbers, and saces',
+      minLength: 'Project name should be at least 3 characters long',
+      maxLength: 'Project name should be at most 20 characters long'
     },
     phaseStartDate: {
       required: 'You must enter the phase start date.',
@@ -71,7 +79,9 @@ export class AddProjectComponent {
     },
     phaseMilestone: {
       required: 'You must enter the phase milestone.',
-      pattern: 'Milestone can contains combination of uppercase and lowercase letters, numbers, and spaces'
+      pattern: 'Milestone can contains combination of uppercase and lowercase letters, numbers, and spaces',
+      minLength: 'Project milestone should be at least 3 characters long',
+      maxLength: 'Project milestone should be at most 20 characters long'
     },
     phaseHrBudget: {
       required: 'You must enter the phase hour budget.',
@@ -97,6 +107,8 @@ export class AddProjectComponent {
       '',
       Validators.compose([
         Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(20),
         Validators.pattern('^[a-zA-Z0-9\\s]*$'),
       ])
     ),
@@ -122,6 +134,8 @@ export class AddProjectComponent {
       '',
       Validators.compose([
         Validators.required, 
+        Validators.minLength(3),
+        Validators.maxLength(20),
         Validators.pattern('^[a-zA-Z0-9\\s]*$')
       ])
     ),
@@ -137,6 +151,8 @@ export class AddProjectComponent {
       '',
       Validators.compose([
         Validators.required, 
+        Validators.minLength(3),
+        Validators.maxLength(60),
         Validators.pattern('^[a-zA-Z0-9\\s]*$')
       ])
     ),
@@ -148,7 +164,13 @@ export class AddProjectComponent {
     return this.builder.group({
       phaseName: this.builder.control(
         0,
-        Validators.compose([Validators.required])
+        Validators.compose(
+          [
+            Validators.required,
+            Validators.minLength(3),
+            Validators.maxLength(20),
+            Validators.pattern('^[a-zA-Z0-9\\s]*$')
+          ])
       ),
       phaseStartDate: this.builder.control(
         '',
@@ -161,7 +183,9 @@ export class AddProjectComponent {
       phaseMilestone: this.builder.control(
         '',
         Validators.compose([
-        Validators.required, 
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(20), 
         Validators.pattern('^[a-zA-Z0-9\\s]*$')
       ])
       ),

@@ -53,6 +53,8 @@ export class EditProjectComponent implements OnInit {
     projectName: {
       required: 'You must enter the name of the project',
       pattern: 'Name can use combination of uppercase and lowercase letters, numbers, and spaces',
+      minLength: 'Phase name must be at least 3 characters',
+      maxLength: 'Phase name must be at most 20 characters'
     },
     projectTotalBudget: {
       required: 'You must enter the project total budget.',
@@ -64,11 +66,15 @@ export class EditProjectComponent implements OnInit {
     },
     projectLocation: {
       required: 'You must enter the project location.',
-      pattern: 'Location can contains combination of uppercase and lowercase letters, numbers, and spaces'
+      pattern: 'Location can contains combination of uppercase and lowercase letters, numbers, and spaces',
+      minLength: 'Phase name must be at least 3 characters',
+      maxLength: 'Phase name must be at most 30 characters'
     },
     projectDescription: {
       required: 'You must enter the project description.',
-      pattern: 'Location can contains combination of uppercase and lowercase letters, numbers, and spaces'
+      pattern: 'Location can contains combination of uppercase and lowercase letters, numbers, and spaces',
+      minLength: 'Phase name must be at least 3 characters',
+      maxLength: 'Phase name must be at most 30 characters'
     },
     projectStartDate: {
       required: 'You must enter the project description.',
@@ -83,7 +89,7 @@ export class EditProjectComponent implements OnInit {
     /*------------- projectPhases validation -------------------*/
     phaseName: {
       required: 'You must enter the phase name.',
-      pattern: 'Phase name can contains combination of uppercase and lowercase letters, numbers, and saces'
+      pattern: 'Phase name can contains combination of uppercase and lowercase letters, numbers, and saces',
     },
     phaseStartDate: {
       required: 'You must enter the phase start date.',
@@ -93,7 +99,9 @@ export class EditProjectComponent implements OnInit {
     },
     phaseMilestone: {
       required: 'You must enter the phase milestone.',
-      pattern: 'Milestone can contains combination of uppercase and lowercase letters, numbers, and spaces'
+      pattern: 'Milestone can contains combination of uppercase and lowercase letters, numbers, and spaces',
+      minLength: 'Phase milestone must be at least 3 characters',
+      maxLength: 'Phase milestone must be at most 30 characters'
     },
     phaseHrBudget: {
       required: 'You must enter the phase hour budget.',
@@ -119,6 +127,8 @@ export class EditProjectComponent implements OnInit {
         '',
         Validators.compose([
           Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(20),
           Validators.pattern('^[a-zA-Z0-9\\s]*$'),
         ])
       ),
@@ -126,7 +136,7 @@ export class EditProjectComponent implements OnInit {
         0,
         Validators.compose([
           Validators.required,
-           Validators.pattern('^[0-9]+$')
+          Validators.pattern('^[0-9]+$')
           ])
       ),
       projectStatus: this.builder.control(
@@ -137,13 +147,15 @@ export class EditProjectComponent implements OnInit {
         0,
         Validators.compose([
           Validators.required,
-           Validators.pattern('^[0-9]+$')
+          Validators.pattern('^[0-9]+$')
           ])
       ),
       projectLocation: this.builder.control(
         '',
         Validators.compose([
           Validators.required, 
+          Validators.minLength(3),
+          Validators.maxLength(30),
           Validators.pattern('^[a-zA-Z0-9\\s]*$')
         ])
       ),
@@ -159,6 +171,8 @@ export class EditProjectComponent implements OnInit {
         '',
         Validators.compose([
           Validators.required, 
+          Validators.minLength(3),
+          Validators.maxLength(30),
           Validators.pattern('^[a-zA-Z0-9\\s]*$')
         ])
       ),
@@ -203,7 +217,10 @@ export class EditProjectComponent implements OnInit {
   }
   createPhaseFormGroup(phase: any): FormGroup {
     return this.builder.group({
-      phaseName: [phase.phaseName, Validators.required],
+      phaseName: [phase.phaseName, Validators.compose([
+        Validators.required, 
+        Validators.pattern('^[a-zA-Z0-9\\s]*$')
+      ])],
       phaseHrBudget: [phase.phaseHrBudget,
          Validators.compose([
         Validators.required, 
@@ -212,6 +229,8 @@ export class EditProjectComponent implements OnInit {
       phaseMilestone: [phase.phaseMilestone,
       Validators.compose([
       Validators.required, 
+      Validators.minLength(3),
+      Validators.maxLength(30),
       Validators.pattern('^[a-zA-Z0-9\\s]*$')
     ])],
       phaseStartDate: [phase.phaseStartDate, Validators.required],

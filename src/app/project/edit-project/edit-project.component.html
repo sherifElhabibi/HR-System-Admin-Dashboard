@@ -16,7 +16,7 @@
           <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-md-3 gap-0">
             <mat-form-field class="col-12 col-md-6">
               <mat-label>Project Name</mat-label>
-              <input matInput formControlName="projectName">
+              <input [maxlength]="20" matInput formControlName="projectName" [minlength]="3" [maxlength]="20">
               <mat-error class="error-message" *ngIf="projectform.get('projectName')?.invalid &&
                   (projectform.get('projectName')?.dirty || projectform.get('projectName')?.touched)">
                 <span *ngIf="projectform.get('projectName')?.errors?.['required']">
@@ -24,6 +24,12 @@
                 </span>
                 <span *ngIf="projectform.get('projectName')?.errors?.['pattern']">
                   {{ validationMessages.projectName.pattern }}
+                </span>
+                <span *ngIf="projectform.get('projectName')?.errors?.['minLength']">
+                  {{ validationMessages.projectName.minLength }}
+                </span>
+                <span *ngIf="projectform.get('projectName')?.errors?.['maxLength']">
+                  {{ validationMessages.projectName.maxLength }}
                 </span>
               </mat-error>
             </mat-form-field>
@@ -76,7 +82,7 @@
           <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-md-3 gap-0">
             <mat-form-field class="col-12 col-md-6">
               <mat-label>project Location</mat-label>
-              <input matInput formControlName="projectLocation">
+              <input matInput formControlName="projectLocation" [maxlength]="30">
               <mat-error class="error-message" *ngIf="projectform.get('projectLocation')?.invalid &&
                   (projectform.get('projectLocation')?.dirty || projectform.get('projectLocation')?.touched)">
                 <span *ngIf="projectform.get('projectLocation')?.errors?.['required']">
@@ -85,11 +91,17 @@
                 <span *ngIf="projectform.get('projectLocation')?.errors?.['pattern']">
                   {{ validationMessages.projectLocation.pattern }}
                 </span>
+                <span *ngIf="projectform.get('projectLocation')?.errors?.['minLength']">
+                  {{ validationMessages.projectLocation.minLength }}
+                </span>
+                <span *ngIf="projectform.get('projectLocation')?.errors?.['maxLength']">
+                  {{ validationMessages.projectLocation.maxLength }}
+                </span>
               </mat-error>
             </mat-form-field>
             <mat-form-field class="col-12 col-md-6">
               <mat-label>project Description</mat-label>
-              <input matInput formControlName="projectDescription">
+              <input matInput formControlName="projectDescription" [minLength]="3" [maxLength]="60">
               <mat-error class="error-message" *ngIf="projectform.get('projectDescription')?.invalid &&
                     (projectform.get('projectDescription')?.dirty || projectform.get('projectDescription')?.touched)">
                 <span *ngIf="projectform.get('projectDescription')?.errors?.['required']">
@@ -97,6 +109,12 @@
                 </span>
                 <span *ngIf="projectform.get('projectDescription')?.errors?.['pattern']">
                   {{ validationMessages.projectDescription.pattern }}
+                </span>
+                <span *ngIf="projectform.get('projectDescription')?.errors?.['minLength']">
+                  {{ validationMessages.projectDescription.minLength }}
+                </span>
+                <span *ngIf="projectform.get('projectDescription')?.errors?.['maxLength']">
+                  {{ validationMessages.projectDescription.maxLength }}
                 </span>
               </mat-error>
             </mat-form-field>

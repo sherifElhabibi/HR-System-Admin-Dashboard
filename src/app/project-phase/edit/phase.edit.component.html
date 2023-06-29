@@ -40,7 +40,13 @@
                 Milestone is required
               </small>
               <small *ngIf="getPhaseMilestone()?.errors?.['pattern']" class="text-danger">
-                 can contain uppercase, lowercase letters, numbers and spaces
+                can contain uppercase, lowercase letters, numbers and spaces
+              </small>
+              <small *ngIf="getPhaseMilestone()?.errors?.['minLength']" class="text-danger">
+                phase milestone should be at least 3 characters 
+              </small>
+              <small *ngIf="getPhaseMilestone()?.errors?.['maxLength']" class="text-danger">
+                phase milestone should be at most 30 characters
               </small>
             </mat-error>
           </mat-form-field>
