@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProjectPhaseById } from 'src/app/models/projectPhase/ProjectPhaseById';
+import { AuthService } from '../../services/auth.service'
 import { ProjectphasesService } from 'src/app/services/projectphases.service';
 import { DeleteConfirmationComponent } from 'src/app/shared/delete-confirmation.component';
 
@@ -16,11 +16,13 @@ export class PhaseListComponent {
   phase: any;
   phases: any;
   id!:number;
+  position!:string;
   constructor(
     private phaseService: ProjectphasesService,
     public activatedRoute:ActivatedRoute,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
+    public authService:AuthService,
     public router:Router){}
   
   ngOnInit():void {
@@ -28,6 +30,7 @@ export class PhaseListComponent {
       this.phases=data;
       console.log(this.phases);
     })
+    this.position = this.authService.getPostion();
   }
 
   delete(id: number) {

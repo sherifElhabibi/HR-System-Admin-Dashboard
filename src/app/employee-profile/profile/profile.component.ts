@@ -101,8 +101,4 @@ export class ProfileComponent {
       divElement.style.display = 'none';
     }
   }
-  signOut(){
-    this.authService.logOut();
-    this.router.navigateByUrl('/login');
-  }
 }

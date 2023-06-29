@@ -6,6 +6,7 @@ import { DeleteConfirmationComponent } from 'src/app/shared/delete-confirmation.
 
 import { ProjectService } from '../../services/project.service';
 import { Project } from 'src/app/models/project/Project';
+import { AuthService } from '../../services/auth.service'
 
 @Component({
   selector: 'app-list',
@@ -17,9 +18,11 @@ export class ListComponent implements OnInit {
     private projectservice: ProjectService,
     public activatedRoute: ActivatedRoute,
     private dialog: MatDialog,
+    public authService:AuthService,
     private snackBar: MatSnackBar
   ) {}
   projects: Project[] = [];
+  position!:string;
   ngOnInit(): void {
     this.projectservice.getAllProjects().subscribe(
       (projectList) => {
@@ -30,6 +33,8 @@ export class ListComponent implements OnInit {
         console.log('Error retrieving projects:', error);
       }
     );
+    this.position = this.authService.getPostion();
+    console.log(this.position)
   }
 
   delete(id: number): void {

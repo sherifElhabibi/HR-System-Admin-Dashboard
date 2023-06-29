@@ -18,17 +18,43 @@ import { INavData } from '@coreui/angular';
       ]
     },
     {
-      name: 'Employees',
-      url: '/employees',
-      iconComponent: { name: 'cil-user' },
+      name: 'Projects',
+      url: '/project',
+      iconComponent: { name: 'cil-star' },
       children: [
         {
           name: 'List',
-          url: '/employees/list'
+          url: '/project/'
         },
         {
           name: 'Create',
-          url: '/employees/create'
+          url: '/project/add'
+        }
+      ]
+    },
+    {
+      name: 'Projects Phases',
+      url: '/phases',
+      iconComponent: { name: 'cil-cursor' },
+      children: [
+        {
+          name: 'List',
+          url: '/phases/list'
+        },
+      ]
+    },
+    {
+      name: 'Projects Tasks',
+      url: '/projecttask',
+      iconComponent: { name: 'cil-task' },
+      children: [
+        {
+          name: 'List',
+          url: '/projecttask/list'
+        },
+        {
+          name: 'Create',
+          url: '/projecttask/create'
         },
       ]
     },
@@ -52,54 +78,17 @@ import { INavData } from '@coreui/angular';
       ]
     },
     {
-      name: 'Projects Tasks',
-      url: '/projecttask',
-      iconComponent: { name: 'cil-task' },
+      name: 'Employees',
+      url: '/employees',
+      iconComponent: { name: 'cil-user' },
       children: [
         {
           name: 'List',
-          url: '/projecttask/list'
+          url: '/employees/list'
         },
         {
           name: 'Create',
-          url: '/projecttask/create'
-        },
-      ]
-    },
-    {
-      name: 'Projects Phases',
-      url: '/phases',
-      iconComponent: { name: 'cil-cursor' },
-      children: [
-        {
-          name: 'List',
-          url: '/phases/list'
-        },
-      ]
-    },
-    {
-      name: 'Projects',
-      url: '/project',
-      iconComponent: { name: 'cil-star' },
-      children: [
-        {
-          name: 'List',
-          url: '/project/'
-        },
-        {
-          name: 'Create',
-          url: '/project/add'
-        }
-      ]
-    },
-    {
-      name: 'Account',
-      url: '/login',
-      iconComponent: { name: 'cil-star' },
-      children: [
-        {
-          name: 'Login',
-          url: '/login'
+          url: '/employees/create'
         },
       ]
     },
