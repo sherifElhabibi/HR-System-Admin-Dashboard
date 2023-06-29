@@ -63,6 +63,8 @@ export class PhaseEditComponent implements OnInit {
     phaseEndDate: ['', [Validators.required]],
     phaseMilestone:  ['', [
       Validators.required, 
+      Validators.minLength(3),
+        Validators.maxLength(30),
       Validators.pattern('^[a-zA-Z0-9\\s]*$')
     ]],
     phaseHrBudget: [0, [
