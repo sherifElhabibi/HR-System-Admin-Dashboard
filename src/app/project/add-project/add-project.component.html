@@ -16,7 +16,7 @@
         <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-md-3 gap-0">
           <mat-form-field class="col-12 col-md-6">
             <mat-label>Project Name</mat-label>
-            <input matInput formControlName="projectName">
+            <input [maxlength]="20" matInput formControlName="projectName">
             <mat-error class="error-message" *ngIf="projectform.get('projectName')?.invalid &&
                 (projectform.get('projectName')?.dirty || projectform.get('projectName')?.touched)">
               <span *ngIf="projectform.get('projectName')?.errors?.['required']">
