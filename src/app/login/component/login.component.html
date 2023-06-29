@@ -8,7 +8,7 @@
       </div>
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
         <form [formGroup]="loginForm">
-          <!-- Email input -->
+
             <mat-form-field class="form-outline col-12">
               <input matInput placeholder="Email" formControlName="email">
               <mat-error *ngIf="getEmail()?.invalid && getEmail()?.touched">
@@ -16,14 +16,14 @@
                 <small *ngIf="getEmail()?.errors?.['pattern']" class="text-danger">Invalid email format</small>
               </mat-error>
             </mat-form-field>
-          <!-- Password input -->
+
             <mat-form-field class="form-outline col-12">
               <input matInput type="password" placeholder="Password" formControlName="password">
               <mat-error *ngIf="getPassword()?.invalid && getPassword()?.touched">
                 <small *ngIf="getPassword()?.errors?.['required']" class="text-danger">Password is required</small>
               </mat-error>
             </mat-form-field>
-           <!-- Login btn -->
+
           <div class="text-center text-lg-center mt-4 pt-2">
             <button type="button" class="btn "
               style="padding-left: 2.5rem; padding-right: 2.5rem;" (click)="onSubmit()">Login</button>

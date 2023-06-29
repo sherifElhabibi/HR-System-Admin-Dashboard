@@ -16,6 +16,6 @@ import { MaterialModule } from '../shared/material.module';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule
-  ]
+  ],
 })
 export class LoginModule { }

@@ -1,30 +1,39 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DefaultLayoutComponent } from './containers';
-import { Page404Component } from './views/pages/page404/page404.component';
-import { Page500Component } from './views/pages/page500/page500.component';
-import { LoginComponent } from './views/pages/login/login.component';
-import { RegisterComponent } from './views/pages/register/register.component';
+import { LoginnComponent  } from './login/component/login.component';
 import { AttendanceComponent } from './attendance/attendance.component';
-import { LoginnComponent } from './login/component/login.component';
-
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   redirectTo: 'dashboard',
-  //   pathMatch: 'full'
-  // },
   {
     path: '',
-    component: LoginnComponent,
-    data: {
-      title: 'Home'
-    },
+    component: DefaultLayoutComponent,
     children: [
+      {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full'
+      },
+      {
+        path: 'login',
+        component: LoginnComponent,
+        data: {
+          title: 'Login Page'
+        }
+      },
+      {
+        path: 'dashboard',
+        loadChildren: () =>
+          import('./views/dashboard/dashboard.module').then((m) => m.DashboardModule)
+      },
       {
         path: 'employees',
         loadChildren: () =>
           import('./employee/employee.module').then((m) => m.EmployeeModule)
+      },
+      {
+        path: 'login',
+        loadChildren: () =>
+          import('./login/login.module').then((m) => m.LoginModule)
       },
       {
         path: 'employeeProfil',
@@ -46,22 +55,12 @@ const routes: Routes = [
         loadChildren: () =>
           import('./project-phase/project.phase.module').then((m) => m.ProjectPhaseModule)
       },
-      {path: 'projecttask',
+      {
+        path: 'projecttask',
         loadChildren: () =>
           import('./project-task/project-task.module').then((m) => m.ProjectTaskModule)
       },
-      { path: 'attendance', component: AttendanceComponent }
-      ,
-      {
-      path: 'login',
-      loadChildren: () =>
-        import('./login/login.module').then((m) => m.LoginModule)
-      },
-      {
-        path: 'dashboard',
-        loadChildren: () =>
-          import('./views/dashboard/dashboard.module').then((m) => m.DashboardModule)
-      },
+      { path: 'attendance', component: AttendanceComponent },
       {
         path: 'theme',
         loadChildren: () =>
@@ -102,42 +101,14 @@ const routes: Routes = [
         loadChildren: () =>
           import('./views/widgets/widgets.module').then((m) => m.WidgetsModule)
       },
-      {
-        path: 'pages',
-        loadChildren: () =>
-          import('./views/pages/pages.module').then((m) => m.PagesModule)
-      },
+      // {
+      //   path: 'pages',
+      //   loadChildren: () =>
+      //     import('./views/pages/pages.module').then((m) => m.PagesModule)
+      // },
     ]
   },
-  {
-    path: '404',
-    component: Page404Component,
-    data: {
-      title: 'Page 404'
-    }
-  },
-  {
-    path: '500',
-    component: Page500Component,
-    data: {
-      title: 'Page 500'
-    }
-  },
-  {
-    path: 'login',
-    component: LoginComponent,
-    data: {
-      title: 'Login Page'
-    }
-  },
-  {
-    path: 'register',
-    component: RegisterComponent,
-    data: {
-      title: 'Register Page'
-    }
-  },
-  {path: '**', redirectTo: 'dashboard'}
+  { path: '**', redirectTo: 'login' }
 ];
 
 @NgModule({
@@ -146,10 +117,8 @@ const routes: Routes = [
       scrollPositionRestoration: 'top',
       anchorScrolling: 'enabled',
       initialNavigation: 'enabledBlocking'
-      // relativeLinkResolution: 'legacy'
     })
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule { }
