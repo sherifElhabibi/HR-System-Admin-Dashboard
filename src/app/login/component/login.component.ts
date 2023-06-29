@@ -32,43 +32,43 @@ export class LoginnComponent {
       return this.loginForm.get('password');
     }
     
-    onSubmit() {
-      const { email, password } = this.loginForm.value;
-      let user = new User(email, password);
-      console.log(user);
-      this.authService.loginUser(user).subscribe(
-        (data) => {
-        console.log(data.data.token);
-          this.token = data.data.token;
-          this.decodedData = this.jwtHelper.decodeToken(this.token);
-          console.log(this.decodedData)
-          if (this.token) {
-            sessionStorage.setItem('token', this.token);
-            sessionStorage.setItem('userId', JSON.stringify(this.decodedData.Id));
-            sessionStorage.setItem('role', JSON.stringify(this.decodedData.Position));
-            
-            switch (this.decodedData.Position) {
-                 case 'Admin':
-                     this.router.navigateByUrl('/dashboard');
-                     break;
-                 case 'HR':
-                    this.router.navigateByUrl('/employeeProfil/profile/'+this.decodedData.Id);
-                    break;
-                 case 'Accountant':
-                    this.router.navigateByUrl('/employeeProfil/profile/'+this.decodedData.Id);
-                    break;
-                 case 'Employee':
-                   this.router.navigateByUrl('/employeeProfil/profile/'+this.decodedData.Id);
+  onSubmit() {
+    const { email, password } = this.loginForm.value;
+    let user = new User(email, password);
+    console.log(user);
+    this.authService.loginUser(user).subscribe(
+      (data) => {
+      console.log(data.data.token);
+        this.token = data.data.token;
+        this.decodedData = this.jwtHelper.decodeToken(this.token);
+        console.log(this.decodedData)
+        if (this.token) {
+          sessionStorage.setItem('token', this.token);
+          sessionStorage.setItem('userId', JSON.stringify(this.decodedData.Id));
+          sessionStorage.setItem('role', JSON.stringify(this.decodedData.Position));
+          
+          switch (this.decodedData.Position) {
+               case 'Admin':
+                   this.router.navigateByUrl('/dashboard');
                    break;
-                 default:
-                this.router.navigateByUrl('/Home');
-                break;
-            }
+               case 'HR':
+                  this.router.navigateByUrl('/employeeProfil/profile/'+this.decodedData.Id);
+                  break;
+               case 'Accountant':
+                  this.router.navigateByUrl('/employeeProfil/profile/'+this.decodedData.Id);
+                  break;
+               case 'Employee':
+                 this.router.navigateByUrl('/employeeProfil/profile/'+this.decodedData.Id);
+                 break;
+               default:
+              this.router.navigateByUrl('/Home');
+              break;
           }
-        },
-        (error) => {
-          this.error = error;
         }
-      );
-    }    
+      },
+      (error) => {
+        this.error = error;
+      }
+    );
+  }    
 }

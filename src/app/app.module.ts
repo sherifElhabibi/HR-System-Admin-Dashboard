@@ -8,7 +8,6 @@ import { DatePipe } from '@angular/common';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TokenInterceptorService } from './token-interceptor/token.interceptor.service';
 
-
 // Import routing module
 import { AppRoutingModule } from './app-routing.module';
 
@@ -51,6 +50,7 @@ import { AttendanceComponent } from './attendance/attendance.component';
 import { AttendanceModule } from './attendance/attendance.module';
 import { MaterialModule } from './shared/material.module';
 
+
 const APP_CONTAINERS = [
   DefaultFooterComponent,
   DefaultHeaderComponent,
@@ -92,7 +92,8 @@ const APP_CONTAINERS = [
     ReactiveFormsModule,
     MatSnackBarModule,
     EmployeeProfileModule,
-    AttendanceModule
+    AttendanceModule,
+    MaterialModule
         
   ],
   providers: [
