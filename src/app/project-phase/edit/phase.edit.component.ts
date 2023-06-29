@@ -10,6 +10,7 @@ import {
 import { ErrorStateMatcher } from '@angular/material/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectphasesService } from 'src/app/services/projectphases.service';
+import Swal from 'sweetalert2';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -124,6 +125,25 @@ export class PhaseEditComponent implements OnInit {
       .editPhase(this.id, this.editPhaseForm.value)
       .subscribe(() => {
         this.router.navigateByUrl('employees/list');
+      },
+      (error)=>{
+     if(error.status==200){
+        Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Your work has been saved',
+              showConfirmButton: false,
+              timer: 1500
+            })
+     }
+     else{
+          Swal.fire({
+            icon: 'warning',
+            text: 'Check your data !',
+            showConfirmButton: false,
+            timer:3000,
+          })
+     }
       });
   }
   back() {

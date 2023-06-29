@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 
 import { EmployeeService } from 'src/app/services/employee.service';
+import Swal from 'sweetalert2';
 
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -155,8 +156,45 @@ export class EmployeeCreateComponent {
     
     console.log(this.createEmpForm.value)
     this.empService.createEmployee(this.createEmpForm.value).subscribe(
-      (response) => {this.router.navigateByUrl('/employees/list'); console.log(response)},
-      (error) => console.log(error)
+      (response) => {this.router.navigateByUrl('/employees/list');
+      if(response.status==200){
+        Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Your work has been saved',
+              showConfirmButton: false,
+              timer: 1500
+            })
+            // this.snackBar.open('dept added successfully.', 'Close', {
+            //   duration: 3000,
+            // });
+            }
+      //  console.log(response),console.log(response.status);
+    },
+      (error) => {
+        console.log(error),
+        console.log(error.status)
+        if(error.status==200){
+          Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Your work has been saved',
+                showConfirmButton: false,
+                timer: 1500
+              })
+              // this.snackBar.open('dept added successfully.', 'Close', {
+              //   duration: 3000,
+              // });
+       }
+       else{
+        Swal.fire({
+          icon: 'error',
+          title: 'Please enter valid data',
+          showConfirmButton: false,
+          timer: 1500
+        })
+       }
+      }
     );
   }
   /* ------------- */

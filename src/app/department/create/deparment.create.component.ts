@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Employee } from 'src/app/models/Employee/employee';
+import Swal from 'sweetalert2';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -111,22 +112,45 @@ export class CreateComponent {
         .subscribe(
           (response) => {
             console.log(response);
-            this.snackBar.open('dept added successfully.', 'Close', {
-              duration: 3000,
-            });
             this.router.navigate(['project']);
           },
           (error) => {
             console.log(error);
-            this.snackBar.open(error.message, 'Close', {
-              duration: 3000,
-            });
+            if(error.status==200){
+              Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Your work has been saved',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+                  // this.snackBar.open('dept added successfully.', 'Close', {
+                  //   duration: 3000,
+                  // });
+           }
+           else{
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Something went wrong!',
+                  showConfirmButton: false,
+                  timer: 1500
+                })
+           }
+            // this.snackBar.open(error.message, 'Close', {
+            //   duration: 3000,
+            // });
           }
         );
     } else {
-      this.snackBar.open('Please enter valid data.', 'Close', {
-        duration: 3000,
-      });
+      Swal.fire({
+        icon: 'error',
+        title: 'Please enter valid data',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      // this.snackBar.open('Please enter valid data.', 'Close', {
+      //   duration: 3000,
+      // });
     }
   }
   showDiv() {

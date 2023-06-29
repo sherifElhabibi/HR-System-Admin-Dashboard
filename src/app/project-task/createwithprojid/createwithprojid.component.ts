@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProjecttaskService } from 'src/app/services/projecttask.service';
 import { MyErrorStateMatcher } from '../create/create.component';
 import { ProjectService } from 'src/app/services/project.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-createwithprojid',
@@ -65,7 +66,25 @@ export class CreatewithprojidComponent {
   createProjectTask(): void {
     this.taskService.createTaskwithprojId(this.createProjectTaskForm.value,this.idparam).subscribe(
       (response) => {this.router.navigateByUrl('/projecttask'); console.log(response),console.log(this.createProjectTaskForm.value)},
-      (error) => console.log(error)
+      (error) =>{
+        if(error.status==200){
+          Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Your work has been saved',
+                showConfirmButton: false,
+                timer: 1500
+              })
+       }
+       else{
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!',
+              showConfirmButton: false,
+            })
+       }
+      }
     );
   }
   goBack(): void {
