@@ -42,7 +42,7 @@ export class EditComponent {
     private router: Router,
     public activatedRoute: ActivatedRoute,
     private fb: FormBuilder
-  ) {}
+  ) { }
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((a) => {
       this.taskService.getProjectTaskById(a['id']).subscribe((task: any) => {
@@ -60,7 +60,8 @@ export class EditComponent {
       [
         Validators.required,
         Validators.minLength(3),
-        Validators.pattern('[a-zA-Z]*'),
+        Validators.maxLength(20),
+        Validators.pattern('^[a-zA-Z0-9\\s]*$'),
       ],
     ],
     taskDescription: [
@@ -68,7 +69,8 @@ export class EditComponent {
       [
         Validators.required,
         Validators.minLength(3),
-        Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9]).*$'),
+        Validators.maxLength(60),
+        Validators.pattern('^[a-zA-Z0-9\\s]*$'),
       ],
     ],
     totalHoursPerTask: ['', [Validators.required]],

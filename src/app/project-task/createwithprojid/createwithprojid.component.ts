@@ -11,24 +11,23 @@ import { ProjectService } from 'src/app/services/project.service';
   styleUrls: ['./createwithprojid.component.scss']
 })
 export class CreatewithprojidComponent {
-  idparam:any;
+  idparam: any;
   constructor(public taskService: ProjecttaskService,
     private activatedRoute: ActivatedRoute,
-     public fb: FormBuilder, public router:Router) 
-     {
-      
-     }
-     ngOnInit() {
-      this.activatedRoute.params.subscribe((a) => {
-     
-            this.idparam=a['id'];
-            console.log("create wih proj id" );
-            console.log(this.idparam );
-            
-          });
-        
-      
-    }
+    public fb: FormBuilder, public router: Router) {
+
+  }
+  ngOnInit() {
+    this.activatedRoute.params.subscribe((a) => {
+
+      this.idparam = a['id'];
+      console.log("create wih proj id");
+      console.log(this.idparam);
+
+    });
+
+
+  }
 
   matcher = new MyErrorStateMatcher();
   createProjectTaskForm = this.fb.group({
@@ -37,7 +36,8 @@ export class CreatewithprojidComponent {
       [
         Validators.required,
         Validators.minLength(3),
-        Validators.pattern('[a-zA-Z]*'),
+        Validators.maxLength(20),
+        Validators.pattern('^[a-zA-Z0-9\\s]*$'),
       ],
     ],
     taskDescription: [
@@ -45,11 +45,12 @@ export class CreatewithprojidComponent {
       [
         Validators.required,
         Validators.minLength(3),
-        Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9]).*$'),
+        Validators.maxLength(60),
+        Validators.pattern('^[a-zA-Z0-9\\s]*$'),
       ],
     ],
     totalHoursPerTask: ['', [Validators.required]],
- 
+
 
   });
   gettaskName() {
@@ -63,12 +64,12 @@ export class CreatewithprojidComponent {
   }
 
   createProjectTask(): void {
-    this.taskService.createTaskwithprojId(this.createProjectTaskForm.value,this.idparam).subscribe(
-      (response) => {this.router.navigateByUrl('/projecttask'); console.log(response),console.log(this.createProjectTaskForm.value)},
+    this.taskService.createTaskwithprojId(this.createProjectTaskForm.value, this.idparam).subscribe(
+      (response) => { this.router.navigateByUrl('/projecttask'); console.log(response), console.log(this.createProjectTaskForm.value) },
       (error) => console.log(error)
     );
   }
   goBack(): void {
-    this.router.navigate(['project/details/'+this.idparam]);
+    this.router.navigate(['project/details/' + this.idparam]);
   }
 }

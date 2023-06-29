@@ -42,7 +42,7 @@ export class CreateComponent {
   validationMessages = {
     departmentName: {
       required: 'You must enter the name of the department',
-      pattern: 'Name should only contain letters',
+      pattern: 'You can use combination of uppercase and lowercase letters, numbers, and spaces',
     },
     managerId: {
       required: 'You must enter the managerId',
@@ -56,7 +56,7 @@ export class CreateComponent {
     public fb: FormBuilder,
     private empService: EmployeeService,
     public router: Router
-  ) {}
+  ) { }
   ngOnInit() {
     this.empService.getAllEmployees().subscribe((emps: any) => {
       this.emps = emps;
@@ -73,7 +73,9 @@ export class CreateComponent {
       '',
       Validators.compose([
         Validators.required,
-        Validators.pattern('^[a-zA-Z]+$'),
+        Validators.minLength(3),
+        Validators.maxLength(20),
+        Validators.pattern('^[a-zA-Z0-9\\s]*$'),
       ])
     ),
     managerId: this.builder.control(
@@ -131,12 +133,12 @@ export class CreateComponent {
   }
   showDiv() {
     const divElement = document.getElementById('more');
-  
-    if (divElement?.style.display=='none') {
-      divElement.style.display ='';
+
+    if (divElement?.style.display == 'none') {
+      divElement.style.display = '';
     }
-    else if(divElement?.style.display==''){
-      divElement.style.display ='none';
+    else if (divElement?.style.display == '') {
+      divElement.style.display = 'none';
 
     }
   }

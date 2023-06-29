@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { ProjecttaskService} from 'src/app/services/projecttask.service';
- import { ErrorStateMatcher } from '@angular/material/core';
-import {  FormBuilder, FormControl, Validators } from '@angular/forms';
+import { ProjecttaskService } from 'src/app/services/projecttask.service';
+import { ErrorStateMatcher } from '@angular/material/core';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormGroupDirective, NgForm } from '@angular/forms';
 import { ProjectService } from 'src/app/services/project.service';
@@ -19,14 +19,13 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./create.component.scss']
 })
 export class CreateComponent {
-  projects:any=[];
+  projects: any = [];
   projectId: any;
 
   constructor(
-    public taskService: ProjecttaskService,   
+    public taskService: ProjecttaskService,
     public projectService: ProjectService,
-    public fb: FormBuilder, public router:Router) 
-  {
+    public fb: FormBuilder, public router: Router) {
     this.projectService.getAllProjects().subscribe((projectList) => {
       this.projects = projectList;
     });
@@ -38,7 +37,8 @@ export class CreateComponent {
       [
         Validators.required,
         Validators.minLength(3),
-        Validators.pattern('[a-zA-Z]*'),
+        Validators.maxLength(20),
+        Validators.pattern('^[a-zA-Z0-9\\s]*$'),
       ],
     ],
     taskDescription: [
@@ -46,6 +46,7 @@ export class CreateComponent {
       [
         Validators.required,
         Validators.minLength(3),
+        Validators.maxLength(60),
         Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9]).*$'),
       ],
     ],
@@ -66,16 +67,16 @@ export class CreateComponent {
   //   return this.createProjectTaskForm.get('projectId');
   // }
   createProjectTask(): void {
-    this.taskService.createProjectTask(this.createProjectTaskForm.value,this.projectId).subscribe(
-      (response) => {this.router.navigateByUrl('/projecttask'); console.log(response)},
+    this.taskService.createProjectTask(this.createProjectTaskForm.value, this.projectId).subscribe(
+      (response) => { this.router.navigateByUrl('/projecttask'); console.log(response) },
       (error) => console.log(error)
     );
   }
 
 
   onprojectIdChange(event: any) {
-    this.projectId= event.value;
- 
+    this.projectId = event.value;
+
   }
   goBack(): void {
     this.router.navigate(['projecttask/list']);

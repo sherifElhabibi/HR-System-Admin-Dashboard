@@ -21,7 +21,7 @@ export class EditComponent implements OnInit {
   validationMessages = {
     departmentName: {
       required: 'You must enter the name of the project',
-      pattern: 'Name should only contain letters',
+      pattern: 'You can use combination of uppercase and lowercase letters, numbers, and spaces',
     },
   };
 
@@ -43,7 +43,9 @@ export class EditComponent implements OnInit {
         '',
         Validators.compose([
           Validators.required,
-          Validators.pattern('^[a-zA-Z]+$'),
+          Validators.minLength(3),
+          Validators.maxLength(20),
+          Validators.pattern('^[a-zA-Z0-9\\s]*$'),
         ])
       ),
      employessIds: this.builder.array([]),

@@ -62,6 +62,9 @@
               <small *ngIf="getEmployeeOvertimeRate()?.errors?.['required']" class="text-danger">
                 Overtime Rate is required
               </small>
+              <small *ngIf="getEmployeeOvertimeRate()?.errors?.['pattern']" class="text-danger">
+                Overtime Rate should only contains numbers
+              </small>
             </mat-error>
           </mat-form-field>
         </div>
@@ -73,6 +76,9 @@
               <small *ngIf="getEmployeeRegularHoursPerDay()?.errors?.['required']" class="text-danger">
                 Regular Hours PerDay is required
               </small>
+              <small *ngIf="getEmployeeRegularHoursPerDay()?.errors?.['pattern']" class="text-danger">
+                Regular Hours PerDay should only contains numbers
+              </small>
             </mat-error>
           </mat-form-field>
           <mat-form-field class="col-12 col-md-6">
@@ -81,6 +87,9 @@
             <mat-error *ngIf="getEmployeeWorkingDaysPerWeek()?.invalid && getEmployeeWorkingDaysPerWeek()?.touched">
               <small *ngIf="getEmployeeWorkingDaysPerWeek()?.errors?.['required']" class="text-danger">
                 Working Days Per Week is required
+              </small>
+              <small *ngIf="getEmployeeWorkingDaysPerWeek()?.errors?.['pattern']" class="text-danger">
+                Working Days Per Week should only contains numbers
               </small>
             </mat-error>
           </mat-form-field>
@@ -139,8 +148,8 @@
             <mat-label>Profile Image</mat-label>
             <input matInput [formControlName]="'employeeProfileUrl'" type="text">
             <mat-error *ngIf="getProfileUrl()?.invalid && getProfileUrl()?.touched">
-              <small *ngIf="getProfileUrl()?.errors?.['required']" class="text-danger">
-                Profile Image URL is required
+              <small *ngIf="getProfileUrl()?.errors?.['pattern']" class="text-danger">
+                Fromat is not supported 
               </small>
             </mat-error>
           </mat-form-field>

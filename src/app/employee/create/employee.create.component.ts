@@ -23,9 +23,9 @@ export class EmployeeCreateComponent {
   constructor(
     public empService: EmployeeService,
     private fb: FormBuilder,
-    public router:Router,
+    public router: Router,
     private datePipe: DatePipe
-    ) {}
+  ) { }
   matcher = new MyErrorStateMatcher();
   createEmpForm = this.fb.group({
     employeeFirstName: [
@@ -33,7 +33,8 @@ export class EmployeeCreateComponent {
       [
         Validators.required,
         Validators.minLength(3),
-        Validators.pattern('[a-zA-Z]*'),
+        Validators.maxLength(10),
+        Validators.pattern('^[a-zA-Z\\s]*$'),
       ],
     ],
     employeeLastName: [
@@ -41,17 +42,45 @@ export class EmployeeCreateComponent {
       [
         Validators.required,
         Validators.minLength(3),
-        Validators.pattern('[a-zA-Z]*'),
+        Validators.maxLength(10),
+        Validators.pattern('^[a-zA-Z\\s]*$'),
       ],
     ],
-    employeeSalaryPerHour: [0, [Validators.required]],
-    employeeOvertimeRate: [0, [Validators.required]],
-    employeeRegularHoursPerDay: [0, [Validators.required]],
-    employeeWorkingDaysPerWeek: [0, [Validators.required]],
-    employeeProfileUrl: [''],
+    employeeSalaryPerHour: [0,
+      [
+        Validators.required,
+        Validators.pattern('^[0-9]+$')
+      ]
+    ],
+    employeeOvertimeRate: [0,
+      [
+        Validators.required,
+        Validators.pattern('^[0-9]+$')
+      ]
+    ],
+    employeeRegularHoursPerDay: [0,
+      [
+        Validators.required,
+        Validators.pattern('^[0-9]+$')
+      ]
+    ],
+    employeeWorkingDaysPerWeek: [0,
+      [
+        Validators.required,
+        Validators.pattern('^[0-9]+$')
+      ]
+    ],
+    employeeProfileUrl: ['',
+      [
+        Validators.pattern('\.(jpg|png|jpeg)$')
+      ]
+    ],
     employeePhone: [
       '',
-      [Validators.required, Validators.pattern(/^01[0125][0-9]{8}$/)],
+      [
+        Validators.required,
+        Validators.pattern(/^01[0125][0-9]{8}$/)
+      ],
     ],
     employeeEmail: [
       '',
@@ -62,10 +91,15 @@ export class EmployeeCreateComponent {
         ),
       ],
     ],
-    employeePassword: ['', Validators.required],
+    employeePassword: ['',
+      [
+        Validators.required,
+        Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&\\s])[A-Za-z\\d@$!%*#?&\\s]{8,}$')
+      ]
+    ],
     employeePosition: [0, Validators.required],
     employeeHiringDate: ['', Validators.required],
-    employeeStatus:[0, Validators.required]
+    employeeStatus: [0, Validators.required]
   });
 
   /* ------------------------ */
@@ -152,10 +186,10 @@ export class EmployeeCreateComponent {
         }
       }
     }
-    
+
     console.log(this.createEmpForm.value)
     this.empService.createEmployee(this.createEmpForm.value).subscribe(
-      (response) => {this.router.navigateByUrl('/employees/list'); console.log(response)},
+      (response) => { this.router.navigateByUrl('/employees/list'); console.log(response) },
       (error) => console.log(error)
     );
   }

@@ -103,7 +103,7 @@ export class EditProjectComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private snackBar: MatSnackBar,
     private datePipe: DatePipe
-  ) {}
+  ) { }
   ngOnInit() {
     this.employeeService.getAllEmployees().subscribe((employeeList) => {
       this.employees = employeeList;
@@ -115,7 +115,7 @@ export class EditProjectComponent implements OnInit {
         //   Validators.required,
         //   Validators.pattern('^[a-zA-Z]+$'),
         // ])
-        Validators.compose([Validators.required])
+        Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9\\s]*$')])
       ),
       projectTotalBudget: this.builder.control(
         0,
@@ -130,11 +130,11 @@ export class EditProjectComponent implements OnInit {
       ),
       projectHours: this.builder.control(
         0,
-        Validators.compose([Validators.required])
+        Validators.compose([Validators.required, Validators.pattern('^[0-9]+$')])
       ),
       projectLocation: this.builder.control(
         '',
-        Validators.compose([Validators.required])
+        Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9\\s]*$')])
       ),
       projectStartDate: this.builder.control(
         '',
@@ -146,7 +146,7 @@ export class EditProjectComponent implements OnInit {
       ),
       projectDescription: this.builder.control(
         '',
-        Validators.compose([Validators.required])
+        Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9\\s]*$')])
       ),
       projectPhases: this.builder.array([]),
       employeesInProjectIds: this.builder.array([]),

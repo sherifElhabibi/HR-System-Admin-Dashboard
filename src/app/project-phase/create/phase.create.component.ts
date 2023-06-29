@@ -19,17 +19,17 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./phase.create.component.scss']
 })
 export class PhaseCreateComponent {
-  idparam:any=0;
-  phase:any;
+  idparam: any = 0;
+  phase: any;
   // @Input() projectId: any;
 
-  constructor(public phaseService: ProjectphasesService, 
-    public projectService: ProjectService, 
-    public fb: FormBuilder, 
-    public router:Router, 
-    public activatedRoute:ActivatedRoute,) {}
+  constructor(public phaseService: ProjectphasesService,
+    public projectService: ProjectService,
+    public fb: FormBuilder,
+    public router: Router,
+    public activatedRoute: ActivatedRoute,) { }
 
-  ngOnInit():void {
+  ngOnInit(): void {
     // console.log("id from create phase->");
     // console.log(this.projectId);
 
@@ -45,7 +45,7 @@ export class PhaseCreateComponent {
     //     console.log("phase with proj id->");
     //     console.log(this.phase);
     //   });
-  
+
     //   })
   }
 
@@ -56,13 +56,11 @@ export class PhaseCreateComponent {
   matcher = new MyErrorStateMatcher();
 
   createProjectphaseForm = this.fb.group({
-    phaseName: ['',[Validators.required,],],
-    phaseStartDate: ['',[Validators.required,],],
+    phaseName: ['', [Validators.required,],],
+    phaseStartDate: ['', [Validators.required,],],
     phaseEndDate: ['', [Validators.required]],
-    phaseMilestone: ['', [Validators.required]],
-    phaseHrBudget: ['', [Validators.required]],
-
-
+    phaseMilestone: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9\\s]*$')]],
+    phaseHrBudget: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
   });
   getphaseName() {
     return this.createProjectphaseForm.get('phaseName');
@@ -81,8 +79,8 @@ export class PhaseCreateComponent {
   }
 
   createProjectphase(): void {
-    this.phaseService.createProjectPhase(this.idparam,this.createProjectphaseForm.value,).subscribe(
-      (response) => {this.router.navigateByUrl('/projecttask'); console.log(response)},
+    this.phaseService.createProjectPhase(this.idparam, this.createProjectphaseForm.value,).subscribe(
+      (response) => { this.router.navigateByUrl('/projecttask'); console.log(response) },
       (error) => console.log(error)
     );
   }
