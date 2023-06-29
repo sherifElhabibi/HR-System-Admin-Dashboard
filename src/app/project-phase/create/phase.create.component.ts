@@ -4,6 +4,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectService } from 'src/app/services/project.service';
 import { ProjectphasesService } from 'src/app/services/projectphases.service';
+import Swal from 'sweetalert2';
 
 
 
@@ -81,7 +82,25 @@ export class PhaseCreateComponent {
   createProjectphase(): void {
     this.phaseService.createProjectPhase(this.idparam, this.createProjectphaseForm.value,).subscribe(
       (response) => { this.router.navigateByUrl('/projecttask'); console.log(response) },
-      (error) => console.log(error)
+      (error) => {
+        if(error.status==200){
+          Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Your work has been saved',
+                showConfirmButton: false,
+                timer: 1500
+              })
+       }
+       else{
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!',
+              showConfirmButton: false,
+            })
+       }
+      }
     );
   }
 }

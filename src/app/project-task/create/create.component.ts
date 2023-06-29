@@ -5,6 +5,7 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormGroupDirective, NgForm } from '@angular/forms';
 import { ProjectService } from 'src/app/services/project.service';
+import Swal from 'sweetalert2';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -69,7 +70,31 @@ export class CreateComponent {
   createProjectTask(): void {
     this.taskService.createProjectTask(this.createProjectTaskForm.value, this.projectId).subscribe(
       (response) => { this.router.navigateByUrl('/projecttask'); console.log(response) },
-      (error) => console.log(error)
+      (error) => {
+        console.log(error),
+        console.log(error.status)
+        if(error.status==200){
+          Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Your work has been saved',
+                showConfirmButton: false,
+                timer: 1500
+              })
+              // this.snackBar.open('dept added successfully.', 'Close', {
+              //   duration: 3000,
+              // });
+       }
+       else{
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!',
+              showConfirmButton: false,
+              timer:3000,
+            })
+       }
+      }
     );
   }
 

@@ -14,6 +14,7 @@ import { EmployeeService } from '../../services/employee.service';
 import { GetAllEmployees } from '../../models/Employee/GetAllEmployees';
 import { DatePipe } from '@angular/common';
 import { GetProjectById } from 'src/app/models/project/GetProjectById';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-project',
@@ -340,9 +341,37 @@ export class EditProjectComponent implements OnInit {
             .updateProject(parameters['id'], this.projectform.value)
             .subscribe(() => {
               this.router.navigate(['project']);
+            },
+            (error)=>{
+              if(error.status==200){
+                Swal.fire({
+                      position: 'top-end',
+                      icon: 'success',
+                      title: 'Your work has been saved',
+                      showConfirmButton: false,
+                      timer: 1500
+                    })
+             }
+             else{
+                  Swal.fire({
+                    icon: 'warning',
+                    text: 'Check your data !',
+                    showConfirmButton: false,
+                    timer:3000,
+                  })
+             }
             });
         }
-      });
+        else {
+          Swal.fire({
+            icon: 'warning',
+            text: 'Please enter valid data!',
+            showConfirmButton: false,
+            timer:3000,
+          })
+         }
+      }
+      );
     }
   }
 }

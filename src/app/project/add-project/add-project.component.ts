@@ -7,6 +7,7 @@ import { ProjectService } from '../../services/project.service';
 import { EmployeeService } from '../../services/employee.service';
 import { GetAllEmployees } from '../../models/Employee/GetAllEmployees';
 import { DatePipe } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-project',
@@ -256,15 +257,36 @@ export class AddProjectComponent {
           this.router.navigate(['project']);
         },
         (error) => {
-          this.snackBar.open(error.message, 'Close', {
-            duration: 3000,
-          });
+          if(error.status==200){
+            Swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'Your work has been saved',
+                  showConfirmButton: false,
+                  timer: 1500
+                })
+         }
+         else{
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+                showConfirmButton: false,
+              })
+         }
         }
       );
     } else {
-      this.snackBar.open('Please enter valid data.', 'Close', {
-        duration: 3000,
-      });
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: 'Please enter valid data',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      // this.snackBar.open('Please enter valid data.', 'Close', {
+      //   duration: 3000,
+      // });
     }
   }
 

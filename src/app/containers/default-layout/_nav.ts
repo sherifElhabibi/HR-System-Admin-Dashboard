@@ -1,6 +1,4 @@
 import { INavData } from '@coreui/angular';
-
-
   export const navItems: INavData[] = [
 
     {
@@ -50,10 +48,6 @@ import { INavData } from '@coreui/angular';
           name: 'Edit',
           url: '/department/edit/id'
         },
-        // {
-        //   name: 'Delete',
-        //   url: '/department/delete/id'
-        // },
       ]
     },
     {
@@ -97,16 +91,15 @@ import { INavData } from '@coreui/angular';
         }
       ]
     },
-    // {
-    //   name: 'Account',
-    //   url: '/login',
-    //   iconComponent: { name: 'cil-star' },
-    //   children: [
-    //     {
-    //       name: 'Login',
-    //       url: '/login',
-    //     },
-    //   ]
-    // },
-
-  ];
+    {
+      name: 'Account',
+      url: '/login',
+      iconComponent: { name: 'cil-star' },
+      children: [
+        {
+          name: 'Login',
+          url: '/login'
+        },
+      ]
+    },
+    ];

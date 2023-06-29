@@ -13,6 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectService } from 'src/app/services/project.service';
 import { ProjecttaskService } from 'src/app/services/projecttask.service';
 import { DeleteConfirmationComponent } from 'src/app/shared/delete-confirmation.component';
+import Swal from 'sweetalert2';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -95,6 +96,25 @@ export class EditComponent {
         .editProjectTask(a['id'], this.editProjectTaskForm.value)
         .subscribe(() => {
           this.router.navigateByUrl('employees/list');
+        },
+        (error)=>{
+               if(error.status==200){
+        Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Your work has been saved',
+              showConfirmButton: false,
+              timer: 1500
+            })
+     }
+     else{
+          Swal.fire({
+            icon: 'warning',
+            text: 'Check your data !',
+            showConfirmButton: false,
+            timer:3000,
+          })
+     }
         });
     });
   }
