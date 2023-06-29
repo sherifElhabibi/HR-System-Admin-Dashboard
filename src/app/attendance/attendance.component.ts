@@ -50,7 +50,6 @@ export class AttendanceComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.employeeId = this.authService.getID();
     this.employeeId = 3;
     this.employeeService.getEmployeeProjects(this.employeeId).subscribe((employeeProjects) => {
       this.employeeProjects = employeeProjects;

@@ -11,7 +11,7 @@ import { User } from '../../models/Login/User';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
+export class LoginnComponent {
   token: any;
   decodedData:any;
   id: any;
@@ -27,10 +27,11 @@ export class LoginComponent {
     getEmail() {
       return this.loginForm.get('email');
     }
-  
+
     getPassword() {
       return this.loginForm.get('password');
     }
+    
     onSubmit() {
       const { email, password } = this.loginForm.value;
       let user = new User(email, password);
@@ -48,16 +49,16 @@ export class LoginComponent {
             
             switch (this.decodedData.Position) {
                  case 'Admin':
-                     this.router.navigateByUrl('/employeeProfile');
+                     this.router.navigateByUrl('/dashboard');
                      break;
                  case 'HR':
-                    this.router.navigateByUrl('/employeeProfile');
+                    this.router.navigateByUrl('/employeeProfil/profile/'+this.decodedData.Id);
                     break;
                  case 'Accountant':
-                    this.router.navigateByUrl('/employeeProfile');
+                    this.router.navigateByUrl('/employeeProfil/profile/'+this.decodedData.Id);
                     break;
                  case 'Employee':
-                   this.router.navigateByUrl('/employeeProfile');
+                   this.router.navigateByUrl('/employeeProfil/profile/'+this.decodedData.Id);
                    break;
                  default:
                 this.router.navigateByUrl('/Home');
