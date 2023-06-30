@@ -73,7 +73,9 @@ export class CreatewithprojidComponent {
                 title: 'Your work has been saved',
                 showConfirmButton: false,
                 timer: 1500
-              })
+              });
+              this.router.navigate(['projecttask/list']);
+
        }
        else{
             Swal.fire({

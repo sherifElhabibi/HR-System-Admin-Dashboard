@@ -70,7 +70,8 @@ export class PhaseCreateComponent {
                 title: 'Your work has been saved',
                 showConfirmButton: false,
                 timer: 1500
-              })
+              });
+             
        }
        else{
             Swal.fire({

@@ -310,7 +310,8 @@ export class AddProjectComponent {
                   title: 'Your work has been saved',
                   showConfirmButton: false,
                   timer: 1500
-                })
+                });
+                this.router.navigate(['project']);
          }
          else{
               Swal.fire({
