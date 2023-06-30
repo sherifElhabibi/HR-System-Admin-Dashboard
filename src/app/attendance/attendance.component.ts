@@ -8,6 +8,7 @@ import { AuthService } from '../services/auth.service';
 import { EmployeeService } from '../services/employee.service';
 import { AttendanceService} from '../services/attendance.service'
 import { DatePipe } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-attendance',
@@ -50,9 +51,10 @@ export class AttendanceComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.employeeId = 3;
+    this.employeeId= this.authService.getID();
     this.employeeService.getEmployeeProjects(this.employeeId).subscribe((employeeProjects) => {
       this.employeeProjects = employeeProjects;
+      console.log(this.employeeProjects)
     });
 
     this.attendanceForm = this.builder.group({
@@ -98,8 +100,47 @@ export class AttendanceComponent implements OnInit {
       'yyyy-MM-dd'
     );
     this.attendanceForm.value.employeeId= this.employeeId;
-    this.attendanceService.attend(this.attendanceForm.value).subscribe(()=>{
+    this.attendanceService.attend(this.attendanceForm.value).subscribe(
+      (response) => { 
+      if(response.status==200){
+        Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Your Attendance has been saved',
+              showConfirmButton: false,
+              timer: 1500
+            })
 
-    });
+            }else{
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Your Attendance has been saved',
+                showConfirmButton: false,
+                timer: 1500
+              })
+            }
+     },
+      (error) => {
+        console.log(error)
+        if(error.status==200){
+          Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Your work has been saved',
+                showConfirmButton: false,
+                timer: 1500
+              });
+            }
+       else{
+        Swal.fire({
+          icon: 'error',
+          title: `Please enter valid data,${error.errors}`,
+          showConfirmButton: false,
+          timer: 1500
+        })
+       }
+      }
+    );
   }
 }

@@ -6,6 +6,8 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { User } from '../../models/Login/User';
 
 
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,7 +20,9 @@ export class LoginnComponent {
   error = '';
   jwtHelper: JwtHelperService = new JwtHelperService();
   
-  constructor(private fb: FormBuilder,private authService: AuthService,private router: Router){}
+  constructor(private fb: FormBuilder,private authService: AuthService,private router: Router){
+    
+  }
 
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -47,28 +51,55 @@ export class LoginnComponent {
           sessionStorage.setItem('userId', JSON.stringify(this.decodedData.Id));
           sessionStorage.setItem('role', JSON.stringify(this.decodedData.Position));
           
+          // switch (this.decodedData.Position) {
+          //      case 'Admin':
+          //          this.router.navigateByUrl('/dashboard');
+          //          break;
+          //      case 'HR':
+          //         this.router.navigateByUrl('/employeeProfil/profile/'+this.decodedData.Id);
+          //         break;
+          //      case 'Accountant':
+          //         this.router.navigateByUrl('/employeeProfil/profile/'+this.decodedData.Id);
+          //         break;
+          //      case 'Employee':
+          //        this.router.navigateByUrl('/employeeProfil/profile/'+this.decodedData.Id);
+          //        break;
+          //      default:
+          //     this.router.navigateByUrl('/Home');
+          //     break;
+          // }
           switch (this.decodedData.Position) {
-               case 'Admin':
-                   this.router.navigateByUrl('/dashboard');
-                   break;
-               case 'HR':
-                  this.router.navigateByUrl('/employeeProfil/profile/'+this.decodedData.Id);
-                  break;
-               case 'Accountant':
-                  this.router.navigateByUrl('/employeeProfil/profile/'+this.decodedData.Id);
-                  break;
-               case 'Employee':
-                 this.router.navigateByUrl('/employeeProfil/profile/'+this.decodedData.Id);
-                 break;
-               default:
+            case 'Admin':
+              this.router.navigateByUrl('/dashboard');
+              setTimeout(() => {
+                if (this.router.url === '/dashboard') {
+                  window.location.reload();
+                }
+              }, 100); // Introduce a small delay before checking and refreshing
+              break;
+            case 'HR':
+            case 'Accountant':
+            case 'Employee':
+              const profileUrl = '/employeeProfil/profile/' + this.decodedData.Id;
+              this.router.navigateByUrl(profileUrl);
+              setTimeout(() => {
+                if (this.router.url === '/employeeProfil/profile/'+this.decodedData.Id) {
+                  window.location.reload();
+                }
+              }, 100); 
+              
+              break;
+            default:
               this.router.navigateByUrl('/Home');
               break;
           }
+          
         }
       },
       (error) => {
         this.error = error;
       }
     );
+    
   }    
 }

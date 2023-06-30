@@ -189,6 +189,7 @@ export class EmployeeEditComponent implements OnInit {
         }
       }
     }
+    
     if (this.editEmpForm) {
       const employeeStatus = this.editEmpForm.get('employeeStatus');
       if (employeeStatus) {

@@ -24,6 +24,11 @@ isLoggin:boolean=false;
   logOut() {
     sessionStorage.clear();
     this.router.navigate(['login']);
+              setTimeout(() => {
+                if (this.router.url === '/login') {
+                  window.location.reload();
+                }
+              }, 2);
   }
   account(){
     this.router.navigate(['/employeeProfil/profile/'+this.authService.getID()]);

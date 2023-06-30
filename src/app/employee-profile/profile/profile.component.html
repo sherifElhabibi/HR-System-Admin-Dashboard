@@ -9,7 +9,7 @@
             <div class="col-md-3 col-sm-12 left-col text-center">
               <div class="mb-2">
                 <img
-                  src="../../../assets/images/girlProfile.jpg"
+                  src="../../../assets/images/boyProfile.jpg"
                   class="img-fluid shadow-lg rounded-circle profile-img p-2"
                   alt="profile image"
                 />
@@ -20,8 +20,7 @@
               <h3 class="card-title mb-0 ">{{employee.employeeFirstName}} {{employee.employeeLastName}}</h3>
               <small class="fw-bold ">{{employee.employeePosition}}</small>
               <p class="card-text my-3">
-                Some quick example text to build on the card title and make up the
-                bulk of the card's content.
+                You are a {{employee.employeeStatus}} employee with ${{employee.employeeSalaryPerHour}} per hour.
               </p>
               <div class="contact-info w-100">
                 <div class="d-block d-md-flex justify-content-between">
@@ -37,7 +36,7 @@
                 <div class="d-block d-md-flex mt-3">
                   <div class="col-md-5">
                     <i class="bi bi-geo"></i>                  
-                      <span class="ms-2 small">BirthDay</span>
+                      <span class="ms-2 small">{{employee.employeePosition}}</span>
                   </div>
                   <div class="col-md-6 ms-md-5">
                     <i class="bi bi-calendar-plus"></i>

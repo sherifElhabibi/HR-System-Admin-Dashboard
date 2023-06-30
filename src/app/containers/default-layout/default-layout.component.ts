@@ -50,14 +50,15 @@ export class DefaultLayoutComponent implements OnInit {
       name === 'Projects Tasks' ||
       name === 'Projects Phases' ||
       name === 'Projects' ||
-      name === 'Account'
+      name === 'Account' ||
+      name === 'Attendance'
     );
   }
   
 
 
   private isHRNavItem(name: string): boolean {
-    if (name === 'Dashboard' || name === 'My Profile' || name === 'Account') {
+    if (name === 'Dashboard' || name === 'My Profile' || name === 'Account' || name === 'Attendance') {
       return true;
     } else if (name === 'Employees') {
         this.filterEmployeesNavItem();
@@ -73,7 +74,7 @@ export class DefaultLayoutComponent implements OnInit {
 
 
   private isAccountantNavItem(name: string): boolean {
-    if (name === 'Dashboard' || name === 'My Profile' || name === 'Account') {
+    if (name === 'Dashboard' || name === 'My Profile' || name === 'Account' ||name === 'Attendance') {
       return true;
     } else if (name === 'Employees') {
       this.filterEmployeesNavItem();
@@ -97,7 +98,7 @@ export class DefaultLayoutComponent implements OnInit {
 
 
   private isEmpNavItem(name: string): boolean {
-    if (name === 'Dashboard' || name === 'My Profile' || name === 'Account') {
+    if (name === 'Dashboard' || name === 'My Profile' || name === 'Account' || name === 'Attendance') {
       return true;
     }  
     if (name === 'Projects') {
