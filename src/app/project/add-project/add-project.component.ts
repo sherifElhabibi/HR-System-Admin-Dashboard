@@ -294,7 +294,6 @@ export class AddProjectComponent {
         );
       }
     }
-    console.log(this.projectform.value)
     if (this.projectform.valid) {
       this.projectService.createProject(this.projectform.value).subscribe(
         () => {

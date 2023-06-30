@@ -26,7 +26,7 @@
         <td>{{phase.phaseEndDate | date:'yyyy-MM-dd'}}</td>
         <td>{{phase.phaseMilestone}}</td>
         <td>{{phase.phaseHrBudget}}</td>
-        <td>
+        <td class="d-flex justify-content-center">
           <div *ngIf="position === 'Admin' || position === 'Accountant'">
             <a [routerLink]="['/phases/details/', phase.phaseId]">
               <button class="btn btn-sm btn-dark me-2">

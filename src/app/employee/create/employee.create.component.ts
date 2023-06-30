@@ -210,9 +210,6 @@ export class EmployeeCreateComponent {
                 showConfirmButton: false,
                 timer: 1500
               })
-              // this.snackBar.open('dept added successfully.', 'Close', {
-              //   duration: 3000,
-              // });
        }
        else{
         Swal.fire({
