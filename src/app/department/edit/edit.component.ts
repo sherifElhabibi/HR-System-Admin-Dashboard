@@ -109,7 +109,9 @@ export class EditComponent implements OnInit {
                       title: 'Your work has been saved',
                       showConfirmButton: false,
                       timer: 1500
-                    })
+                    });
+                    this.router.navigate(['department/list']);
+
              }
              else{
                   Swal.fire({
