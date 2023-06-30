@@ -215,7 +215,9 @@ export class EmployeeEditComponent implements OnInit {
               title: 'Your work has been saved',
               showConfirmButton: false,
               timer: 1500
-            })
+            });
+            this.router.navigate(['employees/list']);
+
      }
      else{
           Swal.fire({

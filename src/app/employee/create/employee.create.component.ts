@@ -155,7 +155,7 @@ export class EmployeeCreateComponent {
      );
 
     console.log(this.createEmpForm.value.employeeHiringDate)
-    
+
     if (this.createEmpForm) {
       const employeePosition = this.createEmpForm.get('employeePosition');
       if (employeePosition) {
@@ -214,7 +214,12 @@ export class EmployeeCreateComponent {
                 title: 'Your work has been saved',
                 showConfirmButton: false,
                 timer: 1500
-              })
+              });
+              this.router.navigate(['employees/list']);
+
+              // this.snackBar.open('dept added successfully.', 'Close', {
+              //   duration: 3000,
+              // });
        }
        else{
         Swal.fire({

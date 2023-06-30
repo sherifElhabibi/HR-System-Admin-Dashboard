@@ -122,7 +122,9 @@ export class CreateComponent {
                     title: 'Your work has been saved',
                     showConfirmButton: false,
                     timer: 1500
-                  })
+                  });
+                  this.router.navigate(['department/list']);
+
 
            }
            else{

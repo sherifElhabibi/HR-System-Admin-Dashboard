@@ -294,7 +294,6 @@ export class AddProjectComponent {
         );
       }
     }
-    console.log(this.projectform.value)
     if (this.projectform.valid) {
       this.projectService.createProject(this.projectform.value).subscribe(
         () => {
@@ -311,7 +310,8 @@ export class AddProjectComponent {
                   title: 'Your work has been saved',
                   showConfirmButton: false,
                   timer: 1500
-                })
+                });
+                this.router.navigate(['project']);
          }
          else{
               Swal.fire({
