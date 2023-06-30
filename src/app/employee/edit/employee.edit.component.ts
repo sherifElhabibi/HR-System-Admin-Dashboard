@@ -56,7 +56,6 @@ export class EmployeeEditComponent implements OnInit {
     employeeFirstName: [
       '',
       [
-        Validators.required,
         Validators.minLength(3),
         Validators.maxLength(30),
         Validators.pattern('^[a-zA-Z\\s]*$'),
@@ -65,7 +64,6 @@ export class EmployeeEditComponent implements OnInit {
     employeeLastName: [
       '',
       [
-        Validators.required,
         Validators.minLength(3),
         Validators.maxLength(30),
         Validators.pattern('^[a-zA-Z\\s]*$'),
@@ -73,25 +71,21 @@ export class EmployeeEditComponent implements OnInit {
     ],
     employeeSalaryPerHour: [0,
       [
-        Validators.required,
         Validators.pattern('^[0-9]+$')
       ]
     ],
     employeeOvertimeRate: [0,
       [
-        Validators.required,
         Validators.pattern('^[0-9]+$')
       ]
     ],
     employeeRegularHoursPerDay: [0,
       [
-        Validators.required,
         Validators.pattern('^[0-9]+$')
       ]
     ],
     employeeWorkingDaysPerWeek: [0,
       [
-        Validators.required,
         Validators.pattern('^[0-9]+$')
       ]
     ],
@@ -103,14 +97,12 @@ export class EmployeeEditComponent implements OnInit {
     employeePhone: [
       '',
       [
-        Validators.required,
         Validators.pattern(/^01[0125][0-9]{8}$/)
       ],
     ],
     employeeEmail: [
       '',
       [
-        Validators.required,
         Validators.pattern(
           /^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$/
         ),
@@ -118,13 +110,12 @@ export class EmployeeEditComponent implements OnInit {
     ],
     employeePassword: ['',
       [
-        Validators.required,
         Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&\\s])[A-Za-z\\d@$!%*#?&\\s]{8,}$')
       ]
     ],
-    employeePosition: [0, Validators.required],
-    employeeHiringDate: ['', Validators.required],
-    employeeStatus: [0, Validators.required]
+    employeePosition: [0],
+    employeeHiringDate: [''],
+    employeeStatus: [0]
   });
 
   getFname() {
@@ -140,6 +131,7 @@ export class EmployeeEditComponent implements OnInit {
   getEmployeeRegularHoursPerDay() {
     return this.editEmpForm.get('employeeRegularHoursPerDay');
   }
+
   getEmployeeWorkingDaysPerWeek() {
     return this.editEmpForm.get('employeeWorkingDaysPerWeek');
   }
@@ -168,6 +160,9 @@ export class EmployeeEditComponent implements OnInit {
     return this.editEmpForm.get('employeePassword');
   }
 
+  getStatus() {
+    return this.editEmpForm.get('employeeStatus');
+  }
   getHiringDate() {
     return this.editEmpForm.get('employeeHiringDate');
   }
@@ -177,10 +172,36 @@ export class EmployeeEditComponent implements OnInit {
   }
 
   editEmp() {
+    
     this.editEmpForm.value.employeeHiringDate = this.datePipe.transform(
       this.editEmpForm.value.employeeHiringDate,
       'yyyy-MM-dd'
     );
+    if (this.editEmpForm) {
+      const employeePosition = this.editEmpForm.get('employeePosition');
+      if (employeePosition) {
+        const EmployeePosition = employeePosition.value;
+        if (typeof EmployeePosition === 'string') {
+          const parsedValue = parseFloat(EmployeePosition);
+          if (!isNaN(parsedValue)) {
+            employeePosition.setValue(parsedValue);
+          }
+        }
+      }
+    }
+    if (this.editEmpForm) {
+      const employeeStatus = this.editEmpForm.get('employeeStatus');
+      if (employeeStatus) {
+        const EmployeeStatus = employeeStatus.value;
+        if (typeof EmployeeStatus === 'string') {
+          const parsedValue = parseFloat(EmployeeStatus);
+          if (!isNaN(parsedValue)) {
+            employeeStatus.setValue(parsedValue);
+          }
+        }
+      }
+    }
+    console.log(this.editEmpForm.value)
     this.empService
       .editEmployee(this.id, this.editEmpForm.value)
       .subscribe(() => {

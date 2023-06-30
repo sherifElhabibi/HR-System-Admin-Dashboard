@@ -71,11 +71,7 @@ export class EmployeeCreateComponent {
         Validators.pattern('^[0-9]+$')
       ]
     ],
-    employeeProfileUrl: ['',
-      [
-        Validators.pattern('\.(jpg|png|jpeg)$')
-      ]
-    ],
+    employeeProfileUrl: [''],
     employeePhone: [
       '',
       [
@@ -152,13 +148,13 @@ export class EmployeeCreateComponent {
     return this.createEmpForm.get('employeeHiringDate');
   }
 
-
-
   createNewEmp(): void {
-    this.createEmpForm.value.employeeHiringDate = this.datePipe.transform(
-      this.createEmpForm.value.employeeHiringDate,
-      'yyyy-MM-dd'
-    );
+     this.createEmpForm.value.employeeHiringDate = this.datePipe.transform(
+       this.createEmpForm.value.employeeHiringDate,
+       'yyyy-MM-dd'
+     );
+
+    console.log(this.createEmpForm.value.employeeHiringDate)
 
     if (this.createEmpForm) {
       const employeePosition = this.createEmpForm.get('employeePosition');
@@ -198,10 +194,19 @@ export class EmployeeCreateComponent {
             })
 
             }
+          else{
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Your work has been saved',
+              showConfirmButton: false,
+              timer: 1500
+            })
+          }
 
      },
       (error) => {
-
+        console.log(error)
         if(error.status==200){
           Swal.fire({
                 position: 'top-end',
@@ -219,7 +224,7 @@ export class EmployeeCreateComponent {
        else{
         Swal.fire({
           icon: 'error',
-          title: 'Please enter valid data',
+          title: `Please enter valid data,${error.errors}`,
           showConfirmButton: false,
           timer: 1500
         })

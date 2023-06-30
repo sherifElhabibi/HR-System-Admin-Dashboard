@@ -12,14 +12,16 @@
     <thead>
       <tr style="text-align: center;" class="text-light">
         <th>Full Name</th>
-        <th><i class="bi bi-person-bounding-box"></i></th>
+        <th>Position</th>
+        <th>Status</th>
         <th>Actions</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let employee of employees;let i = index" style="text-align: center;">
         <td>{{ employee.employeeFirstName+" "+employee.employeeLastName}}</td>
-        <td><img src="{{ employee.employeeProfileUrl}}" alt="employee_Image"></td>
+        <td>{{ employee.employeePosition}}</td>
+        <td>{{ employee.employeeStatus}}</td>
         <td class="actions d-flex justify-content-around">
           <div class="buttons d-flex flex-column d-md-flex flex-md-row gap-2">
             <div *ngIf="position === 'Admin' || position === 'HR' ">

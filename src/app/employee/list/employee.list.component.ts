@@ -44,7 +44,6 @@ export class EmployeeListComponent implements OnInit {
             this.snackBar.open('project deleted', 'Close', {
               duration: 2000,
             });
-            // this.employees = this.employees.filter(e => e.emplyeeId === id);
           }
         });
       }
