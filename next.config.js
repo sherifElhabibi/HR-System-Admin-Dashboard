@@ -1,4 +1,11 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
 
-module.exports = nextConfig
+module.exports = {
+  reactStrictMode: true,
+  compiler: {
+    styledComponents: true,
+  },
+  images: {
+    domains: ['ultimate.abuzeit.com','images.pexels.com'], // Add any other domains as needed
+  },
+};

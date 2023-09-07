@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/page.tsx", "components/FetchDaleelItems.jsx", "components/Navbar/Navbar.jsx", "app/(pages)/daleelcom/page.jsx", "components/GlobalSlider.jsx"],
   "exclude": ["node_modules"]
 }
